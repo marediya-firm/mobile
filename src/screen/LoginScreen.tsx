@@ -8,7 +8,7 @@ import firestore from '@react-native-firebase/firestore';
 export const LoginScreen = () => {
     const [userInput, _UserInput] = useState({
         "email": '',
-        "password": ""
+        "password": ""    
     })
     const handleAuthAccount = async () => {
         try {
