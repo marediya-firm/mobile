@@ -1,10 +1,6 @@
-import {Image} from 'react-native';
 
-interface Images {
-  Login: number;
-}
-
-export const Images: Images = {
-  Login: require('../image/Login.png'),
+export const Images = {
+  // Login: require('../image/LoginImage.png'),
   // Register:require
 };
+  
