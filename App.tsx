@@ -1,17 +1,16 @@
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { CommonContext } from './src/context/InputContext';
 import MainStack from './src/routes/MainStack';
-import {LoginScreen} from './src/screen/auth/LoginScreen';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      {/* <View style={{ flex: 1, backgroundColor: "white" }}> */}
-      {/* <LoginScreen /> */}
-      <MainStack />
-      {/* </View> */}
-    </NavigationContainer>
+    <CommonContext>
+      <NavigationContainer>
+        <MainStack />
+      </NavigationContainer>
+    </CommonContext>
   );
 };
 
