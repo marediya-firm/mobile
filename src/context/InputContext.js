@@ -7,11 +7,12 @@ export const GetInputContext = createContext()
 
 export const CommonContext = ({ children }) => {
     let { userInput, dispatch } = InputReducer();
+    const store = {
+        userInput,
+        dispatch
+    }
     return (
-        <GetInputContext.Provider value={{
-            userInput,
-            dispatch
-        }}>
+        <GetInputContext.Provider value={{ store }}>
             {children}
         </GetInputContext.Provider>
     )

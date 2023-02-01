@@ -1,14 +1,22 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { Colors } from "../../../constant/Colors";
 import { fontWeight, fontSize } from '../../../styling/index'
 
 export const styles = StyleSheet.create({
+    safeArea: {
+        backgroundColor: Colors.white
+    },
     container: {
         flex: 1,
         backgroundColor: 'white'
     },
+    mainComponent: {
+        marginTop: 8
+    },
     headerContainer: {
-        marginTop: "10%",
+        marginTop: Platform.OS === "android" ? "10%" : 0,
+        justifyContent: "center",
+        alignItems: "center"
     },
     headerText: {
         color: Colors.darkBlack,
@@ -17,7 +25,6 @@ export const styles = StyleSheet.create({
     headerTextToday: {
         color: Colors.grey,
         fontWeight: fontWeight.fontWeight600,
-        // fontSize:
     },
     dropdown: {
         height: 50,
@@ -26,5 +33,9 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         paddingHorizontal: 8,
     },
+    button: {
+        backgroundColor: Colors.googleBlue,
+        borderRadius: 10
+    }
 })
 

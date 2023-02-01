@@ -6,7 +6,8 @@ export const InputReducer = () => {
         firsName: "",
         email: "",
         password: "",
-        phoneNumber: ""
+        phoneNumber: "",
+        confirmPassword: ""
     }
     console.log("reduceerCall");
 
@@ -23,6 +24,9 @@ export const InputReducer = () => {
             }
             case type.PHONE_NUMBER: return {
                 ...state, phoneNumber: action.payload
+            }
+            case type.CONFIRM_PASSWORD: return {
+                ...state, confirmPassword: action.payload
             }
             default: return state
         }
