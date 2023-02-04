@@ -6,5 +6,7 @@ export const Colors = {
     googleColor: "rgba(0, 0, 0, 0.6)",
     darkBlack: "rgba(0, 0, 0, 1)",
     blue: "#0E64D2",
-    googleBlue:"#1877F2"
+    googleBlue: "#1877F2",
+    loginBlue: "#2F89FC",
+    Orange: "#E86969"
 }

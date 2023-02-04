@@ -1,36 +1,20 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { CommonContext } from './src/context/InputContext';
+import { CommonContext } from './src/context/CommonContext';
 import MainStack from './src/routes/MainStack';
+import FlashMessage from 'react-native-flash-message';
+import AppLoader from './src/components/AppLoader';
 
 const App = () => {
   return (
-    <CommonContext>
-      <NavigationContainer>
+    <NavigationContainer>
+      <CommonContext>
         <MainStack />
-      </NavigationContainer>
-    </CommonContext>
+        <AppLoader />
+        <FlashMessage position="top" animated={true} />
+      </CommonContext>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import {  StyleSheet } from "react-native";
 import { Colors } from "../../../constant/Colors";
 import { fontWeight } from '../../../styling/index'
 
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         paddingBottom: 30
     },
     headerContainer: {
-        marginTop: "20%",
+        marginTop: "10%",
         justifyContent: "center",
         alignItems: "center"
     },
@@ -47,10 +47,6 @@ export const styles = StyleSheet.create({
     googleText: {
         color: Colors.googleColor
     },
-    forgotPass: {
-        alignSelf: "flex-end",
-        marginHorizontal: 39
-    }
 })
 
 export function marginTop(param?: number | string) {
