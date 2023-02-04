@@ -1,4 +1,4 @@
-export const Images = {
-  BackIcon1: require('../icon/back.png'),
-  Register: require(''),
-};
+export * from './FaceBook'
+export * from './Google'
+export * from './ShowEyeIcon'
+export * from './HideEyeIcon'

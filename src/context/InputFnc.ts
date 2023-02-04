@@ -1,16 +1,24 @@
 import { useReducer } from "react"
 import { type } from "../constant/types"
 
+interface inputFiled {
+    firsName: string | number | any;
+    email: string | number | any;
+    password: string | number | any;
+    phoneNumber: string | number | any;
+    secureTextEntry: boolean;
+}
+
 export const InputReducer = () => {
-    let initialState = {
+    let initialState: inputFiled = {
         firsName: "",
         email: "",
         password: "",
-        phoneNumber: ""
+        phoneNumber: "",
+        secureTextEntry: false
     }
-    console.log("reduceerCall");
 
-    const reducer = (state, action) => {
+    const reducer = (state: any, action: { type: string; payload: any; }) => {
         switch (action.type) {
             case type.FIRST_NAME: return {
                 ...state, firsName: action.payload
@@ -23,6 +31,9 @@ export const InputReducer = () => {
             }
             case type.PHONE_NUMBER: return {
                 ...state, phoneNumber: action.payload
+            }
+            case type.SECURE_TEXTENTRY: return {
+                ...state, secureTextEntry: !action.payload
             }
             default: return state
         }

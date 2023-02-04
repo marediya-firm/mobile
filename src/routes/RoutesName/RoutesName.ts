@@ -1,5 +1,5 @@
 export enum ROUTES {
   LoginScreen = 'LoginScreen',
-  AuthRegister = 'RegisterScreen',
+  CreateAccount = 'CreateAccount',
   AuthStack = 'AuthLogin',
 }
