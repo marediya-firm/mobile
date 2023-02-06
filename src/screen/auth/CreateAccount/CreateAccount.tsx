@@ -13,13 +13,14 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
   FlashMessage,
   createAccountQuery,
+  firebaseErrorMessage,
   navigationRoute,
 } from '../../../services';
 import {ROUTES} from '../../../routes/RoutesName/RoutesName';
 import {strings} from '../../../constant';
 import {emailRegex} from '../regex/regex';
 
-export const CreateAccount = () => {
+export const  CreateAccount = () => {
   /**
    * root store from context value
    */
@@ -82,7 +83,7 @@ export const CreateAccount = () => {
           /** add user deatil in firebase */
           createAccountQuery(
             params?.name,
-            params?.userEmail,
+            params?.usersEmail,
             phoneNumber,
             params?.image,
             params?.userID,
@@ -91,7 +92,8 @@ export const CreateAccount = () => {
           await Localstorage_SetItem(Localstorage_Key.USER_DETAIL, params);
         })
         .catch(err => {
-          console.log('err', err);
+          firebaseErrorMessage(err.code)
+          console.log('err', err.code);
           setGlobalLoading(false);
         })
         .finally(() => setGlobalLoading(false));
