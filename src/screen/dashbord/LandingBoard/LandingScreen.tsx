@@ -8,68 +8,102 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useContext, useEffect, useMemo, useState} from 'react';
 import {styles} from './styles';
-import {Colors} from '../../../constant';
+import {Colors, type} from '../../../constant';
 import {firebase} from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {CrossIcon, Right} from '../../../assets/icon';
 import MainStack from '../../../routes/MainStack';
+import {GlobalData} from '../../../context/CommonContext';
 
 export const LandingScreen = () => {
   const cacheStyles = useMemo(() => styles, []);
-  let [question, setQuestion]: any = useState({});
+  const {
+    rootStore: {
+      question: {
+        qLoading = false,
+        questionData = [],
+        questionIndex = 0,
+        isSumitAnswer = false,
+      },
+      dispatchQuestion,
+    },
+  }: object | any = useContext(GlobalData);
+
   useEffect(() => {
-    const userId = auth()?.currentUser?.uid;
-    console.log('userId>>>>>', userId);
+    dispatchQuestion({types: type.QUESTION_LOADING});
     firebase
       .firestore()
       .collection('QUESTION_BANK')
       .get()
       .then((res: any) => {
-        setQuestion(res?._docs[0]?._data);
+        const arrangeDocument = res?._docs?.map((doc: any) => doc?._data);
+        dispatchQuestion({
+          types: type.QUESTION_DATA,
+          payload: arrangeDocument,
+        });
       })
       .catch(erre => {
         console.log(erre);
       });
   }, []);
 
+  let {
+    answer = '',
+    question_points = [],
+    quiz = '',
+  } = questionData[questionIndex] || questionData;
+
   const onSelectedOption = (_id: string, index: number) => {
-    const question_points = question?.question_points?.map((result: any) =>
+    const userSelectOption = question_points?.map((result: any) =>
       result?.id == _id
         ? {...result, isSelected: true}
         : {...result, isSelected: false},
     );
-    question = {...question, question_points};
-    setQuestion(question);
+    questionData[questionIndex] = {
+      ...questionData[questionIndex],
+      question_points: userSelectOption,
+    };
+    dispatchQuestion({
+      types: type.QUESTION_DATA,
+      payload: [...questionData],
+    });
   };
 
   const onSubmitAnswer = () => {
-    const submitAnswer = question?.question_points?.filter(
+    const submitAnswer = question_points?.some(
       (result: any) => result?.isSelected,
     );
-    if (submitAnswer?.length > 0) {
-      const finalSubmit = question?.question_points?.map((finalRes: any) => {
-        if (
-          question?.answer == finalRes?.question_options &&
-          submitAnswer[0]?.question_options == question?.answer
-        ) {
-          return {...finalRes, correctAnswer: true};
-        } else if (
-          finalRes?.question_options === submitAnswer[0]?.question_options
-        ) {
-          return {...finalRes, correctAnswer: false};
-        } else if (question?.answer === finalRes?.question_options) {
-          return {...finalRes, correctAnswer: true};
-        } else {
-          return {...finalRes};
-        }
+    if (submitAnswer && isSumitAnswer) {
+      const finalSubmit = question_points?.map(
+        (finalRes: {question_options: string; isSelected: boolean}) => {
+          let {question_options, isSelected}: any = finalRes;
+          return answer == question_options
+            ? {...finalRes, correctAnswer: true}
+            : isSelected
+            ? {...finalRes, correctAnswer: false}
+            : finalRes;
+        },
+      );
+      questionData[questionIndex] = {
+        ...questionData[questionIndex],
+        question_points: finalSubmit,
+      };
+      dispatchQuestion({
+        types: type.QUESTION_DATA,
+        payload: questionData,
       });
-      question.question_points = finalSubmit;
-      setQuestion({...question});
-    } else return;
+    } else {
+      !submitAnswer
+        ? null
+        : dispatchQuestion({
+            types: type.INCREASE_INDEX,
+            payload: questionIndex + 1,
+          });
+    }
   };
-  console.log(">>>",question)
+  console.log('>>>', questionData, questionIndex);
 
   return (
     <>
@@ -127,15 +161,15 @@ export const LandingScreen = () => {
                     opacity: 0.8,
                     fontWeight: '700',
                   }}>
-                  {question?.question}
+                  {quiz}
                 </Text>
               </View>
             </View>
           </View>
 
           <View style={{flex: 0.4, top: 90, marginHorizontal: 40}}>
-            {question?.question_points?.length > 0 &&
-              question?.question_points?.map((res: any, index: number) => {
+            {question_points?.length > 0 &&
+              question_points?.map((res: any, index: number) => {
                 return (
                   <Pressable
                     onPress={() => onSelectedOption(res?.id, index)}

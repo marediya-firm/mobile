@@ -1,13 +1,16 @@
 import React, {createContext, useState} from 'react';
 import {InputReducer} from './InputFnc';
 import {useNavigation} from '@react-navigation/native';
+import {QuizDataReducer} from './QuizDataReducer';
 
 export const GlobalData: any = createContext({});
 export const CommonContext = ({children}: any) => {
   let {userInput, dispatch} = InputReducer();
+
   const navigation = useNavigation();
   const [globalLoading, setGlobalLoading] = useState(false);
-  const [useDetail, setUserDetail] = useState<object|any>(null);
+  let {question, dispatchQuestion}: any = QuizDataReducer();
+  const [useDetail, setUserDetail] = useState<object | any>(null);
 
   const rootStore = {
     navigation,
@@ -17,6 +20,8 @@ export const CommonContext = ({children}: any) => {
     setGlobalLoading,
     useDetail,
     setUserDetail,
+    question,
+    dispatchQuestion,
   };
 
   return (
