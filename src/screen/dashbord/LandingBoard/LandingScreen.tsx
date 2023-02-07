@@ -103,7 +103,6 @@ export const LandingScreen = () => {
           });
     }
   };
-  console.log('>>>', questionData, questionIndex);
 
   return (
     <>
