@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
+import { Colors } from '../../constant';
 
 export const Right = React.memo(props => {
   return (
@@ -9,7 +10,7 @@ export const Right = React.memo(props => {
       height="18px"
       {...props}>
       <Path
-        fill="purple"
+        fill={'#16d0ba'}
         d="M504.1 256C504.1 119 393 7.9 256 7.9S7.9 119 7.9 256 119 504.1 256 504.1 504.1 393 504.1 256z"
       />
       <Path

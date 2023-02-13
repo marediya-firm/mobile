@@ -6,7 +6,7 @@ import {CreateAccount} from '../screen/auth/CreateAccount/CreateAccount';
 import {GlobalData} from '../context/CommonContext';
 import {Localstorage_GetItem} from '../helper/LocalStorage.';
 import {Localstorage_Key} from '../helper/LocalStorageKey';
-import { ScreenBridge } from '.';
+import { ScreenBridge } from './Bridge/ScreenBridge';
 const Stack = createStackNavigator();
 
 const MainStack = () => {
@@ -25,9 +25,7 @@ const MainStack = () => {
       getUserDetail();
     };
   }, []);
-
-  console.log("userDetail",useDetail?.userID)
-
+    
   return (
     <>
       {useDetail == undefined || useDetail == null ? (

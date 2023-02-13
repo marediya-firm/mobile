@@ -5,16 +5,20 @@ interface question {
     questionData: Array<object | any> | [any];
     questionIndex: number;
     questionError: string;
-    isSumitAnswer:boolean
+    confirmSubmit: boolean;
+    finalSubmitAnswer: [] | Array<object> | any;
+    fillQuestion: [] | Array<object> | any;
 }
 
 export const QuizDataReducer = () => {
     const initialState: question = {
         qLoading: false,
         questionData: [],
+        finalSubmitAnswer: [],
+        fillQuestion: [],
         questionIndex: 0,
         questionError: "",
-        isSumitAnswer:false
+        confirmSubmit: false
     };
 
     const reducer = (state: any, action: { payload: any; types: string }) => {
@@ -23,13 +27,19 @@ export const QuizDataReducer = () => {
             case type.QUESTION_LOADING:
                 return { ...state, qLoading: true };
             case type.QUESTION_DATA:
-                return { ...state, questionData: payload,  qLoading: false };
+                let submitedAnswer = payload.qData?.map((res: any) => { return { isSubmitedAnswer: false } })
+                return { ...state, questionData: payload.qData, qLoading: false, fillQuestion: submitedAnswer };
+            case type.ON_SELECTOPTION: return { ...state, questionData: payload };
             case type.INCREASE_INDEX:
+                return { ...state, questionIndex: payload.index, questionData: payload.finalAnswer, fillQuestion: payload.submited , confirmSubmit: payload.confirmSubmit };
+            case type.JUMP_INDEX:
                 return { ...state, questionIndex: payload };
-                case type.ON_SUBMIT_ANSWER:
-                return { ...state,questionData: payload.questionData, isSumitAnswer: payload.submit };
-                case type.ON_NEXT:
-                    return { ...state, isSumitAnswer: false };
+            case type.ON_SUBMIT_ANSWER:
+                return { ...state, questionData: payload.questionData, confirmSubmit: payload.submit };
+            case type.ON_NEXT:
+                return { ...state, confirmSubmit: false };
+            case type.FINAL_SUBMIT_ANSWER:
+                return { ...state, finalSubmitAnswer: payload };
             case type.QUESTION_ERROR:
                 return { ...initialState, questionError: payload };
         }
