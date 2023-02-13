@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "136771069052-huvku1guk35cp9rgu8eaifkbsn9f7ln7.apps.googleusercontent.com",
+          "client_id": "136771069052-24p5vd8a945r2uvcin2pc8qf10kjbf28.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,8 +27,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "136771069052-huvku1guk35cp9rgu8eaifkbsn9f7ln7.apps.googleusercontent.com",
+              "client_id": "136771069052-24p5vd8a945r2uvcin2pc8qf10kjbf28.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "136771069052-i11s7s2u9699ir2rprjtdabril5r7asm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Khata-Book"
+              }
             }
           ]
         }

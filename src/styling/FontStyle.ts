@@ -33,6 +33,9 @@ export const F50015 = StyleSheet.create({
         fontWeight: fontWeight.fontWeight500,
         color: Colors.Orange
     },
+    textColor: {
+        color:Colors.semiGrey
+    }
 })
 
 export const F50016 = StyleSheet.create({

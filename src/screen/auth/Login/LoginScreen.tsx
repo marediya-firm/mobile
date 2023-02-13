@@ -19,10 +19,10 @@ const LoginScreen = () => {
       navigation,
       userInput,
       dispatch,
-      globalLoading,
       setGlobalLoading,
     },
   }: object | any = useContext(GlobalData);
+
   const {
     Email,
     Password,
@@ -40,6 +40,8 @@ const LoginScreen = () => {
   const cacheStyle = useMemo(() => styles, []);
 
   const handleAuthAccount = async () => {
+    console.log("onPresssCall");
+    
     try {
       setGlobalLoading(true);
       auth()
@@ -52,10 +54,11 @@ const LoginScreen = () => {
           };
           await Localstorage_SetItem(Localstorage_Key.USER_DETAIL, params);
         })
-        .catch(() => {})
-        .finally(() => setGlobalLoading(true));
+        .catch((err) => {console.log("eroor",err);
+        })
+        .finally(() => setGlobalLoading(false));
     } catch (error) {
-      setGlobalLoading(true);
+      setGlobalLoading(false);
       console.log(error);
     }
   };

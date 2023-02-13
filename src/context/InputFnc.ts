@@ -11,10 +11,10 @@ interface inputFiled {
 
 export const InputReducer = () => {
     let initialState: inputFiled = {
-        firsName: "",
-        email: "",
-        password: "",
-        phoneNumber: "",
+        firsName: "mmalmsa",
+        email: "1234@gmail.com",
+        password: "Test@123",
+        phoneNumber: "12121212121212",
         secureTextEntry: false
     }
 

@@ -1,4 +1,4 @@
-export const strings: object = {
+export const strings: object|string|any = {
     Email: "Email",
     Password: "Password",
     EmailPlaceHolder: "example@gmail.com",
@@ -19,5 +19,9 @@ export const strings: object = {
     ConnectFriends: "Connect with your friends today!",
     validationMessageRequest: (params: string) => {
         return `Please Enter Valid ${params}`
+    },
+    FirebaseErrorMessage:{
+        EmailAlreadyUser: "auth/email-already-in-use",
+        Error:"Error"
     }
 }
