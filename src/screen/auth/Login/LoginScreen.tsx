@@ -40,8 +40,6 @@ const LoginScreen = () => {
   const cacheStyle = useMemo(() => styles, []);
 
   const handleAuthAccount = async () => {
-    console.log("onPresssCall");
-    
     try {
       setGlobalLoading(true);
       auth()

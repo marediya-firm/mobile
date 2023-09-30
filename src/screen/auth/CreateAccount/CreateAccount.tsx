@@ -1,5 +1,5 @@
 import {SafeAreaView, Text, View} from 'react-native';
-import React, {useContext, useMemo} from 'react';
+import React, {useContext, useMemo, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {Localstorage_SetItem} from '../../../helper/LocalStorage.';
 import {Localstorage_Key} from '../../../helper/LocalStorageKey';
@@ -7,7 +7,13 @@ import {marginTop, styles} from './styles';
 import {GlobalData} from '../../../context/CommonContext';
 import {type} from '../../../constant/types';
 import {F60014, F70024} from '../../../styling/FontStyle';
-import {AuthFooter, CommonButton, InputText, OrWith} from '../../../components';
+import {
+  AuthFooter,
+  CommonButton,
+  CommonDropDown,
+  InputText,
+  OrWith,
+} from '../../../components';
 import {FaceBook, Google} from '../../../assets/icon/index';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
@@ -19,8 +25,20 @@ import {
 import {ROUTES} from '../../../routes/RoutesName/RoutesName';
 import {strings} from '../../../constant';
 import {emailRegex} from '../regex/regex';
+const qtyData = [
+  {label: 'Mumbai', value: 'Mumbai'},
+  {label: 'Ahemdabad', value: 'Ahemdabad'},
+  {label: 'Benglore', value: 'Benglore'},
+  {label: 'Pune', value: 'Pune'},
+];
+const genderData = [
+  {label: 'Male', value: 'Male'},
+  {label: 'Female', value: 'Female'},
+];
 
-export const  CreateAccount = () => {
+export const CreateAccount = () => {
+  const [qty, setQty] = useState(null);
+  const [gender, setGender] = useState(null);
   /**
    * root store from context value
    */
@@ -92,7 +110,7 @@ export const  CreateAccount = () => {
           await Localstorage_SetItem(Localstorage_Key.USER_DETAIL, params);
         })
         .catch(err => {
-          firebaseErrorMessage(err.code)
+          firebaseErrorMessage(err.code);
           console.log('err', err.code);
           setGlobalLoading(false);
         })
@@ -121,6 +139,7 @@ export const  CreateAccount = () => {
       <View style={cacheStyle.container}>
         <View>{Header}</View>
         <KeyboardAwareScrollView
+          nestedScrollEnabled={true}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps={always}
           contentContainerStyle={cacheStyle.mainComponent}>
@@ -145,6 +164,18 @@ export const  CreateAccount = () => {
               onChangeText={value =>
                 dispatch({type: type.PHONE_NUMBER, payload: value})
               }
+            />
+            <CommonDropDown
+              data={qtyData}
+              value={qty}
+              onChange={setQty}
+              placeHolder="State"
+            />
+            <CommonDropDown
+              data={genderData}
+              value={gender}
+              onChange={setGender}
+              placeHolder="Gender"
             />
             <InputText
               value={userInput?.password}

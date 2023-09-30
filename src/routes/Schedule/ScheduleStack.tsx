@@ -1,25 +1,21 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {ROUTES} from '../RoutesName/RoutesName';
-import {TabNavigation} from '../Tab/TabNavigation';
+import {HomeScreen} from '../../screen/dashbord/Home/HomeScreen';
 import {ResultStack} from '../ResultsStack/ResultStack';
+
 const Stack = createStackNavigator();
 
-export const ScreenBridge = () => {
+export const ScheduleStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
-      initialRouteName={ROUTES.TabGroup}>
+      initialRouteName={ROUTES.LandingScreen}
+      defaultScreenOptions={{gestureEnabled: false}}>
       <Stack.Screen
-
         name={ROUTES.TabGroup}
-        component={TabNavigation}
+        component={HomeScreen}
         options={{animationEnabled: true}}
-      />
-      <Stack.Screen
-        name={ROUTES.ResultStack}
-        component={ResultStack}
-        options={{animationEnabled: true,gestureEnabled:false}}
       />
     </Stack.Navigator>
   );

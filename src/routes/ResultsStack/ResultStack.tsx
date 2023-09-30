@@ -10,6 +10,7 @@ export const ResultStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
+      defaultScreenOptions={{gestureEnabled: false}}
       initialRouteName={ROUTES.LandingScreen}>
       <Stack.Screen
         name={ROUTES.LandingScreen}
@@ -19,7 +20,7 @@ export const ResultStack = () => {
       <Stack.Screen
         name={ROUTES.Result}
         component={Result}
-        options={{animationEnabled: true,gestureEnabled:false}}
+        options={{animationEnabled: true}}
       />
       <Stack.Screen
         name={ROUTES.ShowResults}

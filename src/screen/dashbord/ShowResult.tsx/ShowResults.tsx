@@ -1,10 +1,8 @@
 import {
-  Dimensions,
   Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
   View,
 } from 'react-native';
@@ -15,7 +13,7 @@ import {Colors} from '../../../constant';
 import {Back} from '../../../assets/icon';
 import {GlobalData} from '../../../context/CommonContext';
 
-export const ShowResults = () => {
+export const ShowResults = React.memo(() => {
   const route = useRoute();
   const {params}: any | Array<object> = route;
 
@@ -24,7 +22,12 @@ export const ShowResults = () => {
   }: object | any = useContext(GlobalData);
 
   return (
-    <View style={{flex: 1, marginHorizontal: 16}}>
+    <View
+      style={{
+        flex: 1,
+        paddingHorizontal: 16,
+        backgroundColor: Colors.heavyDark,
+      }}>
       <StatusBar backgroundColor={Colors.heavyDark} />
       <SafeAreaView />
       <View
@@ -90,7 +93,7 @@ export const ShowResults = () => {
                             fontSize: 15,
                             ...marginTop(5),
                           }}>
-                          {`Selected Answer : ${question_options}`}
+                          {`Selected answer : ${question_options}`}
                         </Text>
                       ) : (
                         isSelected &&
@@ -101,7 +104,7 @@ export const ShowResults = () => {
                               fontSize: 15,
                               ...marginTop(12),
                             }}>
-                            {`Correct Answer : ${question_options}`}
+                            {`Correct answer : ${question_options}`}
                           </Text>
                         )
                       )}
@@ -115,4 +118,4 @@ export const ShowResults = () => {
       </ScrollView>
     </View>
   );
-};
+});

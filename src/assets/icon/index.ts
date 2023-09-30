@@ -10,6 +10,7 @@ export * from './TabEarnCoin'
 export * from './Setting'
 export * from './Trophy'
 export * from './Back'
+export * from './SettingIcon'
 
 
 

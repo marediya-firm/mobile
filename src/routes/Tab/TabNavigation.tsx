@@ -1,12 +1,14 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {ROUTES} from '../RoutesName/RoutesName';
-import {LandingScreen} from '../../screen/dashbord/LandingBoard/LandingScreen';
 import {HomeStack} from '../HomeStack/HomeStack';
 import {Colors} from '../../constant';
-import {Home, MyCampaign, Setting, TabEarnCoin} from '../../assets/icon';
+import {Home, SettingIcon} from '../../assets/icon';
 import {SvgProps} from 'react-native-svg';
-import {Dimensions} from 'react-native';
+import {Alert, Dimensions, Text} from 'react-native';
+import {Settings} from '../../screen/dashbord/Settings/Settings';
+import {ActiveTabText, F50010} from '../../styling/FontStyle';
+import {ScheduleStack} from '../Schedule/ScheduleStack';
 
 const Tab = createBottomTabNavigator();
 const getRouteIcon = (
@@ -23,9 +25,9 @@ const getRouteIcon = (
     // case ROUTES.EARNCOINS:
     //   Icon = TabEarnCoin;
     //   break;
-    // case ROUTES.SETTING:
-    //   Icon = Setting;
-    //   break;
+    case ROUTES.Settings:
+      Icon = SettingIcon;
+      break;
   }
   return Icon;
 };
@@ -39,23 +41,66 @@ export const TabNavigation = () => {
             position: 'absolute',
             bottom: 10,
             height: Dimensions.get('screen').height / 11,
-            backgroundColor: Colors.semiGreen,
+            backgroundColor: Colors.Orange,
             marginHorizontal: 15,
             borderRadius: 12,
           },
           tabBarIcon: ({focused}) => {
             const Icon = getRouteIcon(route.name);
-            return <Icon color={focused ? Colors?.semiBlue : Colors?.blue} />;
+            return <Icon color={focused ? Colors?.white : Colors?.heavyDark} />;
           },
           headerShown: false,
         })}>
         <Tab.Screen
           options={({}) => ({
-            tabBarLabel: 'Home',
+            tabBarLabel: ({focused}) => (
+              <Text
+                style={[
+                  focused ? ActiveTabText.main : F50010.main,
+                  {bottom: 6},
+                ]}>
+                {'Home'}
+              </Text>
+            ),
             tabBarLabelStyle: {bottom: 4, fontSize: 12},
           })}
           name={ROUTES.HomeStack}
           component={HomeStack}
+        />
+        <Tab.Screen
+          options={({}) => ({
+            tabBarLabel: ({focused}) => (
+              <Text
+                style={[
+                  focused ? ActiveTabText.main : F50010.main,
+                  {bottom: 6},
+                ]}>
+                {'Home'}
+              </Text>
+            ),
+            tabBarLabelStyle: {bottom: 4, fontSize: 12},
+          })}
+          name={ROUTES.Schedule}
+          // listeners={({route, navigation}) => {
+          //   console.log('Please', route, navigation);
+          // }}
+          component={ScheduleStack}
+        />
+        <Tab.Screen
+          options={({}) => ({
+            tabBarLabel: ({focused}) => (
+              <Text
+                style={[
+                  focused ? ActiveTabText.main : F50010.main,
+                  {bottom: 6},
+                ]}>
+                {'Settings'}
+              </Text>
+            ),
+            tabBarLabelStyle: {bottom: 4, fontSize: 12},
+          })}
+          name={ROUTES.Settings}
+          component={Settings}
         />
       </Tab.Navigator>
     </>

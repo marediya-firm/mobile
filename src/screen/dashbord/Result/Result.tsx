@@ -14,7 +14,7 @@ import {useRoute} from '@react-navigation/native';
 import {GlobalData} from '../../../context/CommonContext';
 import {ROUTES} from '../../../routes/RoutesName/RoutesName';
 
-export const Result = () => {
+export const Result = React.memo(() => {
   const route = useRoute();
   const {params}: any | object = route;
 
@@ -23,9 +23,11 @@ export const Result = () => {
   }: object | any = useContext(GlobalData);
 
   const cacheStyles = useMemo(() => styles, []);
-  let showCorrectAnswer = params?.rewardPoint / 10 - 1;
+  console.log('params', params);
+
+  let showCorrectAnswer = params?.rewardPoint / 10;
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: Colors.heavyDark}}>
       <SafeAreaView />
       <View style={{alignItems: 'center', ...marginTop(40)}}>
         <Text style={{color: 'white'}}>Quiz Result</Text>
@@ -48,7 +50,7 @@ export const Result = () => {
           }}>
           <Text
             style={{color: Colors.semiGreen}}>{`${showCorrectAnswer} /`}</Text>
-          <Text>{` ${params?.questionData?.length - 1} `}</Text>
+          <Text>{` ${params?.questionData?.length} `}</Text>
         </Text>
         <Text style={{color: 'white', ...marginTop(30)}}>Earn Points</Text>
         <Text style={{color: 'white', fontSize: 30, ...marginTop(10)}}>
@@ -98,4 +100,4 @@ export const Result = () => {
       </View>
     </View>
   );
-};
+});

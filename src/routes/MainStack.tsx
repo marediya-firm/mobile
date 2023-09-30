@@ -6,7 +6,7 @@ import {CreateAccount} from '../screen/auth/CreateAccount/CreateAccount';
 import {GlobalData} from '../context/CommonContext';
 import {Localstorage_GetItem} from '../helper/LocalStorage.';
 import {Localstorage_Key} from '../helper/LocalStorageKey';
-import { ScreenBridge } from './Bridge/ScreenBridge';
+import {ScreenBridge} from './Bridge/ScreenBridge';
 const Stack = createStackNavigator();
 
 const MainStack = () => {
@@ -16,7 +16,7 @@ const MainStack = () => {
 
   const getUserDetail = async () => {
     let userDetail = await Localstorage_GetItem(Localstorage_Key.USER_DETAIL);
-    setUserDetail(userDetail||false);
+    setUserDetail(userDetail || false);
   };
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const MainStack = () => {
       getUserDetail();
     };
   }, []);
-    
+
   return (
     <>
       {useDetail == undefined || useDetail == null ? (
@@ -33,7 +33,9 @@ const MainStack = () => {
       ) : (
         <Stack.Navigator
           screenOptions={{headerShown: false}}
-          initialRouteName={useDetail?.userID?ROUTES.ScreenBridge: ROUTES.LoginScreen}>
+          initialRouteName={
+            useDetail?.userID ? ROUTES.ScreenBridge : ROUTES.CreateAccount
+          }>
           <Stack.Screen
             name={ROUTES.LoginScreen}
             component={LoginScreen}
