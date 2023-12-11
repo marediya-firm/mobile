@@ -19,7 +19,7 @@ import MainStack from '../../../routes/MainStack';
 import {GlobalData} from '../../../context/CommonContext';
 import {F50015} from '../../../styling/FontStyle';
 import {TurnOff} from '../../../assets/icon/TurnOff';
-import {LoadingIndicator, SkipQuestion} from '../../../components';
+import {LoadingIndicator, SkipQuestion} from '../../../components/import';
 import {useNavigation} from '@react-navigation/native';
 import {ROUTES} from '../../../routes/RoutesName/RoutesName';
 import {AlertPopup} from './AlertPopup';

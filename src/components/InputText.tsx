@@ -1,14 +1,14 @@
-import React, { FC } from 'react'
-import { StyleProp, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React from 'react'
+import { StyleProp, StyleSheet, Text, TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native'
 import { Colors } from '../constant/Colors'
 import { HideEyeIcon, ShowEyeIcon } from '../assets/icon'
 
 interface InputText {
-    value: string | number,
+    value: string | undefined,
     placeholder: string,
     onChangeText: (value: any) => {} | any | void,
-    styles?: any,
-    wrapperStyle?: StyleProp<View | any>
+    styles?: StyleProp<TextStyle>,
+    wrapperStyle?: StyleProp<ViewStyle>
     suggestion?: undefined | string;
     secureTextEntry?: boolean;
     showEyeIcon?: boolean;
@@ -52,7 +52,7 @@ const innerStyles = StyleSheet.create({
         paddingHorizontal: 11,
         paddingRight: 40,
         marginHorizontal: 39,
-        borderRadius: 10,
+        borderRadius: 7,
         borderWidth: 1,
         borderColor: Colors.borderColor
     },

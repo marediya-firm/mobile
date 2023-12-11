@@ -6,7 +6,7 @@ import {Localstorage_Key} from '../../../helper/LocalStorageKey';
 import {marginTop, styles} from './styles';
 import {GlobalData} from '../../../context/CommonContext';
 import {F50015, F70024} from '../../../styling/FontStyle';
-import {AuthFooter, CommonButton, InputText, OrWith} from '../../../components';
+import {AuthFooter, CommonButton, InputText, OrWith} from '../../../components/import';
 import {FaceBook, Google} from '../../../assets/icon/index';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {navigationRoute} from '../../../services';

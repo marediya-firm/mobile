@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { View, Modal, StyleSheet, ActivityIndicator } from 'react-native';
 import { Colors } from '../constant';
-import { GlobalData } from '../context/CommonContext';
+// import { GlobalData } from '../context/CommonContext';
 
 const AppLoader = () => {
-    const { rootStore: { globalLoading } }: any = useContext(GlobalData)
+    // const { rootStore: { globalLoading } }: any = useContext(GlobalData)
     return (
         <Modal
             transparent
-            visible={globalLoading}
+            visible={false}
             animationType="none"
             supportedOrientations={['portrait', 'landscape']}>
             <View style={style.overlayStyle}>
