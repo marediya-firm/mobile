@@ -11,7 +11,7 @@ export const Colors: ColorsType = {
   borderColor: 'rgba(0, 0, 0, 0.4)',
   placeHolderBlack: 'rgba(0, 0, 0, 0.7)',
   googleColor: 'rgba(0, 0, 0, 0.6)',
-  darkBlack: 'rgba(0, 0, 0, 1)',
+  darkBlack: '#000',
   blue: '#0E64D2',
   googleBlue: '#1877F2',
   loginBlue: '#2F89FC',

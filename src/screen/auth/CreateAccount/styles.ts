@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {Colors} from '../../../utils/Colors';
 import {useMemo} from 'react';
-import {fonts} from '../../../assets/fonts';
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,
@@ -13,69 +12,7 @@ export const mainStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  mainComponent: {
-    marginTop: 8,
-    paddingBottom: 30,
-  },
   flexGrow: {flexGrow: 1},
-  headerContainer: {
-    marginTop: '10%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerText: {
-    color: Colors.darkBlack,
-  },
-  headerTextToday: {
-    color: Colors.grey,
-  },
-  dropdown: {
-    height: 50,
-    borderColor: 'gray',
-    borderWidth: 0.5,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-  },
-  googleButton: {
-    backgroundColor: Colors.white,
-    borderColor: Colors.borderColor,
-    borderWidth: 1,
-    borderRadius: 10,
-  },
-  googleText: {
-    color: Colors.googleColor,
-  },
-  signUpText: {
-    fontSize: 36,
-    fontWeight: '500',
-    color: '#95ae45',
-    textAlign: 'center',
-  },
-  inputTypo: {
-    fontFamily: fonts.robotoRegular,
-    fontSize: 15,
-    fontWeight: '400',
-    color: Colors.placeHolderBlack,
-  },
-  inputText3: {
-    color: '#c4c4c4',
-  },
-  fullName: {
-    borderRadius: 7,
-    backgroundColor: '#fff',
-    shadowRadius: 2.06,
-    elevation: 3,
-    shadowOpacity: 1,
-    height: 70,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    padding: 7,
-    paddingLeft: 15,
-    marginVertical: 15,
-  },
   inputWrapper: {
     marginTop: responsiveScreenHeight(5),
     backgroundColor: Colors.white,
@@ -87,16 +24,13 @@ export const mainStyles = StyleSheet.create({
     margin: responsiveScreenWidth(8),
   },
   header: {marginTop: responsiveScreenHeight(7)},
-  createAnAccount1: {
-    fontSize: 14,
-    fontWeight: '300',
-    fontFamily: fonts.poppinsRegular,
-    color: '#95ae45',
-    textAlign: 'center',
-  },
   createAnAccountWrapper: {
     paddingHorizontal: 16,
     paddingVertical: 8,
+  },
+  createAnAccount1: {
+    color: Colors.color95ae45,
+    textAlign:"center"
   },
   button: {
     borderRadius: 7,
@@ -114,11 +48,7 @@ export const mainStyles = StyleSheet.create({
     marginTop: 24,
     marginHorizontal: 40,
   },
-  back: {top: 24, left: 24, position: 'absolute'},
+  textAlignCenter:{textAlign:"center"}
 });
-
-export function marginTop(param?: number | string) {
-  return {marginTop: param};
-}
 
 export const MemoStyle = () => useMemo(() => mainStyles, []);

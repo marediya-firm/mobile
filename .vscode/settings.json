@@ -3,7 +3,10 @@
         "authstack",
         "bridgestack",
         "createaccount",
+        "Donthaveaccount",
+        "LAVU’s",
         "routepath",
         "routespath"
-    ]
+    ],
+    "editor.fontWeight": "normal",
 }

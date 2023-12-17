@@ -7,6 +7,9 @@ export * from './SkipQuestion'
 export * from './LoadingIndicator'
 export * from './interface/interface'
 export * from './CustomInput'
+export * from './CoreComponent'
+export * from './AuthHeader'
+
 
 
 
