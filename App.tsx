@@ -5,15 +5,15 @@ import MainStack from './src/routes/MainStack';
 import FlashMessage from 'react-native-flash-message';
 import AppLoader from './src/components/AppLoader';
 import {Colors} from './src/constant';
-// let darkModeTheme = true;
 
 const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: Colors.heavyDark,
+    background: Colors.darkBlack,
   },
 };
+
 const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>

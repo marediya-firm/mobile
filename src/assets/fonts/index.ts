@@ -2,7 +2,7 @@ import {Platform} from 'react-native';
 
 type Fonts = {[key: string]: string};
 
-export const fonts : Fonts = {
+export const fonts: Fonts = {
   robotoBlackItalic:
     Platform.OS === 'android'
       ? 'Roboto Black Italic'
@@ -54,5 +54,29 @@ export const fonts : Fonts = {
   robotoThinItalic:
     Platform.OS === 'android'
       ? 'Roboto ThinItalic'
+      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
+
+  poppinsMedium:
+    Platform.OS === 'android'
+      ? 'Poppins Medium'
+      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
+
+  poppinsRegular:
+    Platform.OS === 'android'
+      ? 'Poppins Regular'
+      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
+
+  poppinsSemiBoldItalic:
+    Platform.OS === 'android'
+      ? 'Poppins SemiBoldItalic'
+      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
+
+  poppinsThin:
+    Platform.OS === 'android'
+      ? 'Poppins Thin'
+      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
+  poppinsLight:
+    Platform.OS === 'android'
+      ? 'Poppins Light'
       : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
 };

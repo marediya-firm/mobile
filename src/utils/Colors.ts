@@ -1,8 +1,10 @@
 import {useMemo} from 'react';
 
-export type ColorsType = {[key: string]: string};
+export interface ColorsType {
+  [key: string]: string;
+}
 
-export const Colors :ColorsType= {
+export const Colors: ColorsType = {
   white: '#FFFFFF',
   grey: '#343434',
   semiGrey: '#A9A9A9',
@@ -22,7 +24,8 @@ export const Colors :ColorsType= {
   snowWhite: '#F0FFFF',
   snowGrey: '#D0D0D0',
   primaryColor: '#0A0A0A',
- offWhite: "#c4c4c4"
+  offWhite: '#c4c4c4',
+  color95ae45: '#95ae45',
 };
 
 export const ConstantColor = () => useMemo(() => Colors, []);

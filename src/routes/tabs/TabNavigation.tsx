@@ -1,10 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {ROUTES} from '../RoutesName/RoutesName';
-import {LandingScreen} from '../../screen/dashbord/LandingBoard/LandingScreen';
-import {HomeStack} from '../HomeStack/HomeStack';
 import {Colors} from '../../constant';
-import {Home, MyCampaign, Setting, TabEarnCoin} from '../../assets/icon';
+import {Home} from '../../assets/icon';
 import {SvgProps} from 'react-native-svg';
 import {Dimensions} from 'react-native';
 

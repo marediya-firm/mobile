@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleProp, StyleSheet, Text, TextInput, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native'
-import { Colors } from '../constant/Colors'
+import { Colors } from '../utils/Colors'
 import { HideEyeIcon, ShowEyeIcon } from '../assets/icon'
 
 interface InputText {

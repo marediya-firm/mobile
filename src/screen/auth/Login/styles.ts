@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import { Colors } from "../../../constant/Colors";
-import { fontWeight } from '../../../styling/index'
+import { Colors } from "../../../utils/Colors";
+import { fontWeight } from '../../../utils/index'
 
 export const styles = StyleSheet.create({
     safeArea: {

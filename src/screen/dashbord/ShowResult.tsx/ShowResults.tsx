@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import React, {useContext} from 'react';
 import {useRoute} from '@react-navigation/native';
-import {marginTop} from '../../auth/CreateAccount/styles';
+import {marginTop} from '../../auth/createaccount/styles';
 import {Colors} from '../../../constant';
 import {Back} from '../../../assets/icon';
 import {GlobalData} from '../../../context/CommonContext';

@@ -17,11 +17,11 @@ import auth from '@react-native-firebase/auth';
 import {CrossIcon, Right} from '../../../assets/icon';
 import MainStack from '../../../routes/MainStack';
 import {GlobalData} from '../../../context/CommonContext';
-import {F50015} from '../../../styling/FontStyle';
+import {F50015} from '../../../utils/FontStyle';
 import {TurnOff} from '../../../assets/icon/TurnOff';
 import {LoadingIndicator, SkipQuestion} from '../../../components/import';
 import {useNavigation} from '@react-navigation/native';
-import {ROUTES} from '../../../routes/RoutesName/RoutesName';
+import {ROUTES} from '../../../routes/routepath/RoutesName';
 import {AlertPopup} from './AlertPopup';
 
 export const LandingScreen = () => {

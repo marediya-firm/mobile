@@ -22,11 +22,11 @@ export const createAccountInput: Array<CreateAccountInput> = [
   {
     header: 'Password',
     value: '',
-    placeHolder: 'Mahendi@7',
+    placeHolder: '*********',
     onChangeText: function (value: string): void {
       this.value = value;
     },
-    secureTextEntry: false,
+    secureTextEntry: true,
   },
   {
     header: 'Confirm password',
@@ -34,7 +34,7 @@ export const createAccountInput: Array<CreateAccountInput> = [
     onChangeText: function (value: string): void {
       this.value = value;
     },
-    placeHolder: 'Mahendi@7',
-    secureTextEntry: false,
+    placeHolder: '*********',
+    secureTextEntry: true,
   },
 ];

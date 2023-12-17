@@ -1,7 +1,10 @@
-import { FC, useMemo } from "react";
+import {useMemo} from 'react';
 
-interface StringConstant {
-  [key: string]: string | ((params?: string) => string);
+export type validationStringConstant = {
+  [key: string]: (params: string) => string;
+};
+export interface StringConstant {
+  [key: string]: string;
 }
 
 export const strings: StringConstant = {
@@ -23,13 +26,19 @@ export const strings: StringConstant = {
   Login: 'Login',
   CreateAccount: 'Create an account',
   ConnectFriends: 'Connect with your friends today!',
+  AlreadyAccount: ' Already have any account? Sign in',
+};
+
+export const validationString: validationStringConstant = {
   validationMessageRequest: (params?: string) => {
     return `Please Enter Valid ${params}`;
   },
-  // FirebaseErrorMessage:{
-  //     EmailAlreadyUser: "auth/email-already-in-use",
-  //     Error:"Error"
-  // }
 };
 
-export const ConstantString =()=> useMemo(()=>strings,[]);
+const type = {
+  strings: strings,
+  validationString: validationString,
+};
+
+export const ConstantString = (props: 'strings' | 'validationString') =>
+  useMemo(() => type[props], []);

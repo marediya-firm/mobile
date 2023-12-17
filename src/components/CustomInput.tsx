@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
-import {mainStyles} from '../screen/auth/CreateAccount/index';
+import {mainStyles} from '../screen/auth/createaccount/export';
 import {CustomInputProps} from './import';
 import {Colors} from '../constant';
 
@@ -21,6 +21,7 @@ export const CustomInput = (props: CustomInputProps) => {
         onChangeText={changeHandler}
         secureTextEntry={props.secureTextEntry}
         style={styles.inputText}
+        placeholderTextColor={styles.inputText.color}
       />
     </View>
   );

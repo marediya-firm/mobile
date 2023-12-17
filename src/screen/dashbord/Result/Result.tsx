@@ -8,11 +8,10 @@ import {
 import React, {useContext, useMemo} from 'react';
 import {styles} from './styles';
 import {Trophy} from '../../../assets/icon';
-import {marginTop} from '../../auth/Login/styles';
+import {marginTop} from '../../auth/login/styles';
 import {Colors} from '../../../constant';
 import {useRoute} from '@react-navigation/native';
 import {GlobalData} from '../../../context/CommonContext';
-import {ROUTES} from '../../../routes/RoutesName/RoutesName';
 
 export const Result = () => {
   const route = useRoute();

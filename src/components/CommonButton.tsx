@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
-import { Colors } from '../constant/Colors';
-import { F60016 } from '../styling/FontStyle';
+import { Colors } from '../utils/Colors';
+import { F60016 } from '../utils/FontStyle';
 import { LoadingIndicator } from './LoadingIndicator';
 
 interface button {

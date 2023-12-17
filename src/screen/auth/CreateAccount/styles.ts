@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../../../constant/Colors';
-import {fontWeight} from '../../../styling/index';
+import {Colors} from '../../../utils/Colors';
 import {useMemo} from 'react';
 import {fonts} from '../../../assets/fonts';
 import {
@@ -9,9 +8,7 @@ import {
 } from 'react-native-responsive-dimensions';
 
 export const mainStyles = StyleSheet.create({
-  safeArea: {
-    // backgroundColor: Colors.white
-  },
+  safeArea: {},
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -20,6 +17,7 @@ export const mainStyles = StyleSheet.create({
     marginTop: 8,
     paddingBottom: 30,
   },
+  flexGrow: {flexGrow: 1},
   headerContainer: {
     marginTop: '10%',
     justifyContent: 'center',
@@ -27,11 +25,9 @@ export const mainStyles = StyleSheet.create({
   },
   headerText: {
     color: Colors.darkBlack,
-    fontWeight: fontWeight.fontWeight700,
   },
   headerTextToday: {
     color: Colors.grey,
-    fontWeight: fontWeight.fontWeight600,
   },
   dropdown: {
     height: 50,
@@ -40,10 +36,6 @@ export const mainStyles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
   },
-  // button: {
-  //   backgroundColor: Colors.googleBlue,
-  //   borderRadius: 10,
-  // },
   googleButton: {
     backgroundColor: Colors.white,
     borderColor: Colors.borderColor,
@@ -56,7 +48,6 @@ export const mainStyles = StyleSheet.create({
   signUpText: {
     fontSize: 36,
     fontWeight: '500',
-    // fontFamily: "Poppins-Medium",
     color: '#95ae45',
     textAlign: 'center',
   },
@@ -69,7 +60,6 @@ export const mainStyles = StyleSheet.create({
   inputText3: {
     color: '#c4c4c4',
   },
-  inputTextParent: {},
   fullName: {
     borderRadius: 7,
     backgroundColor: '#fff',
@@ -93,14 +83,14 @@ export const mainStyles = StyleSheet.create({
     borderTopLeftRadius: 60,
   },
   inputContainer: {
-    marginTop: responsiveScreenHeight(3),
+    marginTop: responsiveScreenHeight(4.5),
     margin: responsiveScreenWidth(8),
   },
-  header: {marginTop: responsiveScreenHeight(10)},
+  header: {marginTop: responsiveScreenHeight(7)},
   createAnAccount1: {
     fontSize: 14,
     fontWeight: '300',
-    fontFamily: 'Poppins-Light',
+    fontFamily: fonts.poppinsRegular,
     color: '#95ae45',
     textAlign: 'center',
   },
@@ -121,9 +111,10 @@ export const mainStyles = StyleSheet.create({
     shadowOpacity: 1,
     paddingHorizontal: 20,
     paddingVertical: 15,
-    margin:7,
-    marginHorizontal:20
+    marginTop: 24,
+    marginHorizontal: 40,
   },
+  back: {top: 24, left: 24, position: 'absolute'},
 });
 
 export function marginTop(param?: number | string) {
