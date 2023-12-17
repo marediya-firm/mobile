@@ -1,13 +1,22 @@
-import { NavigationContainer } from '@react-navigation/native';
+import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import { CommonContext } from './src/context/CommonContext';
+import {CommonContext} from './src/context/CommonContext';
 import MainStack from './src/routes/MainStack';
 import FlashMessage from 'react-native-flash-message';
 import AppLoader from './src/components/AppLoader';
+import {Colors} from './src/constant';
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: Colors.darkBlack,
+  },
+};
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <CommonContext>
         <MainStack />
         <AppLoader />
