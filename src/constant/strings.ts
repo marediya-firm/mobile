@@ -14,19 +14,19 @@ export const strings: StringConstant = {
   PasswordPlaceHolder: 'Enter Your Password',
   ForgotPassword: 'Forgot Password?',
   Donthaveaccount: 'Don’t have an account?',
-  Facebook: 'Signup with Facebook',
-  GoogleG: 'Signup with Google',
+  Google: 'Continue with Google',
   SignUp: 'Sign Up',
   SignIn: 'Sign In',
   Welcome: 'Hi, Welcome Back! 👋',
   always: 'always',
-  UserNamePlacholder: 'Enter Your Username',
-  PhoneNumberPlacholder: 'Enter Your Phone Number',
   Account: 'Already have an account?',
+  NotHaveAccount: 'Don’t have any account? Sign up',
   Login: 'Login',
   CreateAccount: 'Create an account',
   ConnectFriends: 'Connect with your friends today!',
   AlreadyAccount: ' Already have any account? Sign in',
+  LAVUs: 'LAVU’s',
+  Restaurant: 'Restaurant',
 };
 
 export const validationString: validationStringConstant = {

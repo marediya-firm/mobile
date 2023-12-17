@@ -7,23 +7,13 @@ import {
 } from 'react-native';
 import React from 'react';
 import {Colors} from '../constant';
-interface load {
-  size: number | undefined | string | any;
-  color?: StyleProp<View | ActivityIndicator> | undefined | string;
-}
-export const LoadingIndicator = (props: load) => {
+import {CustomViewCenter, Load} from './export';
+
+export const LoadingIndicator = (props: Load) => {
   const {size, color} = props;
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: Colors.heavyDark,
-      }}>
-      <ActivityIndicator size={size} color={color} />
-    </View>
+    <CustomViewCenter color={color||Colors.darkBlack}>
+      <ActivityIndicator size={size || 'large'} color={Colors.darkBlack} />
+    </CustomViewCenter>
   );
 };
-
-const styles = StyleSheet.create({});

@@ -9,12 +9,11 @@ const Stack = createStackNavigator<ScreenBridgeStackParamList>();
 export const ScreenBridge = () => {
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: false}}
+      screenOptions={{headerShown: false,detachPreviousScreen:true,freezeOnBlur:true}}
       initialRouteName={routePath.TabGroup}>
       <Stack.Screen
         name={routePath.TabGroup}
         component={TabNavigation}
-        options={{animationEnabled: true}}
       />
     </Stack.Navigator>
   );

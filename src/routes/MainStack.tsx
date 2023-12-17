@@ -1,25 +1,20 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {AuthStack, RootStackParamList, ScreenBridge} from './export';
-import {routePath} from './routepath/export';
+import {AuthStack, RootStackParamList, ScreenBridge, routePath} from './export';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const MainStack = () => {
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: false}}
+      screenOptions={{
+        headerShown: false,
+        freezeOnBlur: true,
+        detachPreviousScreen: true,
+      }}
       initialRouteName={routePath.AuthStack}>
-      <Stack.Screen
-        name={routePath.AuthStack}
-        component={AuthStack}
-        options={{animationEnabled: true}}
-      />
-      <Stack.Screen
-        name={routePath.ScreenBridge}
-        component={ScreenBridge}
-        options={{animationEnabled: true}}
-      />
+      <Stack.Screen name={routePath.AuthStack} component={AuthStack} />
+      <Stack.Screen name={routePath.ScreenBridge} component={ScreenBridge} />
     </Stack.Navigator>
   );
 };

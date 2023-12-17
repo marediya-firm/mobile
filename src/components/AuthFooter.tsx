@@ -1,7 +1,8 @@
-import {Pressable, StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import React, {FC, memo} from 'react';
 import {GetFontStyle} from '../utils/FontStyle';
-import {Colors, CustomView} from '../utils';
+import {Colors} from '../utils';
+import { CustomView } from './export';
 
 interface ButtonPressProps {
   title: string;
