@@ -4,4 +4,6 @@ export * from './interface/export';
 export * from './authstack/export';
 export * from './tabs/export';
 export * from './routepath/export';
-export * from './service/Configuration'
+export * from './service/Configuration';
+export * from './tabs/HomeStack/export';
+export * from './tabs/SecondStack/export';

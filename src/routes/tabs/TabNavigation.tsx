@@ -1,32 +1,12 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Colors} from '../../constant';
-import {Home} from '../../assets/icon';
-import {SvgProps} from 'react-native-svg';
 import {Dimensions} from 'react-native';
+import {TabNavParamList} from '../export';
+import {HomeStack} from './HomeStack/HomeStack';
+import {SecondStack} from './SecondStack/export';
 
-const Tab = createBottomTabNavigator();
-
-// const getRouteIcon = (
-//   routeName: string,
-// ): (({color, ...props}: SvgProps) => JSX.Element) => {
-//   let Icon = Home;
-//   switch (routeName) {
-//     case ROUTES.HomeScreen:
-//       Icon = Home;
-//       break;
-//     // case ROUTES.MYCAMPAIGN:
-//     //   Icon = MyCampaign;
-//     //   break;
-//     // case ROUTES.EARNCOINS:
-//     //   Icon = TabEarnCoin;
-//     //   break;
-//     // case ROUTES.SETTING:
-//     //   Icon = Setting;
-//     //   break;
-//   }
-//   return Icon;
-// };
+const Tab = createBottomTabNavigator<TabNavParamList>();
 
 export const TabNavigation = () => {
   return (
@@ -40,21 +20,14 @@ export const TabNavigation = () => {
             backgroundColor: Colors.semiGreen,
             marginHorizontal: 15,
             borderRadius: 12,
+            // cardOverlayEnabled: true,
+            // cardShadowEnabled: true,
+            // cardStyle: {direction: 'ltr', backgroundColor: 'red'},
+          
           },
-          // tabBarIcon: ({focused}) => {
-          //   const Icon = getRouteIcon(route.name);
-          //   return <Icon color={focused ? Colors?.semiBlue : Colors?.blue} />;
-          // },
-          headerShown: false,
         })}>
-        {/* <Tab.Screen
-          options={({}) => ({
-            tabBarLabel: 'Home',
-            tabBarLabelStyle: {bottom: 4, fontSize: 12},
-          })}
-          name={ROUTES.HomeStack}
-          component={HomeStack}
-        /> */}
+        <Tab.Screen name={'HomeStack'} component={HomeStack} />
+        <Tab.Screen name={'SecondStack'} component={SecondStack} />
       </Tab.Navigator>
     </>
   );

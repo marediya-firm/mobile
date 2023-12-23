@@ -9,4 +9,6 @@ export const routePath: RoutePath = {
   ScreenBridge: 'ScreenBridge',
   HomeScreen: 'HomeScreen',
   HomeStack: 'HomeStack',
+  SecondTab: 'SecondTab',
+  SecondStack: 'SecondStack',
 };

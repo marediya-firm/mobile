@@ -1,5 +1,5 @@
 import React from 'react';
-import {StackNavigationOptions} from '@react-navigation/stack'
+import {StackNavigationOptions} from '@react-navigation/stack';
 import {AuthHeader} from '../../components/export';
 
 /**
@@ -8,8 +8,8 @@ import {AuthHeader} from '../../components/export';
 export const authHeaderProp: StackNavigationOptions = {
   headerMode: 'float',
   freezeOnBlur: true,
-  animationEnabled:true,
-  cardOverlayEnabled:true,
+  animationEnabled: true,
+  cardOverlayEnabled: true,
   detachPreviousScreen: true,
   header: props => <AuthHeader {...props} />,
 };

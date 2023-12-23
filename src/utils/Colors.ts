@@ -26,6 +26,7 @@ export const Colors: ColorsType = {
   primaryColor: '#0A0A0A',
   offWhite: '#c4c4c4',
   color95ae45: '#95ae45',
+  shadowBlack: '#0a0a0a',
 };
 
 export const ConstantColor = () => useMemo(() => Colors, []);

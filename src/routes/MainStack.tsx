@@ -11,6 +11,13 @@ const MainStack = () => {
         headerShown: false,
         freezeOnBlur: true,
         detachPreviousScreen: true,
+        animationTypeForReplace: 'pop',
+        cardOverlayEnabled: true,
+        cardShadowEnabled: true,
+        cardStyle: {direction: 'ltr', backgroundColor: 'red'},
+        // cardOverlay: (props) => {
+        //   return <View style={{flex: 1, backgroundColor: 'red'}}></View>;
+        // },
       }}
       initialRouteName={routePath.AuthStack}>
       <Stack.Screen name={routePath.AuthStack} component={AuthStack} />
