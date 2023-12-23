@@ -1,10 +1,10 @@
-import {Pressable, View} from 'react-native';
+import {Alert, Pressable, View} from 'react-native';
 import React from 'react';
 import {CustomText, CustomView} from '../../../components/CoreComponent';
 import {AppLogo, Google} from '../../../assets/icon';
 import {AppStyle} from './styles';
 import {variant} from '../../../utils';
-import {Colors, ConstantString} from '../../../constant';
+import {ConstantString} from '../../../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {UserInput, loginInput} from '../export';
 import {AuthFooter, LoadingIndicator} from '../../../components/export';
@@ -17,7 +17,7 @@ const LoginScreen = (props: LoginScreenProps) => {
   const getAppString = ConstantString('strings');
   const styles = AppStyle();
   const focus = useIsFocused();
-  // const getFontStyle = GetFontStyle();
+
   return (
     <Freeze freeze={!focus} placeholder={<LoadingIndicator />}>
       <CustomView>
@@ -26,12 +26,11 @@ const LoginScreen = (props: LoginScreenProps) => {
           <CustomText text={getAppString.LAVUs} variant={variant.F50036} />
           <CustomText text={getAppString.Restaurant} variant={variant.F30012} />
         </View>
-        <View
-          style={{backgroundColor: 'white', flex: 1, borderTopLeftRadius: 60}}>
+        <View style={styles.restaurant}>
           <CustomText
             text={getAppString.Restaurant}
             variant={variant.F50036}
-            extraStyle={{color: Colors.darkBlack, marginTop: 12}}
+            extraStyle={styles.restaurantText}
           />
           <KeyboardAwareScrollView>
             <View style={styles.inputWrapper}>
@@ -40,7 +39,7 @@ const LoginScreen = (props: LoginScreenProps) => {
                 <CustomText
                   text={getAppString.ForgotPassword}
                   variant={variant.F30012}
-                  extraStyle={{alignSelf: 'flex-end', color: Colors.darkBlack}}
+                  extraStyle={styles.forgotPasswordText}
                 />
                 <Pressable
                   style={styles.continueWithGoogleLeftAl1}
@@ -49,7 +48,7 @@ const LoginScreen = (props: LoginScreenProps) => {
                   <CustomText
                     text={getAppString.Google}
                     variant={variant.F30014}
-                    extraStyle={{paddingLeft: 15, color: Colors.darkBlack}}
+                    extraStyle={styles.googleText}
                   />
                 </Pressable>
                 <Pressable style={[styles.button]}>
@@ -59,11 +58,11 @@ const LoginScreen = (props: LoginScreenProps) => {
                     extraStyle={styles.createAnAccount1}
                   />
                 </Pressable>
-                <View style={{marginTop: 24}}>
+                <View style={styles.margin}>
                   <AuthFooter
                     title={String(getAppString.NotHaveAccount)}
                     onPress={() =>
-                      props.navigation.navigate(routePath.CreateAccount)
+                      props.navigation.replace(routePath.ScreenBridge)
                     }
                   />
                 </View>

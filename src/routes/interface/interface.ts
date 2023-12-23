@@ -1,6 +1,7 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RouteProp} from '@react-navigation/native';
+import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
 import {routePath} from '../export';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 
 export interface RoutePath {
   LoginScreen: 'LoginScreen';
@@ -11,7 +12,42 @@ export interface RoutePath {
   ScreenBridge: 'ScreenBridge';
   HomeScreen: 'HomeScreen';
   HomeStack: 'HomeStack';
+  SecondTab: 'SecondTab';
+  SecondStack: 'SecondStack';
 }
+
+/**
+ * Lazy component load configuration
+ * All Component should import this file type safety
+ * ! Don't export const import SecondTab from '../../screen/dashboard/SecondTab/SecondTab/SecondTab';
+file get component don't support this file
+ */
+
+/**
+ * Auth-stack lazycomponent type
+ */
+export type LazyComponentAuth<T> = {
+  [routePath.LoginScreen]: T;
+  [routePath.CreateAccount]: T;
+};
+/**
+ * Tab lazycomponent
+ */
+export type LazyComponentTab<T> = {
+  [routePath.HomeStack]: T;
+  [routePath.SecondStack]: T;
+};
+
+/**
+ * Home-stack lazycomponent type
+ */
+export type LazyComponentHome<T> = {
+  [routePath.HomeScreen]: T;
+};
+
+export type LazyComponentSecondTab<T> = {
+  [routePath.SecondTab]: T;
+};
 
 /**
  * Auth Stack Route path and type
@@ -19,6 +55,7 @@ export interface RoutePath {
 export type AuthStackParamList = {
   LoginScreen: undefined;
   CreateAccount: undefined;
+  ScreenBridge: undefined;
 };
 
 export type CreateAccountNavigation = StackNavigationProp<
@@ -29,19 +66,47 @@ export type CreateAccountRoute = RouteProp<AuthStackParamList, 'CreateAccount'>;
 
 export type LoginNavigation = StackNavigationProp<
   AuthStackParamList,
-  "LoginScreen"
+  'LoginScreen'
 >;
-export type LoginNavigationRoute = RouteProp<AuthStackParamList, "LoginScreen">;
+export type LoginNavigationRoute = RouteProp<AuthStackParamList, 'LoginScreen'>;
+
+// !Tab
+
+// export type ProfileScreenProps = CompositeScreenProps<
+//   BottomTabScreenProps<TabNavParamList, 'HomeStack'>,
+//   RootStackScreenProps<keyof HomeStackParamList>
+// >;
+export type TabNavParamList = {
+  [routePath.HomeStack]: NavigatorScreenParams<HomeStackParamList>;
+  [routePath.SecondStack]: undefined;
+};
+export type BottomTabsProps = BottomTabScreenProps<
+  TabNavParamList,
+  'HomeStack'
+>;
 
 /**
- * Lazy component load configuration
- * All Component should import this file type safety
- * ! Don't export const file get component don't support this file
+ *Tab Home Stack
  */
-export type LazyComponent<T> = {
-  [routePath.LoginScreen]: T;
-  [routePath.CreateAccount]: T;
+export type HomeStackParamList = {
+  HomeScreen: undefined;
 };
+
+export type HomeScreenNavigation = StackNavigationProp<
+  HomeStackParamList,
+  'HomeScreen'
+>;
+export type HomeScreenRoute = RouteProp<HomeStackParamList, 'HomeScreen'>;
+
+export type SecondStackParamList = {
+  [routePath.SecondTab]: undefined;
+};
+
+export type SecondStackNavigation = StackNavigationProp<
+  SecondStackParamList,
+  'SecondTab'
+>;
+export type SecondStackRoute = RouteProp<SecondStackParamList, 'SecondTab'>;
 
 /**
  * Tab Route Path

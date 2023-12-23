@@ -25,13 +25,13 @@ export const appStyles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '300',
     fontFamily: 'Poppins-Light',
-    color: 'rgba(0, 0, 0, 0.54)',
+    color: Colors.darkBlack,
     paddingLeft: 12,
   },
   continueWithGoogleLeftAl1: {
     borderRadius: 7,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
+    backgroundColor: Colors.white,
+    shadowColor: Colors.darkBlack,
     shadowOffset: {
       width: 100,
       height: 100,
@@ -53,8 +53,8 @@ export const appStyles = StyleSheet.create({
   },
   button: {
     borderRadius: 7,
-    backgroundColor: '#0a0a0a',
-    shadowColor: 'rgba(0, 0, 0, 0.08)',
+    backgroundColor: Colors.shadowBlack,
+    shadowColor: Colors.placeHolderBlack,
     shadowOffset: {
       width: 0,
       height: 0,
@@ -67,6 +67,11 @@ export const appStyles = StyleSheet.create({
     marginTop: 24,
     marginHorizontal: 40,
   },
+  restaurant: {backgroundColor: 'white', flex: 1, borderTopLeftRadius: 60},
+  restaurantText: {color: Colors.darkBlack, marginTop: 12},
+  forgotPasswordText: {alignSelf: 'flex-end', color: Colors.darkBlack},
+  googleText: {paddingLeft: 15, color: Colors.darkBlack},
+  margin: {marginTop: 24},
 });
 
 export const AppStyle = () => useMemo(() => appStyles, []);
