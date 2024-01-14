@@ -1,4 +1,4 @@
-import {Alert, Pressable, View} from 'react-native';
+import {Pressable, View} from 'react-native';
 import React from 'react';
 import {CustomText, CustomView} from '../../../components/CoreComponent';
 import {AppLogo, Google} from '../../../assets/icon';
@@ -12,6 +12,7 @@ import type {LoginScreenProps} from './interface/export';
 import {routePath} from '../../../routes/export';
 import {Freeze} from 'react-freeze';
 import {useIsFocused} from '@react-navigation/native';
+import {loginApiController} from './export';
 
 const LoginScreen = (props: LoginScreenProps) => {
   const getAppString = ConstantString('strings');
@@ -43,7 +44,7 @@ const LoginScreen = (props: LoginScreenProps) => {
                 />
                 <Pressable
                   style={styles.continueWithGoogleLeftAl1}
-                  onPress={() => {}}>
+                  onPress={loginApiController}>
                   <Google />
                   <CustomText
                     text={getAppString.Google}
@@ -62,7 +63,7 @@ const LoginScreen = (props: LoginScreenProps) => {
                   <AuthFooter
                     title={String(getAppString.NotHaveAccount)}
                     onPress={() =>
-                      props.navigation.replace(routePath.ScreenBridge)
+                      props.navigation.navigate(routePath.CreateAccount)
                     }
                   />
                 </View>

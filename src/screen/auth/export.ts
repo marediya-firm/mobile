@@ -1,2 +1,2 @@
 export * from './components/export';
-export * from './createaccount/export';
+export * from './CreateAccount/export';

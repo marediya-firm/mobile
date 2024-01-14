@@ -5,22 +5,22 @@ import {Colors} from '../constant';
 import {fonts} from '../assets/fonts';
 
 export const CustomInput = (props: CustomInputProps) => {
-  const [onChangeText, setOnChangeText] = useState<boolean>(false);
+  const [onChangeText, setOnChangeText] = useState<string>(props.value);
   const styles = useMemo(() => appStyles, []);
-  
-  const changeHandler = (value: string) => {
-    props.onChangeText(value);
-    setOnChangeText(!onChangeText);
+
+  const changeHandler = (inValue: string) => {
+    props.onChangeText( inValue);
+    setOnChangeText(inValue);
   };
 
   return (
     <View style={styles.fullName}>
-      <Text style={styles.inputTypo}>{props.header}</Text>
+      <Text style={styles.inputTypo}>{props?.header}</Text>
       <TextInput
-        value={props.value}
-        placeholder={props.placeHolder}
+        value={onChangeText}
+        placeholder={props?.placeHolder}
         onChangeText={changeHandler}
-        secureTextEntry={props.secureTextEntry}
+        secureTextEntry={props?.secureTextEntry}
         style={styles.inputText}
         placeholderTextColor={styles.inputText.color}
       />

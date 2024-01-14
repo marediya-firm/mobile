@@ -1,7 +1,7 @@
 import {CreateAccountInput} from '../../data/import';
 
 export interface CustomInputProps extends CreateAccountInput {
-  //   props: CreateAccountInput;
+  index: number;
 }
 
 export interface Load {
