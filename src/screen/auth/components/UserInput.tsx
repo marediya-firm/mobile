@@ -7,9 +7,9 @@ export const UserInput: FC<UserInputProps> = memo(
   (props: UserInputProps) => {
     const {renderInput} = props;
 
-    let input: Array<CreateAccountInput>;
+    let input: CreateAccountInput[];
     if (renderInput) {
-      input = useMemo<Array<CreateAccountInput>>(
+      input = useMemo<CreateAccountInput[]>(
         () => createAccountInput.filter((_, index) => renderInput?.[index]),
         [],
       );
@@ -17,8 +17,8 @@ export const UserInput: FC<UserInputProps> = memo(
 
     return (
       <React.Fragment>
-        {input.map(value => {
-          return <CustomInput key={value.header} {...value} />;
+        {input.map((value,index:number) => {
+          return <CustomInput key={value.header} {...value} index={index} />;
         })}
       </React.Fragment>
     );

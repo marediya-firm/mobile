@@ -5,7 +5,7 @@ import MainStack from './src/routes/MainStack';
 import FlashMessage from 'react-native-flash-message';
 import AppLoader from './src/components/AppLoader';
 import {Colors} from './src/constant';
-import { enableFreeze } from 'react-native-screens';
+import {GetToken} from './src/hook/GetToken';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -16,7 +16,7 @@ const MyTheme = {
 };
 
 const App = () => {
-  enableFreeze(true);
+  GetToken();
   return (
     <NavigationContainer theme={MyTheme}>
       <CommonContext>

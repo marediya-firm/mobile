@@ -5,7 +5,7 @@ import {Freeze} from 'react-freeze';
 import {useIsFocused} from '@react-navigation/native';
 import {ConstantString} from '../../../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {CreateAccountProps, UserInput} from '../export';
+import {apiController, CreateAccountProps, UserInput} from '../export';
 import {
   AuthFooter,
   CustomText,
@@ -21,21 +21,19 @@ const CreateAccount = (props: CreateAccountProps) => {
   const styles = MemoStyle();
 
   const focus = useIsFocused();
+
   return (
     <Freeze freeze={!focus} placeholder={<LoadingIndicator />}>
       <React.Fragment>
         <SafeAreaView style={styles.safeArea} />
         <KeyboardAwareScrollView contentContainerStyle={styles.flexGrow}>
           <View style={styles.header}>
-            <CustomText
-              text={getAppString.SignUp}
-              variant={variant.F50036}
-            />
+            <CustomText text={getAppString.SignUp} variant={variant.F50036} />
           </View>
           <View style={styles.inputWrapper}>
             <View style={styles.inputContainer}>
-              <UserInput key={'UserInput'}  />
-              <Pressable style={[styles.button]}>
+              <UserInput key={'UserInput'} />
+              <Pressable onPress={apiController} style={[styles.button]}>
                 <CustomText
                   text={getAppString.CreateAccount}
                   variant={variant.F30014}

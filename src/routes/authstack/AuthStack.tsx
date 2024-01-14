@@ -4,10 +4,9 @@ import {AuthStackParamList, LazyComponentAuth, authHeaderProp} from '../export';
 import {routePath} from '../routepath/export';
 
 export const lazyComponent: LazyComponentAuth<React.FunctionComponent> = {
-  [routePath.LoginScreen]: require('../../screen/auth/login/LoginScreen')
-    .default,
+  [routePath.LoginScreen]: require('../../screen/auth/Login/LoginScreen').default,
   [routePath.CreateAccount]:
-    require('../../screen/auth/createaccount/CreateAccount').default,
+    require('../../screen/auth/CreateAccount/CreateAccount').default,
 };
 
 const Stack = createStackNavigator<AuthStackParamList>();
@@ -16,7 +15,7 @@ export const AuthStack = () => {
   return (
     <Stack.Navigator
       screenOptions={authHeaderProp}
-      initialRouteName={routePath.LoginScreen}>
+      initialRouteName={routePath.CreateAccount}>
       <Stack.Screen
         name={routePath.LoginScreen}
         getComponent={() => lazyComponent[routePath.LoginScreen]}
