@@ -12,7 +12,8 @@
         "Mahendi",
         "Pressable",
         "routepath",
-        "routespath"
+        "routespath",
+        "zustand"
     ],
     "editor.fontWeight": "normal",
 }
