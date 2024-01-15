@@ -1,219 +1,55 @@
-import {SafeAreaView, Text, View} from 'react-native';
-import React, {useContext, useMemo, useState} from 'react';
-import auth from '@react-native-firebase/auth';
-import {Localstorage_SetItem} from '../../../helper/LocalStorage.';
-import {Localstorage_Key} from '../../../helper/LocalStorageKey';
-import {marginTop, styles} from './styles';
-import {GlobalData} from '../../../context/CommonContext';
-import {type} from '../../../constant/types';
-import {F60014, F70024} from '../../../styling/FontStyle';
+import React from 'react';
+import {Pressable, SafeAreaView, View} from 'react-native';
+import {MemoStyle} from './styles';
+import {Freeze} from 'react-freeze';
+import {useIsFocused} from '@react-navigation/native';
+import {ConstantString} from '../../../constant';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {apiController, CreateAccountProps, UserInput} from '../export';
 import {
   AuthFooter,
-  CommonButton,
-  CommonDropDown,
-  InputText,
-  OrWith,
-} from '../../../components';
-import {FaceBook, Google} from '../../../assets/icon/index';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {
-  FlashMessage,
-  createAccountQuery,
-  firebaseErrorMessage,
-  navigationRoute,
-} from '../../../services';
-import {ROUTES} from '../../../routes/RoutesName/RoutesName';
-import {strings} from '../../../constant';
-import {emailRegex} from '../regex/regex';
-const qtyData = [
-  {label: 'Mumbai', value: 'Mumbai'},
-  {label: 'Ahemdabad', value: 'Ahemdabad'},
-  {label: 'Benglore', value: 'Benglore'},
-  {label: 'Pune', value: 'Pune'},
-];
-const genderData = [
-  {label: 'Male', value: 'Male'},
-  {label: 'Female', value: 'Female'},
-];
+  CustomText,
+  LoadingIndicator,
+} from '../../../components/export';
+import {routePath} from '../../../routes/export';
+import {variant} from '../../../utils';
 
-export const CreateAccount = () => {
-  const [qty, setQty] = useState(null);
-  const [gender, setGender] = useState(null);
-  /**
-   * root store from context value
-   */
-  const {
-    rootStore: {navigation, userInput, dispatch, setGlobalLoading},
-  }: object | any = useContext(GlobalData);
+const CreateAccount = (props: CreateAccountProps) => {
+  // Get common string memories
+  const getAppString = ConstantString('strings');
+  // Get CreateAccount style with memories
+  const styles = MemoStyle();
 
-  const cacheStyle = useMemo(() => styles, []);
-  /**
-   * string filer return from cache value
-   */
-  const {
-    UserNamePlacholder,
-    PhoneNumberPlacholder,
-    Account,
-    Login,
-    EmailPlaceHolder,
-    PasswordPlaceHolder,
-    Facebook,
-    SignIn,
-    GoogleG,
-    always,
-    CreateAccount,
-    ConnectFriends,
-    validationMessageRequest,
-  }: string | any = useMemo(() => strings, []);
-
-  /**
-   * Handle from create account Firebase request
-   */
-  const handleAuthAccount = async () => {
-    try {
-      const {email, password, firsName, phoneNumber} = userInput;
-      let validForm = false;
-      if (firsName.length <= 0) {
-        FlashMessage(true, validationMessageRequest(`"UserName"`));
-        validForm = true;
-      } else if (!emailRegex.test(email)) {
-        validForm = true;
-        FlashMessage(true, validationMessageRequest(`"Email"`));
-      } else if (phoneNumber.length <= 0) {
-        validForm = true;
-        FlashMessage(true, validationMessageRequest(`"Phone Number"`));
-      } else if (password.length <= 0 || password.length <= 7) {
-        validForm = true;
-        FlashMessage(true, validationMessageRequest(`"Password"`));
-      }
-      !validForm && setGlobalLoading(true);
-      auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(async (res: any) => {
-          let params = {
-            userID: res?.user?._user?.uid,
-            usersEmail: res?.user?._user?.email,
-            createUserTime: res?.user?._user.metadata?.creationTime,
-            name: res?.user?._user?.email?.split('@')[0],
-            image: '',
-            phoneNumber,
-          };
-          /** add user deatil in firebase */
-          createAccountQuery(
-            params?.name,
-            params?.usersEmail,
-            phoneNumber,
-            params?.image,
-            params?.userID,
-            params?.createUserTime,
-          );
-          await Localstorage_SetItem(Localstorage_Key.USER_DETAIL, params);
-        })
-        .catch(err => {
-          firebaseErrorMessage(err.code);
-          console.log('err', err.code);
-          setGlobalLoading(false);
-        })
-        .finally(() => setGlobalLoading(false));
-    } catch (error) {
-      setGlobalLoading(false);
-      console.log(error);
-    }
-  };
-
-  /**
-   * header from cache value
-   */
-  const Header = useMemo(() => {
-    return (
-      <View style={cacheStyle.headerContainer}>
-        <Text style={F70024.main}>{CreateAccount}</Text>
-        <Text style={F60014.main}>{ConnectFriends}</Text>
-      </View>
-    );
-  }, []);
+  const focus = useIsFocused();
 
   return (
-    <>
-      <SafeAreaView style={cacheStyle.safeArea} />
-      <View style={cacheStyle.container}>
-        <View>{Header}</View>
-        <KeyboardAwareScrollView
-          nestedScrollEnabled={true}
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps={always}
-          contentContainerStyle={cacheStyle.mainComponent}>
-          <View>
-            <InputText
-              value={userInput?.firsName}
-              placeholder={UserNamePlacholder}
-              onChangeText={value =>
-                dispatch({type: type.FIRST_NAME, payload: value})
-              }
-            />
-            <InputText
-              value={userInput?.email}
-              placeholder={EmailPlaceHolder}
-              onChangeText={value =>
-                dispatch({type: type.EMAIL, payload: value})
-              }
-            />
-            <InputText
-              value={userInput?.phoneNumber}
-              placeholder={PhoneNumberPlacholder}
-              onChangeText={value =>
-                dispatch({type: type.PHONE_NUMBER, payload: value})
-              }
-            />
-            <CommonDropDown
-              data={qtyData}
-              value={qty}
-              onChange={setQty}
-              placeHolder="State"
-            />
-            <CommonDropDown
-              data={genderData}
-              value={gender}
-              onChange={setGender}
-              placeHolder="Gender"
-            />
-            <InputText
-              value={userInput?.password}
-              placeholder={PasswordPlaceHolder}
-              onChangeText={value =>
-                dispatch({type: type.PASSWORD, payload: value})
-              }
-            />
-            <CommonButton
-              wrapperStyle={marginTop(29)}
-              onPress={() => handleAuthAccount()}
-              title={SignIn}
-            />
-            <OrWith />
-            <CommonButton
-              wrapperStyle={marginTop(23)}
-              onPress={() => {}}
-              title={Facebook}
-              buttonStyle={cacheStyle.button}
-              Icon={<FaceBook />}
-            />
-            <CommonButton
-              wrapperStyle={marginTop(28)}
-              onPress={() => {}}
-              title={GoogleG}
-              textStyle={cacheStyle.googleText}
-              buttonStyle={cacheStyle.googleButton}
-              Icon={<Google />}
-            />
+    <Freeze freeze={!focus} placeholder={<LoadingIndicator />}>
+      <React.Fragment>
+        <SafeAreaView style={styles.safeArea} />
+        <KeyboardAwareScrollView contentContainerStyle={styles.flexGrow}>
+          <View style={styles.header}>
+            <CustomText text={getAppString.SignUp} variant={variant.F50036} />
+          </View>
+          <View style={styles.inputWrapper}>
+            <View style={styles.inputContainer}>
+              <UserInput key={'UserInput'} />
+              <Pressable onPress={apiController} style={[styles.button]}>
+                <CustomText
+                  text={getAppString.CreateAccount}
+                  variant={variant.F30014}
+                  extraStyle={styles.createAnAccount1}
+                />
+              </Pressable>
+            </View>
             <AuthFooter
-              mainTitle={Account}
-              onPress={() => navigationRoute(navigation, ROUTES.LoginScreen)}
-              title={Login}
+              title={String(getAppString.AlreadyAccount)}
+              onPress={() => props.navigation.navigate(routePath.LoginScreen)}
             />
           </View>
         </KeyboardAwareScrollView>
-      </View>
-      <SafeAreaView style={cacheStyle.safeArea} />
-    </>
+      </React.Fragment>
+    </Freeze>
   );
 };
+
+export default CreateAccount;

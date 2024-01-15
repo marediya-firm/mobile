@@ -1,28 +1,30 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { FC, memo, useMemo } from 'react'
-import { F50016 } from '../styling/FontStyle'
+import {StyleSheet, Text} from 'react-native';
+import React, {FC, memo} from 'react';
+import {GetFontStyle} from '../utils/FontStyle';
+import {Colors} from '../utils';
+import { CustomView } from './export';
 
-interface buttonPress {
-    title: string;
-    onPress?: () => null | undefined | void;
-    mainTitle?: string
+interface ButtonPressProps {
+  title: string;
+  onPress?: () => void;
 }
-const AuthFooter: FC = memo((props: buttonPress | any) => {
-    const { onPress, title, mainTitle } = props
-    return (
-        <View style={styles.main}>
-            <Text style={[F50016.main]}>
-                {mainTitle}
-            </Text>
-            <Text onPress={onPress} style={[F50016.main, F50016.blueColor]}>
-                {title}
-            </Text>
-        </View>
-    )
-})
 
-export { AuthFooter }
+const AuthFooter: FC<ButtonPressProps> = memo((props: ButtonPressProps) => {
+  const getFontStyle = GetFontStyle();
+  const {onPress = () => {}, title} = props;
+  return (
+    <CustomView>
+      <Text
+        onPress={onPress}
+        style={[getFontStyle.F30014, getFontStyle.textAlign, styles.color]}>
+        {title}
+      </Text>
+    </CustomView>
+  );
+});
+
+export {AuthFooter};
 
 const styles = StyleSheet.create({
-    main: { flex: 1, justifyContent: "center", marginTop: 33, flexDirection: "row" }
-})
+  color: {color: Colors.darkBlack},
+});

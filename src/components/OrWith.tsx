@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { FC, memo } from 'react'
-import { F40018 } from '../styling/FontStyle'
-import { Colors } from '../constant/Colors'
+import { F40018 } from '../utils/FontStyle'
+import { Colors } from '../utils/Colors'
 
 const OrWith: FC = memo(() => {
     return (

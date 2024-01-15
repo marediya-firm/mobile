@@ -1,5 +1,5 @@
 import { showMessage } from "react-native-flash-message";
-import { fontWeight } from "../styling";
+import { fontWeight } from "../utils";
 import { strings } from "../constant";
 
 // An account with Email johndoe@email.com already exists.

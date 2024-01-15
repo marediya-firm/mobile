@@ -1,54 +1,54 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../../../constant/Colors';
-import {fontWeight} from '../../../styling/index';
+import {Colors} from '../../../utils/Colors';
+import {useMemo} from 'react';
+import {
+  responsiveScreenHeight,
+  responsiveScreenWidth,
+} from 'react-native-responsive-dimensions';
 
-export const styles = StyleSheet.create({
-  safeArea: {
-    backgroundColor: Colors.white,
-  },
+export const mainStyles = StyleSheet.create({
+  safeArea: {},
   container: {
     flex: 1,
+    backgroundColor: 'white',
+  },
+  flexGrow: {flexGrow: 1},
+  inputWrapper: {
+    marginTop: responsiveScreenHeight(5),
     backgroundColor: Colors.white,
+    flex: 1,
+    borderTopLeftRadius: 60,
   },
-  mainComponent: {
-    marginTop: 8,
-    paddingBottom: 50,
+  inputContainer: {
+    marginTop: responsiveScreenHeight(4.5),
+    margin: responsiveScreenWidth(8),
   },
-  headerContainer: {
-    marginTop: '10%',
-    justifyContent: 'center',
-    alignItems: 'center',
+  header: {marginTop: responsiveScreenHeight(7)},
+  createAnAccountWrapper: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
   },
-  headerText: {
-    color: Colors.darkBlack,
-    fontWeight: fontWeight.fontWeight700,
-  },
-  headerTextToday: {
-    color: Colors.grey,
-    fontWeight: fontWeight.fontWeight600,
-  },
-  dropdown: {
-    height: 50,
-    borderColor: 'gray',
-    borderWidth: 0.5,
-    borderRadius: 8,
-    paddingHorizontal: 8,
+  createAnAccount1: {
+    color: Colors.color95ae45,
+    textAlign:"center"
   },
   button: {
-    backgroundColor: Colors.googleBlue,
-    borderRadius: 10,
+    borderRadius: 7,
+    backgroundColor: '#0a0a0a',
+    shadowColor: 'rgba(0, 0, 0, 0.08)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 2.06,
+    elevation: 2.06,
+    shadowOpacity: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    marginTop: 24,
+    marginHorizontal: 40,
   },
-  googleButton: {
-    backgroundColor: Colors.white,
-    borderColor: Colors.borderColor,
-    borderWidth: 1,
-    borderRadius: 10,
-  },
-  googleText: {
-    color: Colors.googleColor,
-  },
+  textAlignCenter:{textAlign:"center"}
 });
 
-export function marginTop(param?: number | string) {
-  return {marginTop: param};
-}
+export const MemoStyle = () => useMemo(() => mainStyles, []);
