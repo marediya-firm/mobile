@@ -13,11 +13,13 @@ import {routePath} from '../../../routes/export';
 import {Freeze} from 'react-freeze';
 import {useIsFocused} from '@react-navigation/native';
 import {loginApiController} from './export';
+import {useGlobalLoad} from '../../../zustand/export';
 
 const LoginScreen = (props: LoginScreenProps) => {
   const getAppString = ConstantString('strings');
   const styles = AppStyle();
   const focus = useIsFocused();
+  const handleLoad = useGlobalLoad(state => state.handleLoad);
 
   return (
     <Freeze freeze={!focus} placeholder={<LoadingIndicator />}>
@@ -44,7 +46,11 @@ const LoginScreen = (props: LoginScreenProps) => {
                 />
                 <Pressable
                   style={styles.continueWithGoogleLeftAl1}
-                  onPress={loginApiController}>
+                  onPress={async () => {
+                    handleLoad();
+                    await loginApiController(props.navigation);
+                    handleLoad();
+                  }}>
                   <Google />
                   <CustomText
                     text={getAppString.Google}

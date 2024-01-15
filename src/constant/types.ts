@@ -1,6 +1,3 @@
-
-
-
 export const type = {
     FIRST_NAME: "FIRST_NAME",
     EMAIL: "EMAIL",

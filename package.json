@@ -36,7 +36,8 @@
     "react-native-skeleton-placeholder": "^5.2.4",
     "react-native-svg": "^13.8.0",
     "rxjs": "^7.8.1",
-    "yarn": "^1.22.21"
+    "yarn": "^1.22.21",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

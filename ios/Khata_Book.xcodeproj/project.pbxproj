@@ -13,8 +13,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		5EF580A89FB4E717142A94D2 /* libPods-Khata_Book-Khata_BookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 083981EAD44F088228AE762C /* libPods-Khata_Book-Khata_BookTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		B83DC75B2998099800BAFEA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B83DC75A2998099800BAFEA6 /* GoogleService-Info.plist */; };
 		BFD2FB5E12A2BA9E4D99B232 /* libPods-Khata_Book.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF95CF26F599339223B435B7 /* libPods-Khata_Book.a */; };
+		E27E70C92B558BDE00933ED1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27E70C82B558BDE00933ED1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +43,8 @@
 		3C700CF228E3BF4F567ECF95 /* Pods-Khata_Book-Khata_BookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khata_Book-Khata_BookTests.release.xcconfig"; path = "Target Support Files/Pods-Khata_Book-Khata_BookTests/Pods-Khata_Book-Khata_BookTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C17247DDA9B30A870BD3699 /* Pods-Khata_Book-Khata_BookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khata_Book-Khata_BookTests.debug.xcconfig"; path = "Target Support Files/Pods-Khata_Book-Khata_BookTests/Pods-Khata_Book-Khata_BookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Khata_Book/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B83DC75A2998099800BAFEA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF95CF26F599339223B435B7 /* libPods-Khata_Book.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Khata_Book.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E27E70C82B558BDE00933ED1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -89,7 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				B83DC75A2998099800BAFEA6 /* GoogleService-Info.plist */,
+				E27E70C82B558BDE00933ED1 /* GoogleService-Info.plist */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -247,8 +247,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				E27E70C92B558BDE00933ED1 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				B83DC75B2998099800BAFEA6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +506,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Khata_Book/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -531,6 +532,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Khata_Book/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

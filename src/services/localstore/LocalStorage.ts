@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GetCacheValue, UserPrivateKey} from './interface/interface';
+import {LoginAPIResponse} from '../../screen/auth/Login/export';
 
 export class UserLocalStorage {
   static getCacheValue: GetCacheValue<string> = {};
@@ -11,20 +12,19 @@ export class UserLocalStorage {
    * @returns promise which key have been pass get item will sure and return it
    * if local storage has value return cache value
    */
-  static async getValue<T = {}>(
-    key: UserPrivateKey,
-  ): Promise<GetCacheValue<T> | string> {
+  static async getValue<T = {}>(key: UserPrivateKey): Promise<T> {
     try {
       // fromJSON
       let userValue: string = '';
       // for cache management we are checking when cache exists return synchronies value
       if (this.getCacheValue[key]) {
+        console.log('getValue if');
         userValue = this.getCacheValue[key] || '';
       } else {
-        userValue = (await AsyncStorage.getItem('user')) || '';
+        console.log('getValue else');
+        userValue = (await AsyncStorage.getItem(key)) || '';
         this.getCacheValue[key] = userValue;
       }
-
       return userValue ? JSON.parse(userValue) : '';
     } catch (error: any) {
       return error;
@@ -36,7 +36,7 @@ export class UserLocalStorage {
    * @param key UserPrivateKey enum
    * @param payload set item in local storage
    */
-  static async setValue<T = {}>(
+  static async setValue<T>(
     key: UserPrivateKey,
     payload: T,
   ): Promise<void | string> {
@@ -90,10 +90,10 @@ export class UserLocalStorage {
    * Get user token if exist in local storage
    * @returns
    */
-  static async getToken(): Promise<string> {
-    this.token = (await this.getValue<string>(
+  static async getToken(): Promise<void> {
+    const result = await this.getValue<LoginAPIResponse['data']>(
       UserPrivateKey.UserDetail,
-    )) as string;
-    return this.token;
+    );
+    this.token = result.token;
   }
 }
