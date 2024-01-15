@@ -37,7 +37,11 @@ export const CustomText = memo(
   (props: CustomTextProps) => {
     const getFontStyle = GetFontStyle();
     return (
-      <Text style={[getFontStyle[props.variant || 'F30012'], props.extraStyle]}>
+      <Text
+        style={[
+          getFontStyle[props.variant || variant.F50036],
+          props.extraStyle,
+        ]}>
         {String(props.text)}
       </Text>
     );

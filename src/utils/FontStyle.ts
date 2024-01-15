@@ -34,7 +34,7 @@ export const fontStyleVariant: FontStyleVariant = {
   [variant.F30012]: {
     fontSize: 14,
     fontWeight: '300',
-    // fontFamily: fonts.poppinsLight,
+    fontFamily: fonts.poppinsLight,
     color: "white",
   },
 

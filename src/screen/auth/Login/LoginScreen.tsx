@@ -1,5 +1,5 @@
+import React = require('react');
 import {Pressable, View} from 'react-native';
-import React from 'react';
 import {CustomText, CustomView} from '../../../components/CoreComponent';
 import {AppLogo, Google} from '../../../assets/icon';
 import {AppStyle} from './styles';
@@ -13,13 +13,11 @@ import {routePath} from '../../../routes/export';
 import {Freeze} from 'react-freeze';
 import {useIsFocused} from '@react-navigation/native';
 import {loginApiController} from './export';
-import {useGlobalLoad} from '../../../zustand/export';
 
 const LoginScreen = (props: LoginScreenProps) => {
   const getAppString = ConstantString('strings');
   const styles = AppStyle();
   const focus = useIsFocused();
-  const handleLoad = useGlobalLoad(state => state.handleLoad);
 
   return (
     <Freeze freeze={!focus} placeholder={<LoadingIndicator />}>
@@ -35,7 +33,7 @@ const LoginScreen = (props: LoginScreenProps) => {
             variant={variant.F50036}
             extraStyle={styles.restaurantText}
           />
-          <KeyboardAwareScrollView>
+          <KeyboardAwareScrollView keyboardShouldPersistTaps="always">
             <View style={styles.inputWrapper}>
               <View style={styles.inputContainer}>
                 <UserInput key={'UserInputLogin'} renderInput={loginInput} />
@@ -44,13 +42,7 @@ const LoginScreen = (props: LoginScreenProps) => {
                   variant={variant.F30012}
                   extraStyle={styles.forgotPasswordText}
                 />
-                <Pressable
-                  style={styles.continueWithGoogleLeftAl1}
-                  onPress={async () => {
-                    handleLoad();
-                    await loginApiController(props.navigation);
-                    handleLoad();
-                  }}>
+                <Pressable style={styles.continueWithGoogleLeftAl1}>
                   <Google />
                   <CustomText
                     text={getAppString.Google}
@@ -58,7 +50,9 @@ const LoginScreen = (props: LoginScreenProps) => {
                     extraStyle={styles.googleText}
                   />
                 </Pressable>
-                <Pressable style={[styles.button]}>
+                <Pressable
+                  onPress={() => loginApiController(props.navigation)}
+                  style={[styles.button]}>
                   <CustomText
                     text={getAppString.CreateAccount}
                     variant={variant.F30014}

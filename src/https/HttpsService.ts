@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
-import {ApiEndpoint, HttpBodyPros} from './export';
-
+import {ApiEndpoint, HttpBodyPropsForPost, HttpBodyPropsForGet} from './export';
+import {UserLocalStorage} from '../services/export';
 
 export class HttpRequest {
   /**
@@ -9,11 +9,15 @@ export class HttpRequest {
    * @returns AxiosResponse<T>
    */
   static async clientGetRequest<T>(
-    props: HttpBodyPros,
+    props: HttpBodyPropsForPost,
   ): Promise<AxiosResponse<T>> {
-    const {endPoint = '', payload = {}} = props;
+    const {endPoint = '', payload = undefined} = props;
     try {
-      const clientResult = await axios.get(endPoint, payload);
+      const clientResult = await axios.get(endPoint, {
+        headers: {
+          Authorization: 'Bearer ' + UserLocalStorage.token,
+        },
+      });
       return clientResult.data;
     } catch (error: string | any) {
       return error?.message || error;
@@ -26,7 +30,7 @@ export class HttpRequest {
    * @returns AxiosResponse<T>
    */
   static async clientPostRequest<T>(
-    props: HttpBodyPros,
+    props: HttpBodyPropsForGet,
   ): Promise<AxiosResponse<T>> {
     const {endPoint = '', payload = {}} = props;
     try {
@@ -44,7 +48,7 @@ export class HttpRequest {
    */
 
   static clientPatchRequest = async (
-    props: HttpBodyPros,
+    props: HttpBodyPropsForPost,
   ): Promise<AxiosResponse> => {
     const {endPoint = '', payload = {}} = props;
     try {
@@ -62,7 +66,7 @@ export class HttpRequest {
    */
 
   static clientDeleteRequest = async (
-    props: HttpBodyPros,
+    props: HttpBodyPropsForPost,
   ): Promise<AxiosResponse> => {
     const {endPoint = '', payload = {}} = props;
     try {
@@ -79,5 +83,6 @@ export class HttpRequest {
   static apiEndPoint: ApiEndpoint = {
     createAccount: '/auth/createaccount',
     login: '/auth/login',
+    getCategory: '/all-category',
   };
 }

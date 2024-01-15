@@ -1,7 +1,7 @@
-import React from 'react';
 import {View, Modal, StyleSheet, ActivityIndicator} from 'react-native';
 import {Colors} from '../constant';
 import {useGlobalLoad} from '../zustand/export';
+import React = require('react');
 
 const AppLoader = () => {
   const loading = useGlobalLoad(state => state.loading);

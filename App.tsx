@@ -1,8 +1,8 @@
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import React from 'react';
 import {Colors} from './src/constant';
 import {GetToken} from './src/hook/GetToken';
 import {GlobalComponent} from './src/screen/global/GlobalComponent';
+import React = require('react');
 
 const MyTheme = {
   ...DefaultTheme,

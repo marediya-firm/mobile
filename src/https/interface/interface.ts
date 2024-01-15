@@ -1,14 +1,20 @@
 /**
  * When you call API function we are check this interface
  */
-export interface HttpBodyPros {
+export interface HttpBodyPropsForPost {
   endPoint: string;
-  payload: LoginBody | CreateAccountBody;
+  payload?: LoginBody | CreateAccountBody;
+}
+
+export interface HttpBodyPropsForGet {
+  endPoint: string;
+  payload?: LoginBody | CreateAccountBody;
 }
 
 export interface ApiEndpoint {
   createAccount: '/auth/createaccount';
   login: '/auth/login';
+  getCategory: '/all-category';
 }
 
 /**

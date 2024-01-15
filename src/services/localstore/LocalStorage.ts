@@ -14,14 +14,12 @@ export class UserLocalStorage {
    */
   static async getValue<T = {}>(key: UserPrivateKey): Promise<T> {
     try {
-      // fromJSON
       let userValue: string = '';
+      
       // for cache management we are checking when cache exists return synchronies value
-      if (this.getCacheValue[key]) {
-        console.log('getValue if');
-        userValue = this.getCacheValue[key] || '';
-      } else {
-        console.log('getValue else');
+      if (this.getCacheValue[key]) userValue = this.getCacheValue[key] || '';
+
+      else {
         userValue = (await AsyncStorage.getItem(key)) || '';
         this.getCacheValue[key] = userValue;
       }

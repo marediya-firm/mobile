@@ -3,7 +3,7 @@ import DataService from './DataService';
 import {UserLocalStorage} from '../services/export';
 
 Axios.interceptors.request.use(
-  async (config: any) => {
+  (config: any) => {
     config.headers.Authorization = UserLocalStorage.token || '';
     config.headers.Accept = 'application/json';
     config.headers['Content-Type'] = 'application/json';

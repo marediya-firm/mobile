@@ -6,6 +6,7 @@ import {
   UserPrivateKey,
   flashAlert,
 } from '../../../../services/export';
+import {useGlobalLoad} from '../../../../zustand/export';
 import {LoginAPIResponse} from '../interface/export';
 
 /**
@@ -14,8 +15,11 @@ import {LoginAPIResponse} from '../interface/export';
 export const loginApiController = async (
   navigation: LoginNavigation,
 ): Promise<void> => {
+  // handle load
+  const handleLoad = useGlobalLoad.getState().handleLoad;
   try {
     // Set API body
+    handleLoad();
     const apiBody: LoginBody = {
       email: '',
       password: '',
@@ -30,7 +34,7 @@ export const loginApiController = async (
     }
 
     const result = await HttpRequest.clientPostRequest<LoginAPIResponse>({
-      endPoint: HttpRequest.apiEndPoint.createAccount,
+      endPoint: HttpRequest.apiEndPoint.login,
       payload: apiBody,
     });
 
@@ -38,12 +42,13 @@ export const loginApiController = async (
       UserPrivateKey.UserDetail,
       result.data.data,
     );
-    
+    handleLoad();
     navigation.replace(routePath.ScreenBridge);
   } catch (error: any) {
     flashAlert({
       message: error?.message as string,
       description: 'Please try again',
     });
+    handleLoad();
   }
 };

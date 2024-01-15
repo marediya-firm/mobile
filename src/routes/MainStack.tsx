@@ -18,7 +18,7 @@ const MainStack = () => {
         cardStyle: {direction: 'ltr', backgroundColor: 'red'},
       }}
       initialRouteName={
-        UserLocalStorage.token?.length > 0
+        UserLocalStorage.token?.length <= 0
           ? routePath.AuthStack
           : routePath.ScreenBridge
       }>

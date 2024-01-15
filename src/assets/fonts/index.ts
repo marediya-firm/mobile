@@ -3,80 +3,37 @@ import {Platform} from 'react-native';
 type Fonts = {[key: string]: string};
 
 export const fonts: Fonts = {
-  robotoBlackItalic:
-    Platform.OS === 'android'
-      ? 'Roboto Black Italic'
-      : 'GeneralSansVariable-Bold_Regular',
-  robotoBlack:
-    Platform.OS === 'android'
-      ? 'Roboto Black'
-      : 'GeneralSansVariable-Bold_Semibold',
-  robotoBold:
-    Platform.OS === 'android' ? 'Roboto Bold' : 'GeneralSansVariable-Bold',
-  robotoBoldItalic:
-    Platform.OS === 'android'
-      ? 'Roboto BoldItalic'
-      : 'GeneralSansVariable-Bold_Extralight',
+  robotoBlackItalic: 'Roboto Black Italic',
 
-  robotoItalic:
-    Platform.OS === 'android'
-      ? 'Roboto Italic'
-      : 'GeneralSansVariable-Bold_Light',
+  robotoBlack: 'Roboto Black',
 
-  robotoLight:
-    Platform.OS === 'android'
-      ? 'Roboto Light'
-      : 'GeneralSansVariable-Bold_Medium',
+  robotoBoldItalic: 'Roboto BoldItalic',
 
-  robotoLightItalic:
-    Platform.OS === 'android' ? 'Roboto LightItalic' : 'GeneralSans-BoldItalic',
+  robotoItalic: 'Roboto Italic',
 
-  robotoMedium:
-    Platform.OS === 'android'
-      ? 'Roboto Medium'
-      : 'GeneralSansVariable-BoldItalic_Extralight-Italic',
+  robotoLight: 'Roboto Light',
 
-  robotoMediumItalic:
-    Platform.OS === 'android'
-      ? 'Roboto MediumItalic'
-      : 'GeneralSansVariable-BoldItalic',
+  robotoMedium: 'Roboto Medium',
 
-  robotoRegular:
-    Platform.OS === 'android'
-      ? 'Roboto Regular'
-      : 'GeneralSansVariable-BoldItalic_Light-Italic',
+  robotoMediumItalic: 'Roboto MediumItalic',
 
-  robotoThin:
-    Platform.OS === 'android'
-      ? 'Roboto Thin'
-      : 'GeneralSansVariable-BoldItalic_Medium-Italic',
+  robotoRegular: 'Roboto Regular',
 
-  robotoThinItalic:
-    Platform.OS === 'android'
-      ? 'Roboto ThinItalic'
-      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
+  robotoThin: 'Roboto Thin',
 
-  poppinsMedium:
-    Platform.OS === 'android'
-      ? 'Poppins Medium'
-      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
+  robotoThinItalic: 'Roboto ThinItalic',
 
-  poppinsRegular:
-    Platform.OS === 'android'
-      ? 'Poppins Regular'
-      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
+  poppinsMedium: 'Poppins Medium',
 
-  poppinsSemiBoldItalic:
-    Platform.OS === 'android'
-      ? 'Poppins SemiBoldItalic'
-      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
+  poppinsRegular: 'Poppins Regular',
 
-  poppinsThin:
-    Platform.OS === 'android'
-      ? 'Poppins Thin'
-      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
-  poppinsLight:
-    Platform.OS === 'android'
-      ? 'Poppins Light'
-      : 'GeneralSansVariable-BoldItalic_Semibold-Italic',
+  poppinsSemiBoldItalic: 'Poppins SemiBoldItalic',
+
+  poppinsThin: 'Poppins Thin',
+
+  poppinsLight: 'Poppins Light',
+
+  robotoBold: 'Roboto Bold',
+
+  robotoLightItalic: 'Roboto LightItalic',
 };
