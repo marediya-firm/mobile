@@ -4,7 +4,7 @@ import {CustomText, CustomView} from '../../../components/CoreComponent';
 import {AppLogo, Google} from '../../../assets/icon';
 import {AppStyle} from './styles';
 import {variant} from '../../../utils';
-import {ConstantString} from '../../../constant';
+import {ConstantString, StringConstant} from '../../../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {UserInput, loginInput} from '../export';
 import {AuthFooter, LoadingIndicator} from '../../../components/export';
@@ -15,7 +15,8 @@ import {useIsFocused} from '@react-navigation/native';
 import {loginApiController} from './export';
 
 const LoginScreen = (props: LoginScreenProps) => {
-  const getAppString = ConstantString('strings');
+  console.log('LoginScreen');
+  const getAppString = ConstantString('strings') as StringConstant;
   const styles = AppStyle();
   const focus = useIsFocused();
 
@@ -54,7 +55,7 @@ const LoginScreen = (props: LoginScreenProps) => {
                   onPress={() => loginApiController(props.navigation)}
                   style={[styles.button]}>
                   <CustomText
-                    text={getAppString.CreateAccount}
+                    text={getAppString.login}
                     variant={variant.F30014}
                     extraStyle={styles.createAnAccount1}
                   />

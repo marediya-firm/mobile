@@ -1,5 +1,10 @@
 import axios, {AxiosResponse} from 'axios';
-import {ApiEndpoint, HttpBodyPropsForPost, HttpBodyPropsForGet} from './export';
+import {
+  ApiEndpoint,
+  HttpBodyPropsForPost,
+  HttpBodyPropsForGet,
+  HttpParamsPropsForGet,
+} from './export';
 import {UserLocalStorage} from '../services/export';
 
 export class HttpRequest {
@@ -8,12 +13,13 @@ export class HttpRequest {
    * @param props endpoint and body for the API request
    * @returns AxiosResponse<T>
    */
-  static async clientGetRequest<T>(
-    props: HttpBodyPropsForPost,
+  static async clientGetRequest<T, P = {}>(
+    props: HttpParamsPropsForGet<P>,
   ): Promise<AxiosResponse<T>> {
     const {endPoint = '', payload = undefined} = props;
     try {
       const clientResult = await axios.get(endPoint, {
+        params: payload,
         headers: {
           Authorization: 'Bearer ' + UserLocalStorage.token,
         },
@@ -84,5 +90,6 @@ export class HttpRequest {
     createAccount: '/auth/createaccount',
     login: '/auth/login',
     getCategory: '/all-category',
+    getMenuById: '/get-product-category',
   };
 }

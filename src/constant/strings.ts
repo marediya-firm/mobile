@@ -3,9 +3,33 @@ import {useMemo} from 'react';
 export type validationStringConstant = {
   [key: string]: (params: string) => string;
 };
-export interface StringConstant {
-  [key: string]: string;
-}
+export type StringConstant = {
+  [key in
+    | 'Email'
+    | 'Password'
+    | 'EmailPlaceHolder'
+    | 'PasswordPlaceHolder'
+    | 'ForgotPassword'
+    | 'Donthaveaccount'
+    | 'Google'
+    | 'SignUp'
+    | 'SignIn'
+    | 'Welcome'
+    | 'always'
+    | 'Account'
+    | 'NotHaveAccount'
+    | 'Login'
+    | 'CreateAccount'
+    | 'ConnectFriends'
+    | 'AlreadyAccount'
+    | 'LAVUs'
+    | 'Restaurant'
+    | 'login'
+    | 'GoodMorning'
+    | 'lookingFor'
+    | 'FoodType'
+    | 'Popular']: string;
+};
 
 export const strings: StringConstant = {
   Email: 'Email',
@@ -27,6 +51,11 @@ export const strings: StringConstant = {
   AlreadyAccount: ' Already have any account? Sign in',
   LAVUs: 'LAVU’s',
   Restaurant: 'Restaurant',
+  login: 'Login',
+  GoodMorning: 'Good morning!',
+  lookingFor: 'What are you looking for?',
+  FoodType: 'Food type',
+  Popular: 'Popular',
 };
 
 export const validationString: validationStringConstant = {
@@ -41,4 +70,4 @@ const type = {
 };
 
 export const ConstantString = (props: 'strings' | 'validationString') =>
-  useMemo(() => type[props], []);
+  useMemo<StringConstant | validationStringConstant>(() => type[props], []);

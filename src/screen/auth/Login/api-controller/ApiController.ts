@@ -42,6 +42,7 @@ export const loginApiController = async (
       UserPrivateKey.UserDetail,
       result.data.data,
     );
+    await UserLocalStorage.getToken();
     handleLoad();
     navigation.replace(routePath.ScreenBridge);
   } catch (error: any) {

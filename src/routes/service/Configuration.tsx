@@ -11,6 +11,7 @@ export const authHeaderProp: StackNavigationOptions = {
   animationEnabled: true,
   cardOverlayEnabled: true,
   detachPreviousScreen: true,
+  headerShown:false,
   header: props => <AuthHeader {...props} />,
 };
 

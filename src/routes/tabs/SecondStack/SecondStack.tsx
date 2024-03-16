@@ -2,26 +2,26 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
   LazyComponentSecondTab,
-  SecondStackParamList,
+  ReserveStackParamList,
   authHeaderProp,
 } from '../../export';
 import {routePath} from '../../routepath/export';
 
-const Stack = createStackNavigator<SecondStackParamList>();
+const Stack = createStackNavigator<ReserveStackParamList>();
 
 const lazyComponent: LazyComponentSecondTab<React.FunctionComponent> = {
-  [routePath.SecondTab]:
+  [routePath.Reserve]:
     require('../../../screen/dashboard/SecondTab/SecondTab/SecondTab').default,
 };
 
-export const SecondStack = () => {
+export const ReserveStack = (): React.JSX.Element => {
   return (
     <Stack.Navigator
       screenOptions={authHeaderProp}
-      initialRouteName={routePath.SecondTab}>
+      initialRouteName={routePath.Reserve}>
       <Stack.Screen
-        name={routePath.SecondTab}
-        getComponent={() => lazyComponent[routePath.SecondTab]}
+        name={routePath.Reserve}
+        getComponent={() => lazyComponent[routePath.Reserve]}
       />
     </Stack.Navigator>
   );

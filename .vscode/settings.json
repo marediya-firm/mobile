@@ -13,6 +13,7 @@
         "Pressable",
         "routepath",
         "routespath",
+        "tanstack",
         "zustand"
     ],
     "editor.fontWeight": "normal",

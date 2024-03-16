@@ -6,22 +6,20 @@ import {UserLocalStorage} from '../services/export';
 const Stack = createStackNavigator<RootStackParamList>();
 
 const MainStack = () => {
+  const token = UserLocalStorage.token;
+  console.log(':token', token);
+
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
         freezeOnBlur: true,
-        detachPreviousScreen: true,
         animationTypeForReplace: 'pop',
         cardOverlayEnabled: true,
         cardShadowEnabled: true,
         cardStyle: {direction: 'ltr', backgroundColor: 'red'},
       }}
-      initialRouteName={
-        UserLocalStorage.token?.length <= 0
-          ? routePath.AuthStack
-          : routePath.ScreenBridge
-      }>
+      initialRouteName={!token ? routePath.AuthStack : routePath.ScreenBridge}>
       <Stack.Screen name={routePath.AuthStack} component={AuthStack} />
       <Stack.Screen name={routePath.ScreenBridge} component={ScreenBridge} />
     </Stack.Navigator>

@@ -11,4 +11,8 @@ export const routePath: RoutePath = {
   HomeStack: 'HomeStack',
   SecondTab: 'SecondTab',
   SecondStack: 'SecondStack',
+  HotDeal: 'HotDeal',
+  Reserve: 'Reserve',
+  Reward: 'Reward',
+  Scanner: 'Scanner',
 };

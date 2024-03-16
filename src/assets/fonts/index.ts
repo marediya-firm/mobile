@@ -1,6 +1,27 @@
 import {Platform} from 'react-native';
 
-type Fonts = {[key: string]: string};
+type Fonts = {
+  [key in
+    | 'robotoBlackItalic'
+    | 'robotoBlack'
+    | 'robotoBoldItalic'
+    | 'robotoItalic'
+    | 'robotoLight'
+    | 'robotoMedium'
+    | 'robotoMediumItalic'
+    | 'robotoRegular'
+    | 'robotoThin'
+    | 'robotoThinItalic'
+    | 'poppinsMedium'
+    | 'poppinsRegular'
+    | 'poppinsSemiBoldItalic'
+    | 'poppinsThin'
+    | 'poppinsLight'
+    | 'robotoBold'
+    | 'robotoLightItalic'
+    | 'oswaldLight'
+    | 'PoppinsBold']: string;
+};
 
 export const fonts: Fonts = {
   robotoBlackItalic: 'Roboto Black Italic',
@@ -33,7 +54,11 @@ export const fonts: Fonts = {
 
   poppinsLight: 'Poppins Light',
 
+  PoppinsBold: 'Poppins-Bold',
+
   robotoBold: 'Roboto Bold',
 
   robotoLightItalic: 'Roboto LightItalic',
+
+  oswaldLight: 'Oswald-Bold',
 };

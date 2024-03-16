@@ -1,12 +1,24 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {UserLocalStorage} from '../services/export';
 import {enableFreeze} from 'react-native-screens';
+import SplashScreen from 'react-native-splash-screen';
 
-export const GetToken = () => {
+export const GetToken = (): string => {
   enableFreeze(true);
+  const [tokenValue, setTokenValue] = useState('initial');
+
+  const wantToken = async (): Promise<void> => {
+    try {
+      setTokenValue(await UserLocalStorage.getToken());
+      SplashScreen.hide();
+    } catch (error) {
+      SplashScreen.hide();
+    }
+  };
+
   useEffect(() => {
-    (async () => {
-      await UserLocalStorage.getToken();
-    })();
+    wantToken();
   }, []);
+
+  return tokenValue;
 };

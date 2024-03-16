@@ -4,7 +4,7 @@ import {LoginAPIResponse} from '../../screen/auth/Login/export';
 
 export class UserLocalStorage {
   static getCacheValue: GetCacheValue<string> = {};
-  static token: string = '';
+  static token: string | 'initial' = '';
 
   /**
    * Get item
@@ -15,10 +15,9 @@ export class UserLocalStorage {
   static async getValue<T = {}>(key: UserPrivateKey): Promise<T> {
     try {
       let userValue: string = '';
-      
+
       // for cache management we are checking when cache exists return synchronies value
       if (this.getCacheValue[key]) userValue = this.getCacheValue[key] || '';
-
       else {
         userValue = (await AsyncStorage.getItem(key)) || '';
         this.getCacheValue[key] = userValue;
@@ -88,10 +87,11 @@ export class UserLocalStorage {
    * Get user token if exist in local storage
    * @returns
    */
-  static async getToken(): Promise<void> {
+  static async getToken(): Promise<string | 'initial'> {
     const result = await this.getValue<LoginAPIResponse['data']>(
       UserPrivateKey.UserDetail,
     );
     this.token = result.token;
+    return this.token;
   }
 }

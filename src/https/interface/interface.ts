@@ -6,6 +6,11 @@ export interface HttpBodyPropsForPost {
   payload?: LoginBody | CreateAccountBody;
 }
 
+export interface HttpParamsPropsForGet<P> {
+  endPoint: string;
+  payload?: P;
+}
+
 export interface HttpBodyPropsForGet {
   endPoint: string;
   payload?: LoginBody | CreateAccountBody;
@@ -15,6 +20,7 @@ export interface ApiEndpoint {
   createAccount: '/auth/createaccount';
   login: '/auth/login';
   getCategory: '/all-category';
+  getMenuById: '/get-product-category';
 }
 
 /**

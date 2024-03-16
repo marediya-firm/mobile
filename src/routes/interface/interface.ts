@@ -14,6 +14,10 @@ export interface RoutePath {
   HomeStack: 'HomeStack';
   SecondTab: 'SecondTab';
   SecondStack: 'SecondStack';
+  HotDeal: 'HotDeal';
+  Scanner: 'Scanner';
+  Reward: 'Reward';
+  Reserve: 'Reserve';
 }
 
 /**
@@ -46,7 +50,7 @@ export type LazyComponentHome<T> = {
 };
 
 export type LazyComponentSecondTab<T> = {
-  [routePath.SecondTab]: T;
+  [routePath.Reserve]: T;
 };
 
 /**
@@ -78,7 +82,10 @@ export type LoginNavigationRoute = RouteProp<AuthStackParamList, 'LoginScreen'>;
 // >;
 export type TabNavParamList = {
   [routePath.HomeStack]: NavigatorScreenParams<HomeStackParamList>;
-  [routePath.SecondStack]: undefined;
+  [routePath.HotDeal]: undefined;
+  [routePath.Reward]: undefined;
+  [routePath.Reserve]: undefined;
+  [routePath.Scanner]: undefined;
 };
 export type BottomTabsProps = BottomTabScreenProps<
   TabNavParamList,
@@ -98,15 +105,15 @@ export type HomeScreenNavigation = StackNavigationProp<
 >;
 export type HomeScreenRoute = RouteProp<HomeStackParamList, 'HomeScreen'>;
 
-export type SecondStackParamList = {
-  [routePath.SecondTab]: undefined;
+export type ReserveStackParamList = {
+  [routePath.Reserve]: undefined;
 };
 
 export type SecondStackNavigation = StackNavigationProp<
-  SecondStackParamList,
-  'SecondTab'
+  ReserveStackParamList,
+  'Reserve'
 >;
-export type SecondStackRoute = RouteProp<SecondStackParamList, 'SecondTab'>;
+export type SecondStackRoute = RouteProp<ReserveStackParamList, 'Reserve'>;
 
 /**
  * Tab Route Path

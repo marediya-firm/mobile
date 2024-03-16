@@ -254,6 +254,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation platform('com.google.firebase:firebase-bom:31.0.1')
+     implementation project(':react-native-gesture-handler')
     // implementation 'com.google.firebase:firebase-analytics'
 implementation 'com.google.firebase:firebase-analytics-ktx'
     //noinspection GradleDynamicVersion
