@@ -1,10 +1,12 @@
 import React, {FC} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View} from 'react-native';
+import {Dimensions, Platform, StyleSheet, Text, View} from 'react-native';
 import {TabNavParamList, routePath} from '../export';
 import {HomeStack} from './HomeStack/HomeStack';
 import {ReserveStack} from './SecondStack/export';
-import {TabUtils, style} from '../../components/export';
+import {TabUtils} from '../../components/export';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {Home} from '../../assets/icon';
 
 const Tab = createBottomTabNavigator<TabNavParamList>();
 
@@ -14,8 +16,21 @@ export const TabNavigation = () => {
       <Tab.Navigator
         screenOptions={({route}) => ({
           headerShown: false,
-          tabBarStyle: style.tabBarStyle,
+          tabBarStyle: {
+            position: 'absolute',
+            bottom: 5,
+            height: Platform.OS === 'ios' ? 75 : 85,
+            backgroundColor: '#151522',
+            marginHorizontal: 10,
+            borderRadius: Dimensions.get('screen').height * 0.1,
+          },
           tabBarShowLabel: false,
+          tabBarItemStyle: {
+            marginTop: Platform.OS === 'ios' ? 28 : 0,
+          },
+          // tabBarIconStyle: {
+          //   backgroundColor:"red",flex:1,height:100
+          // },
           freezeOnBlur: true,
           tabBarIcon: ({focused}: {focused: boolean}) => (
             <TabUtils tabDetail={route} focus={focused} />

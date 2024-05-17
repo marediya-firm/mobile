@@ -30,11 +30,13 @@ export type ColorsType = {
     | 'colorF7F7FB'
     | 'colorECECEC'
     | 'color0A0A0A'
-    | 'colorAAACAE']: string;
+    | 'colorAAACAE'
+    | 'grey3']: string;
 };
 
 export const Colors: ColorsType = {
   grey: '#343434',
+  grey3: '#343449',
   borderColor: 'rgba(0, 0, 0, 0.4)',
   placeHolderBlack: 'rgba(0, 0, 0, 0.7)',
   googleColor: 'rgba(0, 0, 0, 0.6)',

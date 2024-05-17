@@ -9,3 +9,4 @@ export * from './CustomInput';
 export * from './CoreComponent';
 export * from './AuthHeader';
 export * from './TabUtils';
+export * from './CategoryComponent';

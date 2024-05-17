@@ -1,31 +1,31 @@
-import React, {memo, useRef, useState} from 'react';
+import React, {memo, useRef} from 'react';
 import {
   ScrollView,
   Pressable,
   View,
   Image,
-  Text,
   StyleSheet,
   FlatList,
   Dimensions,
+  Text,
 } from 'react-native';
-import {DefinedUseQueryResult, useQueries} from '@tanstack/react-query';
+import {useQueries} from '@tanstack/react-query';
 import {HttpRequest} from '../https/HttpsService';
 import {CategoryAPIResponse, MenuAPIResponse} from '../screen/dashboard/export';
 import {Colors, ConstantString, StringConstant} from '../constant';
-import {customStyle, fontStyleVariant, variant} from '../utils';
+import {customStyle, variant} from '../utils';
 import {CategoryComponentProps, CustomText, LoadingIndicator} from './export';
 import {MenuComponent} from './MenuComponent';
-import Animated, {
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
+import {AnimatedScrollViewHome} from '../screen/auth/export';
+
+export type ScrollWatchRef = {
+  offset: number;
+  height: number;
+};
 
 export const CategoryComponent = memo(
   (props: CategoryComponentProps) => {
     const appString = ConstantString('strings') as StringConstant;
-    const [header, setHeader] = useState<string>(appString.FoodType);
 
     const selectCategory = useRef<number>(0);
     const categoryId = useRef<string>('');
@@ -75,74 +75,29 @@ export const CategoryComponent = memo(
     const categoryItem = queryResult[0];
     const menuItem = queryResult[1];
 
-    const opacity = useSharedValue<number>(1);
-    const scrollWatchRef = useRef<number>(0);
-
-    const animationHeader = (type: string) => {
-      setHeader(type);
-    };
+    const scrollWatchRef = useRef<ScrollWatchRef>({
+      offset: 0,
+      height: 0,
+    });
 
     return (
       <View>
         {categoryItem.isLoading ? (
-          <LoadingIndicator style={{marginTop: 15}} />
+          <LoadingIndicator style={localStyle.loadingIndicator} />
         ) : (
-          <View
-            style={{
-              height: Dimensions.get('screen').height / 1,
-            }}>
-            {/* <CustomText text={appString.FoodType} variant={variant.F50016} /> */}
-            <Animated.Text
-              style={[
-                fontStyleVariant[variant.F50019],
-                {opacity: opacity, color: Colors.darkBlack},
-              ]}>
-              {header}
-            </Animated.Text>
-            <ScrollView
-              onScroll={event => {
-                const yOffset = event.nativeEvent.contentOffset.y;
-                console.log('yOffset', yOffset);
-                // if (yOffset <= 0) {
-                //   (opacity.value = withTiming(1, {duration: 10})),
-                //     animationHeader(appString.FoodType);
-                // } else if (yOffset < (scrollWatchRef.current || 0)) {
-                //   if (yOffset > 30) {
-                //     opacity.value = withTiming(opacity.value - 0.3, {
-                //       duration: 10,
-                //     });
-                //     animationHeader(appString.FoodType);
-                //   } else {
-                //     if (opacity.value >= 0.1) {
-                //       opacity.value = withTiming(opacity.value - 0.3, {
-                //         duration: 10,
-                //       });
-                //     }
-                //   }
-                // }
-                // else if (yOffset > 34) {
-                //   opacity.value = withTiming(1, {duration: 10});
-                //   animationHeader(appString.Popular);
-                // }  
-                // else {
-                //   if (opacity.value >= 0.1) {
-                //     opacity.value = withTiming(opacity.value - 0.09, {
-                //       duration: 10,
-                //     });
-                //   }
-                // }
-                scrollWatchRef.current = yOffset;
-              }}
-              showsVerticalScrollIndicator
-              contentContainerStyle={{
-                paddingBottom: Dimensions.get('screen').height / 2,
-              }}>
+          <View style={localStyle.wrapper}>
+            <AnimatedScrollViewHome
+              appString={appString}
+              scrollWatchRef={scrollWatchRef}>
               <ScrollView
                 scrollEnabled
                 scrollEventThrottle={10}
                 showsHorizontalScrollIndicator={false}
                 horizontal
-                contentContainerStyle={[localStyle.scrollStyle, {flexGrow: 1}]}>
+                onLayout={({nativeEvent}) =>
+                  (scrollWatchRef.current.height = nativeEvent.layout.height)
+                }
+                contentContainerStyle={[localStyle.scrollStyle]}>
                 {categoryItem.data?.map((item, index) => {
                   const checkSelect = selectCategory.current === index;
                   const getStyle = customStyle<'category', boolean>({
@@ -176,23 +131,9 @@ export const CategoryComponent = memo(
                 style={{
                   marginTop: 17,
                 }}>
-                <CustomText
-                  text={appString.Popular}
-                  variant={variant.F50019}
-                  extraStyle={{
-                    opacity:
-                      header !== appString.FoodType
-                        ? 0
-                        : scrollWatchRef.current !== 0
-                        ? scrollWatchRef.current + 40 + 0.3
-                        : 0.3,
-                  }}
-                />
-                {menuLoadItem?.map((item, index) => (
-                  <MenuComponent {...item} key={index} />
-                ))}
+                <MenuRender menuLoadItem={menuLoadItem} />
               </View>
-            </ScrollView>
+            </AnimatedScrollViewHome>
           </View>
         )}
       </View>
@@ -202,6 +143,9 @@ export const CategoryComponent = memo(
 );
 
 const localStyle = StyleSheet.create({
+  wrapper: {
+    height: Dimensions.get('screen').height / 1,
+  },
   scrollStyle: {
     flexDirection: 'row',
     marginTop: 7,
@@ -225,17 +169,21 @@ const localStyle = StyleSheet.create({
     flexDirection: 'row',
   },
   categoryImage: {height: 60, width: 60, borderRadius: 35},
+  loadingIndicator: {marginTop: 15},
 });
 
-export const MenuRender = ({menuItem}: {menuItem: MenuAPIResponse[]}) => {
+export const MenuRender = ({
+  menuLoadItem,
+}: {
+  menuLoadItem: Array<MenuAPIResponse>;
+}) => {
   return (
-    <View style={{}}>
+    <View>
       <FlatList
         contentContainerStyle={{flexGrow: 1}}
-        // style={{paddingBottom:12}}
         scrollEnabled
         showsVerticalScrollIndicator={true}
-        data={menuItem}
+        data={menuLoadItem}
         renderItem={({item, index}) => <MenuComponent {...item} key={index} />}
       />
     </View>

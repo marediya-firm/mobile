@@ -8,7 +8,8 @@ import {Mic, Search} from '../../../../assets/icon';
 import {CategoryComponent} from '../../../../components/CategoryComponent';
 
 const HomeScreen = (homeScreenProps: HomeScreenProps) => {
-  // const {navigation} = homeScreenProps;
+  const {navigation} = homeScreenProps;
+
   const appString = ConstantString('strings') as StringConstant;
   const [selectCategory, setSelectCategory] = useState<number>(0);
 
@@ -71,23 +72,21 @@ const myStyle = StyleSheet.create({
   underLine: {
     height: 2,
     backgroundColor: Colors.color95ae45,
-    top: -12,
-    width: '47%',
   },
   goodMorning: {marginHorizontal: 24, marginTop: 24},
   searchWrapperM: {marginTop: 18},
   searchWarper: {
     padding: 16,
     backgroundColor: Colors.white,
+    shadowColor: Colors.semiBlue,
     shadowOffset: {
-      width: 0,
-      height: 10,
+      width: 2,
+      height: 4,
     },
+    shadowRadius: 2.06,
+    shadowOpacity: 0.5,
     borderRadius: 7,
-    shadowOpacity: 100,
     elevation: 3,
-    shadowRadius: 4,
-    shadowColor: Colors.darkBlack,
     paddingHorizontal: 16,
     flexDirection: 'row',
   },

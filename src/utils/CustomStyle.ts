@@ -30,7 +30,7 @@ export function customStyle<P, T = boolean>(props: ParamsStyle<P, T>) {
     categoryText: {
       paddingVertical: 10,
       color: props?.category ? Colors.colorF0ECE6 : Colors.color0A0A0A,
-      fontFamily: fonts.poppinsRegular,
+      // fontFamily: fonts.poppinsRegular,
       fontSize: 14,
       fontWeight: '400',
       width:70,

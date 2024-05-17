@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Platform, StyleSheet, Text, View} from 'react-native';
 import React, {FC} from 'react';
 import {routePath} from '../routes/export';
 import {Home} from '../assets/icon/Home';
@@ -23,7 +23,7 @@ export const TabUtils = (props: TabUtilsProps) => {
   const Icon = tabBarAssets[tabDetail.name].SvgImage as FC<{color?: string}>;
 
   return (
-    <>
+    <React.Fragment>
       {thirdTab ? (
         <View style={style.left}>
           <View style={style.thirdContainer}>
@@ -33,12 +33,12 @@ export const TabUtils = (props: TabUtilsProps) => {
       ) : (
         <View style={focus ? style.focusOn : style.focusOff}>
           <Icon color={focus ? Colors.color151522 : Colors.colorF5F4EC} />
-          <Text style={getTextColor(focus).label}>
+          <Text style={[getTextColor(focus).label, {textAlign: 'center'}]}>
             {tabBarAssets[tabDetail.name].label}
           </Text>
         </View>
       )}
-    </>
+    </React.Fragment>
   );
 };
 
@@ -47,8 +47,8 @@ export const style = StyleSheet.create({
     left: 3,
   },
   thirdContainer: {
-    bottom: 30,
     backgroundColor: Colors.color95ae45,
+    bottom: 30,
     height: 70,
     justifyContent: 'center',
     alignItems: 'center',
@@ -56,18 +56,22 @@ export const style = StyleSheet.create({
     borderRadius: 35,
   },
   focusOn: {
-    height: 70,
-    width: 70,
-    borderRadius: 35,
+    height: Platform.OS === 'android' ? 75 : 70,
+    width: Platform.OS === 'android' ? 75 : 70,
+    borderRadius: Platform.OS === 'android' ? 37.5 : 35,
     backgroundColor: Colors.white,
-    left: 5,
-    alignSelf: 'flex-start',
+    left: Platform.OS === 'android' ? 5 : 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  focusOff: {justifyContent: 'center', alignItems: 'center'},
+  focusOff: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
   tabBarStyle: {
     position: 'absolute',
+    alignContent: 'center',
     bottom: 10,
     height: 80,
     backgroundColor: '#151522',

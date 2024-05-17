@@ -4,6 +4,7 @@ import {Theme, useTheme} from '@react-navigation/native';
 import {GetFontStyle, variant} from '../utils';
 import {ViewProps} from 'react-native-svg/lib/typescript/fabric/utils';
 import Animated, {
+  AnimatedStyle,
   useSharedValue,
   withSpring,
   withTiming,
@@ -41,23 +42,27 @@ export const CustomViewCenter = ({
 type CustomTextProps = {
   text: string;
   variant: variant;
-  extraStyle?: StyleProp<TextStyle>;
+  extraStyle?:
+    | StyleProp<AnimatedStyle<StyleProp<TextStyle>>>
+    | StyleProp<TextStyle>;
   onPress?: () => void;
   textProps?: TextProps;
+  isAnimated?: boolean;
 };
 
 export const CustomText = memo(
   (props: CustomTextProps) => {
     const getFontStyle = GetFontStyle();
+    const PureText = props.isAnimated ? Animated.Text : Text;
     return (
-      <Animated.Text
+      <PureText
         style={[
           getFontStyle[props.variant || variant.F30012],
           props.extraStyle,
         ]}
         {...props.textProps}>
         {String(props.text)}
-      </Animated.Text>
+      </PureText>
     );
   },
   (prv, cur) => prv.text !== cur.text,

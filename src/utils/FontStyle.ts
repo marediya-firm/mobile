@@ -1,4 +1,4 @@
-import {StyleSheet, TextStyle} from 'react-native';
+import {Platform, StyleSheet, TextStyle} from 'react-native';
 import {Colors} from './Colors';
 import {fonts} from '../assets/fonts';
 import {useMemo} from 'react';
@@ -47,26 +47,26 @@ export const fontStyleVariant: FontStyleVariant = {
   [variant.F30012]: {
     fontSize: fontSize[12],
     fontWeight: '300',
-    fontFamily: fonts.poppinsLight,
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsLight : '',
     color: Colors.white,
   },
 
   [variant.F30013]: {
     fontSize: fontSize[13],
     fontWeight: '300',
-    fontFamily: fonts.poppinsLight,
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsLight : '',
     color: Colors.colorAAACAE,
   },
 
   [variant.F30014]: {
     fontSize: fontSize[14],
     fontWeight: '300',
-    fontFamily: fonts.poppinsRegular,
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsRegular : '',
     color: Colors.darkBlack,
   },
 
   [variant.F40014]: {
-    fontFamily: fonts.poppinsRegular,
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsRegular : '',
     fontSize: fontSize[14],
     fontWeight: '400',
   },
@@ -74,35 +74,35 @@ export const fontStyleVariant: FontStyleVariant = {
   [variant.F50016]: {
     fontSize: fontSize[16],
     fontWeight: '500',
-    fontFamily: fonts.poppinsRegular,
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsRegular : '',
     color: Colors.darkBlack,
   },
 
   [variant.F50019]: {
     fontSize: fontSize[19],
     fontWeight: '500',
-    fontFamily: fonts.poppinsRegular,
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsRegular : '',
     color: Colors.darkBlack,
   },
 
   [variant.F50021]: {
     fontSize: fontSize[21],
     fontWeight: '500',
-    fontFamily: fonts.poppinsMedium,
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsMedium : '',
     color: Colors.color95ae45,
   },
 
   [variant.F50024]: {
     fontSize: fontSize[24],
     fontWeight: '500',
-    fontFamily: fonts.poppinsMedium,
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsMedium : '',
     color: Colors.color95ae45,
   },
 
   [variant.F50036]: {
     fontSize: fontSize[36],
     fontWeight: '500',
-    fontFamily: fonts.poppinsMedium,
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsMedium : '',
     color: Colors.color95ae45,
     textAlign: 'center',
   },

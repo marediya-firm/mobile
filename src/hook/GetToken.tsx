@@ -10,7 +10,9 @@ export const GetToken = (): string => {
   const wantToken = async (): Promise<void> => {
     try {
       setTokenValue(await UserLocalStorage.getToken());
-      SplashScreen.hide();
+      setTimeout(() => {
+        SplashScreen.hide();
+      }, 1000);
     } catch (error) {
       SplashScreen.hide();
     }

@@ -9,7 +9,7 @@ export const CustomInput = (props: CustomInputProps) => {
   const styles = useMemo(() => appStyles, []);
 
   const changeHandler = (inValue: string) => {
-    props.onChangeText( inValue);
+    props.onChangeText(inValue);
     setOnChangeText(inValue);
   };
 
@@ -33,21 +33,22 @@ const appStyles = StyleSheet.create({
   fullName: {
     borderRadius: 7,
     backgroundColor: '#fff',
-    shadowRadius: 2.06,
+    // shadowRadius: 2.06,
     elevation: 3,
-    shadowOpacity: 1,
     height: 70,
-    shadowColor: '#000',
+    shadowColor: Colors.semiBlue,
     shadowOffset: {
-      width: 0,
-      height: 12,
+      width: 2,
+      height: 4,
     },
+    shadowRadius: 2.06,
+    shadowOpacity: 0.5,
     padding: 7,
     paddingLeft: 15,
     marginVertical: 15,
   },
   inputTypo: {
-    fontFamily: fonts.robotoRegular,
+    // fontFamily: fonts.robotoRegular,
     fontSize: 15,
     fontWeight: '400',
     color: Colors.placeHolderBlack,
