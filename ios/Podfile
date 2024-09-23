@@ -25,6 +25,13 @@ target 'Khata_Book' do
   config = use_native_modules!
 
   flags = get_default_flags()
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  pod 'Firebase'
+  pod 'FirebaseCore'
+  pod 'GoogleUtilities'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
   $RNFirebaseAsStaticFramework = true
 
   use_react_native!(

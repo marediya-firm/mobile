@@ -63,3 +63,5 @@ buck-out/
 /ios/Pods/
 /vendor/bundle/
 **yarn
+project.xcworkspace/
+ios/Podfile.lock
