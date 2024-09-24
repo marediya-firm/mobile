@@ -58,7 +58,7 @@ export class HttpRequest {
   ): Promise<AxiosResponse> => {
     const {endPoint = '', payload = {}} = props;
     try {
-      const clientResult = await axios.post(endPoint, {payload});
+      const clientResult = await axios.patch(endPoint, {payload});
       return clientResult.data;
     } catch (error: string | any) {
       return error?.message || error;
