@@ -9,15 +9,18 @@ export const UserInput: FC<UserInputProps> = memo(
 
     let input: CreateAccountInput[];
     if (renderInput) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       input = useMemo<CreateAccountInput[]>(
         () => createAccountInput.filter((_, index) => renderInput?.[index]),
-        [],
+        [renderInput],
       );
-    } else input = createAccountInput;
+    } else {
+      input = createAccountInput;
+    }
 
     return (
       <React.Fragment>
-        {input.map((value,index:number) => {
+        {input.map((value, index: number) => {
           return <CustomInput key={value.header} {...value} index={index} />;
         })}
       </React.Fragment>

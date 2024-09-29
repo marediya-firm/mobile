@@ -17,9 +17,8 @@ if linkage != nil
 end
 
 use_frameworks! :linkage => :static
-
-pod 'RealmSwift', '~> 3.17', :modular_headers => true
-pod 'Realm', '~> 3.17', :modular_headers => true
+# pod 'RealmSwift', '~> 3.17', :modular_headers => true
+# pod 'Realm', '~> 3.17', :modular_headers => true
 
 target 'Khata_Book' do
   config = use_native_modules!

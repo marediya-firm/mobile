@@ -14,6 +14,7 @@ export const queryClient = new QueryClient({
     queries: {retry: 2, retryDelay: 1000},
   },
 });
+
 export const GlobalComponent = () => {
   const tokenValue: string = GetToken();
   return (

@@ -38,10 +38,6 @@ const HomeScreen = (homeScreenProps: HomeScreenProps) => {
           </View>
 
           <View style={myStyle.categoryWrapper}>
-            <CategoryComponent
-              selectCategory={selectCategory}
-              setSelectCategory={setSelectCategory}
-            />
           </View>
         </View>
       </View>

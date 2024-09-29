@@ -2,8 +2,8 @@ import React from 'react';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {Colors} from './src/constant';
 import {GlobalComponent} from './src/screen/global/GlobalComponent';
-import {View} from 'react-native';
-
+import {Platform} from 'react-native';
+export const isIOS = Platform.OS === 'ios';
 const MyTheme = {
   ...DefaultTheme,
   colors: {
