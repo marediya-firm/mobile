@@ -1,6 +1,3 @@
-
-export const Images = {
-  // Login: require('../image/LoginImage.png'),
-  // Register:require
+export const appImages = {
+  background: require('../image/appbackground.png'),
 };
-  

@@ -1,4 +1,4 @@
-import {Dimensions, Platform, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React, {FC} from 'react';
 import {routePath} from '../routes/export';
 import {Home} from '../assets/icon/Home';
@@ -7,7 +7,10 @@ import {ReserveSvg} from '../assets/icon/ReserveSvg';
 import {RewardSvg} from '../assets/icon/RewardSvg';
 import {ScannerSvg} from '../assets/icon/Scanner';
 import {TabUtilsProps} from './export';
-import {Colors} from '../utils';
+import {Colors, fontStyleVariant, variant} from '../utils';
+import responsive from '../utils/responsive';
+import {isIOS} from '../../App';
+import {Dimensions} from 'react-native';
 
 const tabBarAssets = {
   [routePath.HomeStack]: {SvgImage: Home, label: 'Home'},
@@ -17,30 +20,21 @@ const tabBarAssets = {
   [routePath.Reserve]: {SvgImage: ReserveSvg, label: 'Reserve'},
 };
 
-export const TabUtils = (props: TabUtilsProps) => {
+export const TabUtils = React.memo((props: TabUtilsProps) => {
   const {focus, tabDetail} = props;
-  const thirdTab = tabDetail.name === routePath.Scanner;
   const Icon = tabBarAssets[tabDetail.name].SvgImage as FC<{color?: string}>;
 
   return (
-    <React.Fragment>
-      {thirdTab ? (
-        <View style={style.left}>
-          <View style={style.thirdContainer}>
-            <ScannerSvg />
-          </View>
-        </View>
-      ) : (
-        <View style={focus ? style.focusOn : style.focusOff}>
-          <Icon color={focus ? Colors.color151522 : Colors.colorF5F4EC} />
-          <Text style={[getTextColor(focus).label, {textAlign: 'center'}]}>
-            {tabBarAssets[tabDetail.name].label}
-          </Text>
-        </View>
+    <View style={focus ? style.focusOn : style.focusOff}>
+      <Icon color={focus ? Colors.color1E : Colors.colorF5F4EC} />
+      {focus && (
+        <Text style={fontStyleVariant[variant.F60013]}>
+          {tabBarAssets[tabDetail.name].label}
+        </Text>
       )}
-    </React.Fragment>
+    </View>
   );
-};
+});
 
 export const style = StyleSheet.create({
   left: {
@@ -56,36 +50,27 @@ export const style = StyleSheet.create({
     borderRadius: 35,
   },
   focusOn: {
-    height: Platform.OS === 'android' ? 75 : 70,
-    width: Platform.OS === 'android' ? 75 : 70,
-    borderRadius: Platform.OS === 'android' ? 37.5 : 35,
-    backgroundColor: Colors.white,
-    left: Platform.OS === 'android' ? 5 : 1,
+    height: responsive.height(5.7),
+    width: responsive.width(29),
+    borderRadius: responsive.width(12),
+    backgroundColor: Colors.color1C,
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
+    gap: 7,
   },
   focusOff: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
+    right: responsive.width(4),
   },
   tabBarStyle: {
-    position: 'absolute',
-    alignContent: 'center',
-    bottom: 10,
-    height: 80,
-    backgroundColor: '#151522',
-    marginHorizontal: 10,
-    borderRadius: 40,
+    height: isIOS ? 75 : 85,
+    backgroundColor: Colors.color2C,
+    marginHorizontal: 12,
+    paddingHorizontal: 12,
+    borderRadius: Dimensions.get('screen').height * 0.1,
+  },
+  tabBarItemStyle: {
+    marginTop: isIOS ? 28 : 0,
+    paddingHorizontal: 13,
   },
 });
-
-const getTextColor = (focus: boolean) => {
-  return StyleSheet.create({
-    label: {
-      color: focus ? Colors.color151522 : Colors.colorF5F4EC,
-      fontSize: 10,
-      top: 5,
-    },
-  });
-};

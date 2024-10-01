@@ -1,10 +1,12 @@
 import {
+  SafeAreaView,
   StyleProp,
   StyleSheet,
   Text,
   TextProps,
   TextStyle,
   View,
+  ViewStyle,
 } from 'react-native';
 import React, {memo} from 'react';
 import {Theme, useTheme} from '@react-navigation/native';
@@ -12,9 +14,18 @@ import {GetFontStyle, variant} from '../utils';
 import {ViewProps} from 'react-native-svg/lib/typescript/fabric/utils';
 import Animated, {AnimatedStyle} from 'react-native-reanimated';
 
-export const CustomView = ({children}: any) => {
-  const flex = {flex: 1};
-  return <View style={flex}>{children}</View>;
+interface CustomViewProps {
+  children: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
+}
+export const CustomView = ({children, style}: CustomViewProps) => {
+  const flex = {flex: 1, ...(style as ViewStyle)};
+  return (
+    <View style={flex}>
+      <SafeAreaView />
+      {children}
+    </View>
+  );
 };
 
 interface CustomViewCenterProps {
