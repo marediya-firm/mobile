@@ -11,9 +11,13 @@ export interface HttpParamsPropsForGet<P> {
   payload?: P;
 }
 
+export interface PunchDetailBody {
+  userId: string;
+}
+
 export interface HttpBodyPropsForGet {
   endPoint: string;
-  payload?: LoginBody | CreateAccountBody;
+  payload?: PunchDetailBody;
 }
 
 export interface ApiEndpoint {
@@ -21,6 +25,7 @@ export interface ApiEndpoint {
   login: '/auth/login';
   getCategory: '/all-category';
   getMenuById: '/get-product-category';
+  getPunchByUser: '/punch-in-out/get-punch-by-user';
 }
 
 /**
@@ -34,6 +39,7 @@ export type LoginBody = {
   password: string;
   userName?: string;
 };
+
 /**
  * Create AccountBody
  */

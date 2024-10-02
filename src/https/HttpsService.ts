@@ -1,10 +1,5 @@
 import axios, {AxiosResponse} from 'axios';
-import {
-  ApiEndpoint,
-  HttpBodyPropsForPost,
-  HttpBodyPropsForGet,
-  HttpParamsPropsForGet,
-} from './export';
+import {ApiEndpoint, HttpBodyPropsForPost, HttpBodyPropsForGet} from './export';
 import {UserLocalStorage} from '../services/export';
 
 export class HttpRequest {
@@ -13,8 +8,8 @@ export class HttpRequest {
    * @param props endpoint and body for the API request
    * @returns AxiosResponse<T>
    */
-  static async clientGetRequest<T, P = {}>(
-    props: HttpParamsPropsForGet<P>,
+  static async clientGetRequest<T>(
+    props: HttpBodyPropsForGet,
   ): Promise<AxiosResponse<T>> {
     const {endPoint = '', payload = undefined} = props;
     try {
@@ -36,7 +31,7 @@ export class HttpRequest {
    * @returns AxiosResponse<T>
    */
   static async clientPostRequest<T>(
-    props: HttpBodyPropsForGet,
+    props: HttpBodyPropsForPost,
   ): Promise<AxiosResponse<T>> {
     const {endPoint = '', payload = {}} = props;
     try {
@@ -91,5 +86,6 @@ export class HttpRequest {
     login: '/auth/login',
     getCategory: '/all-category',
     getMenuById: '/get-product-category',
+    getPunchByUser: '/punch-in-out/get-punch-by-user',
   };
 }

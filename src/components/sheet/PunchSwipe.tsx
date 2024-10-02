@@ -1,14 +1,10 @@
 import React, {FC} from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import ActionSheet, {SheetProps} from 'react-native-actions-sheet';
 import responsive from '../../utils/responsive';
 import {Colors} from '../../constant';
 import {SwipeRight} from '../../assets/icon/SwipeRight';
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
-} from 'react-native-gesture-handler';
+import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import Animated, {
   interpolate,
   runOnJS,
@@ -16,28 +12,40 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import {deviceWidth} from '../../../App';
+import {fontStyleVariant, variant} from '../../utils';
+import {HttpRequest} from '../../https/export';
 
 const PunchSwipe: FC<Required<SheetProps<'punch-swipe-sheet'>>> = ({
   sheetId,
   payload,
 }) => {
-  console.log('payload', payload);
   const swipeX = useSharedValue(0);
+
+  const onSwipeComplete = () => {
+    HttpRequest.clientGetRequest<{}>({
+      endPoint: HttpRequest.apiEndPoint.getPunchByUser,
+      payload: {userId: '123'},
+    });
+    console.log('onSwipeComplete');
+  };
 
   const pan = Gesture.Pan()
     .onUpdate(event => {
-      if (event.translationX > 0 && event.translationX < 260) {
+      if (event.translationX > 0 && event.translationX < deviceWidth - 60) {
         swipeX.value = event.translationX;
       }
     })
     .onEnd(event => {
-      if (swipeX.value > 100) {
-        runOnJS(() => {})();
-      }
-      if (event.translationX > 220) {
-        swipeX.value = 260;
+      if (event.translationX > deviceWidth - 200) {
+        swipeX.value = deviceWidth - 130;
+        runOnJS(onSwipeComplete)();
       } else {
-        swipeX.value = withSpring(0, {duration: 4500}); // Reset after swipe
+        swipeX.value = withSpring(0, {
+          duration: 4500,
+          stiffness: 100,
+          clamp: {min: 10},
+        });
       }
     });
 
@@ -46,60 +54,58 @@ const PunchSwipe: FC<Required<SheetProps<'punch-swipe-sheet'>>> = ({
   }));
 
   const textOpacityStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(swipeX.value - 10, [10, 100], [1, 0]); // Hide text as swipe increases
-    return {opacity};
+    const opacity = interpolate(swipeX.value + 12, [10, 100], [1, 0]); // Hide text as swipe increases
+    return {opacity, color: Colors.white, left: 15};
   });
 
   return (
     <ActionSheet id={sheetId} animated gestureEnabled snapPoints={[70, 100]}>
-      <GestureHandlerRootView style={{flexGrow: 1}}>
-        <View
-          style={{
-            flexGrow: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: responsive.height(10),
-            backgroundColor: Colors.color2C,
-            borderRadius: responsive.width(70),
-            marginHorizontal: responsive.width(5),
-            flexDirection: 'row',
-          }}>
+      <View style={styles.container}>
+        <View style={styles.swipeContainer}>
           <GestureDetector gesture={pan}>
-            <Animated.View
-              style={[
-                {
-                  height: 60,
-                  width: 60,
-                  borderRadius: 30,
-                  backgroundColor: Colors.white,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  position: 'absolute',
-                  left: 15,
-                },
-                animatedStyles,
-              ]}>
+            <Animated.View style={[styles.animatedSwipe, animatedStyles]}>
               <SwipeRight />
             </Animated.View>
           </GestureDetector>
-          <View style={{}}>
+          <View>
             <Animated.Text
-              style={[
-                {
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                  color: Colors.white,
-                },
-                textOpacityStyle,
-              ]}>
-              PunchSwipe
+              style={[fontStyleVariant[variant.F50019], textOpacityStyle]}>
+              Swipe right to Punch in
             </Animated.Text>
           </View>
         </View>
-        <SafeAreaView />
-      </GestureHandlerRootView>
+        <View style={styles.bottomContainer} />
+      </View>
     </ActionSheet>
   );
 };
 export default PunchSwipe;
+
+export const styles = StyleSheet.create({
+  container: {
+    height: responsive.height(18),
+    justifyContent: 'center',
+  },
+  swipeContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: responsive.height(9.3),
+    backgroundColor: Colors.color2C,
+    borderRadius: responsive.width(70),
+    marginHorizontal: responsive.width(5),
+    flexDirection: 'row',
+  },
+  animatedSwipe: {
+    height: 60,
+    width: 60,
+    borderRadius: 30,
+    backgroundColor: Colors.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 15,
+  },
+  bottomContainer: {
+    marginBottom: responsive.height(4),
+  },
+});
