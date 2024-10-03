@@ -27,3 +27,8 @@ export interface MenuAPIResponse {
   category_id: string;
   __v: number;
 }
+
+export interface ServerTime {
+  currentTime: string;
+  currentDate: string;
+}
