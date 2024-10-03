@@ -27,7 +27,12 @@ export const TabNavigation = () => {
         })}>
         <Tab.Screen name={routePath.HomeStack} component={HomeStack} />
         <Tab.Screen name={routePath.HotDeal} component={HotDeal} />
-        <Tab.Screen name={routePath.Reserve} component={Reserve} />
+        <Tab.Screen
+          name={routePath.History}
+          getComponent={() =>
+            require('../../screen/dashboard/History/History').default
+          }
+        />
       </Tab.Navigator>
       <SafeAreaView style={{backgroundColor: Colors.white}} />
     </>

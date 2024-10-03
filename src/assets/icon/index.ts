@@ -19,3 +19,6 @@ export * from './Punch';
 export * from './ClockIn';
 export * from './ClockOut';
 export * from './TotalHours';
+export * from './Bag';
+export * from './HotDeal';
+export * from './Arrow';

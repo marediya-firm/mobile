@@ -12,6 +12,7 @@ export const fontSize = {
   19: 19,
   24: 24,
   21: 21,
+  22: 22,
   36: 36,
   50: 50,
 };
@@ -24,9 +25,11 @@ export enum variant {
   F30014,
   F40014,
   F60014,
+  F50015,
   F50016,
   F50019,
   F50021,
+  F50022,
   F50024,
   F50036,
   F30050,
@@ -40,8 +43,10 @@ export interface FontStyleVariant {
   [variant.F30014]: TextStyle;
   [variant.F40014]: TextStyle;
   [variant.F60014]: TextStyle;
+  [variant.F50015]: TextStyle;
   [variant.F50016]: TextStyle;
   [variant.F50021]: TextStyle;
+  [variant.F50022]: TextStyle;
   [variant.F50024]: TextStyle;
   [variant.F50036]: TextStyle;
   [variant.F50019]: TextStyle;
@@ -98,6 +103,13 @@ export const fontStyleVariant: FontStyleVariant = {
     color: Colors.grey46,
   },
 
+  [variant.F50015]: {
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsRegular : '',
+    fontSize: fontSize[15],
+    fontWeight: '500',
+    color: Colors.grey46,
+  },
+
   [variant.F50016]: {
     fontSize: fontSize[16],
     fontWeight: '500',
@@ -117,6 +129,13 @@ export const fontStyleVariant: FontStyleVariant = {
     fontWeight: '500',
     // fontFamily: Platform.OS === 'android' ? fonts.poppinsMedium : '',
     color: Colors.color95ae45,
+  },
+
+  [variant.F50022]: {
+    fontSize: fontSize[22],
+    fontWeight: '500',
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsMedium : '',
+    color: Colors.grey46,
   },
 
   [variant.F50024]: {

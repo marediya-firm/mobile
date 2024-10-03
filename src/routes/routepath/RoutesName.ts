@@ -13,6 +13,6 @@ export const routePath: RoutePath = {
   SecondStack: 'SecondStack',
   HotDeal: 'HotDeal',
   Reserve: 'Reserve',
-  Reward: 'Reward',
+  History: 'History',
   Scanner: 'Scanner',
 };

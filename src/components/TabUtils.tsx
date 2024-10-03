@@ -1,22 +1,20 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {FC} from 'react';
 import {routePath} from '../routes/export';
-import {Home} from '../assets/icon/Home';
-import {HotDealSvg} from '../assets/icon/HotDeal';
 import {ReserveSvg} from '../assets/icon/ReserveSvg';
-import {RewardSvg} from '../assets/icon/RewardSvg';
 import {ScannerSvg} from '../assets/icon/Scanner';
 import {TabUtilsProps} from './export';
 import {Colors, fontStyleVariant, variant} from '../utils';
 import responsive from '../utils/responsive';
 import {isIOS} from '../../App';
 import {Dimensions} from 'react-native';
+import {BagIcon, Home, HotDealSvg} from '../assets/icon';
 
 const tabBarAssets = {
-  [routePath.HomeStack]: {SvgImage: Home, label: 'Home'},
-  [routePath.HotDeal]: {SvgImage: HotDealSvg, label: 'Hot Deal'},
+  [routePath.HomeStack]: {SvgImage: Home, label: 'HOME'},
+  [routePath.HotDeal]: {SvgImage: HotDealSvg, label: 'DASHBOARD'},
+  [routePath.History]: {SvgImage: BagIcon, label: 'HISTORY'},
   [routePath.Scanner]: {SvgImage: ScannerSvg, label: ''},
-  [routePath.Reward]: {SvgImage: RewardSvg, label: 'Reward'},
   [routePath.Reserve]: {SvgImage: ReserveSvg, label: 'Reserve'},
 };
 
