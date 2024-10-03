@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-import { IResponsive, fontStyleVariant, variant } from "../../../../utils";
-import responsive from "../../../../utils/responsive";
+import {StyleSheet} from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {IResponsive, fontStyleVariant, variant} from '../../../../utils';
+import responsive from '../../../../utils/responsive';
 
 export const useMakeStyles = ({height, width}: IResponsive) =>
   StyleSheet.create({
@@ -83,10 +83,6 @@ export const useMakeStyles = ({height, width}: IResponsive) =>
       justifyContent: 'space-between',
       marginTop: height(7),
     },
-    timeContainer: {
-      alignItems: 'center',
-      marginTop: height(4),
-    },
     timeText: {
       color: Colors.grey46,
     },
@@ -97,10 +93,6 @@ export const useMakeStyles = ({height, width}: IResponsive) =>
     },
     employeeNameText: {
       ...fontStyleVariant[variant.F50019],
-      color: Colors.grey46,
-    },
-    dateText: {
-      ...fontStyleVariant[variant.F40014],
       color: Colors.grey46,
     },
     timeText1: {
