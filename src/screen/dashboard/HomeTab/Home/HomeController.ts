@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {daysOfWeek, monthsOfYear} from '../../../../constant';
-import {ServerTime} from '../export';
+import {CalculateTime, ServerTime} from '../export';
+import {HttpRequest} from '../../../../https/HttpsService';
 
 export class HomeController {
   /**
@@ -31,6 +32,44 @@ export class HomeController {
       } ${date.getDate()}, ${date.getFullYear()} - ${
         daysOfWeek[date.getDay()]
       }`,
+    };
+  }
+
+  static async getPunchDetail(userId: string) {
+    try {
+      const response = await HttpRequest.clientGetRequest({
+        endPoint: HttpRequest.apiEndPoint.getPunchByUser,
+        payload: {userId},
+      });
+      console.log(':::::getPunchDetails:::::::::', response);
+    } catch (error) {
+      console.log(
+        '🚀 ~ file: HomeController.ts:46 ~ HomeController ~ getPunchDetail ~ error:',
+        error,
+      );
+    }
+  }
+
+  static calculateTotalHours(totalTime: CalculateTime[]): {
+    [key: string]: number;
+  } {
+    let totalMilliseconds = 0;
+
+    totalTime.forEach(log => {
+      const punchIn = new Date(log.punchIn);
+      const punchOut = new Date(log.punchOut ?? new Date());
+      const timeDifference = punchOut.valueOf() - punchIn.valueOf(); // difference in milliseconds
+      totalMilliseconds += timeDifference; // add each difference to totalMilliseconds
+    });
+
+    const totalSeconds = Math.floor(totalMilliseconds / 1000) % 60;
+    const totalMinutes = Math.floor(totalMilliseconds / (1000 * 60)) % 60;
+    const totalHours = Math.floor(totalMilliseconds / (1000 * 60 * 60));
+
+    return {
+      totalSeconds,
+      totalMinutes,
+      totalHours,
     };
   }
 }
