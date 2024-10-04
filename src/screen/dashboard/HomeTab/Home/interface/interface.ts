@@ -32,3 +32,8 @@ export interface ServerTime {
   currentTime: string;
   currentDate: string;
 }
+
+export interface CalculateTime {
+  punchIn: string;
+  punchOut: string | null;
+}
