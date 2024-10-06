@@ -66,6 +66,7 @@ export const style = StyleSheet.create({
     marginHorizontal: 12,
     paddingHorizontal: 12,
     borderRadius: Dimensions.get('screen').height * 0.1,
+    position: 'absolute',
   },
   tabBarItemStyle: {
     marginTop: isIOS ? 28 : 0,

@@ -3,6 +3,7 @@ import {Colors} from './Colors';
 import {useMemo} from 'react';
 
 export const fontSize = {
+  11: 11,
   12: 12,
   13: 13,
   14: 14,
@@ -18,6 +19,7 @@ export const fontSize = {
 };
 
 export enum variant {
+  F30011,
   F30012,
   F40012,
   F30013,
@@ -36,6 +38,7 @@ export enum variant {
 }
 
 export interface FontStyleVariant {
+  [variant.F30011]: TextStyle;
   [variant.F30012]: TextStyle;
   [variant.F40012]: TextStyle;
   [variant.F30013]: TextStyle;
@@ -56,6 +59,13 @@ export interface FontStyleVariant {
 }
 
 export const fontStyleVariant: FontStyleVariant = {
+  [variant.F30011]: {
+    fontSize: fontSize[11],
+    fontWeight: '300',
+    // fontFamily: Platform.OS === 'android' ? fonts.poppinsLight : '',
+    color: Colors.grey94,
+    textAlign: 'center',
+  },
   [variant.F30012]: {
     fontSize: fontSize[12],
     fontWeight: '300',

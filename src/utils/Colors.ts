@@ -40,7 +40,10 @@ export type ColorsType = {
     | 'colorF9'
     | 'color2C'
     | 'color1C'
-    | 'color1E']: string;
+    | 'color1E'
+    | 'colorD7'
+    | 'colorF6'
+    | 'color55']: string;
 };
 
 export const Colors: ColorsType = {
@@ -50,6 +53,7 @@ export const Colors: ColorsType = {
   grey3: '#343449',
   grey46: '#293646',
   semiBlue: '#211347',
+  color55: '#6FAB55',
 
   grey94: '#6A7D94',
   borderColor: 'rgba(0, 0, 0, 0.4)',
@@ -63,6 +67,7 @@ export const Colors: ColorsType = {
   heavyDark: '#0E1333',
   whiteEA: '#E2E6EA',
   shadowBlack: '#0a0a0a',
+  colorD7: '#D7D7D7',
 
   snowWhite: '#F0FFFF',
   white: '#FFFFFF',
@@ -71,6 +76,7 @@ export const Colors: ColorsType = {
   colorF7F7FB: '#F7F7FB',
   colorF9: '#F9F9F9',
   colorF1: '#F1F1F1',
+  colorF6: '#F6F6F6',
   colorECECEC: '#ECECEC',
   colorEF: '#E4E7EF',
   color1E: '#E89C1E',
