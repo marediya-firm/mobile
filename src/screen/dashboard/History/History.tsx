@@ -152,6 +152,7 @@ import responsive from '../../../utils/responsive';
 import {deviceWidth} from '../../../../App';
 import {MenuIcon} from '../../../assets/icon/Menu';
 import {appImages} from '../../../assets/image';
+import {CalenderView} from '../../../components/CalenderView';
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(moment());
@@ -204,44 +205,10 @@ const Calendar = () => {
   return (
     <>
       {/* Month Navigation */}
-      <View style={styles.calenderWrapper}>
-        <Text style={fontStyleVariant[variant.F50015]}>
-          {currentMonth.format('MMMM YYYY')}
-        </Text>
-        <View style={styles.calenderHeader}>
-          <View style={styles.arrowWrapper}>
-            <Pressable
-              onPress={() => handlePrevMonth()}
-              style={styles.arrowLeft}>
-              <Arrow left />
-            </Pressable>
-            <Pressable
-              onPress={() => handleNextMonth()}
-              style={styles.arrowRight}>
-              <Arrow />
-            </Pressable>
-          </View>
-        </View>
-      </View>
-
-      {/* Days of Week */}
-      <View style={styles.weekdays}>
-        {daysOfWeek.map((day, index) => (
-          <Text key={String(index)} style={styles.weekdayText}>
-            {day}
-          </Text>
-        ))}
-      </View>
-
-      {/* Days of Month */}
+     
+      
       <View style={styles.calenderDate}>
-        <FlatList
-          scrollEnabled={false}
-          data={generateDays()}
-          renderItem={({item}) => renderDay(item)}
-          keyExtractor={item => item.format('DD-MM-YYYY')}
-          numColumns={7}
-        />
+        <CalenderView />
       </View>
       <View style={styles.recordFlat}>
         <FlatList<PunchRecord>
