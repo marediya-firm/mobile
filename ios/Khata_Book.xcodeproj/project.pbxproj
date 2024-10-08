@@ -40,6 +40,7 @@
 		64FEE3055CC84A388F86E437 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6935D0196BC450CA792669B /* Poppins-ExtraLight.ttf */; };
 		69423DF5712E4ECC9669467A /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5E20959BAC64642BEC19C70 /* Poppins-ExtraLightItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		84541A6A2CB5B46600D3A37A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84541A692CB5B46600D3A37A /* GoogleService-Info.plist */; };
 		887661EB98AF426D9C8F06AD /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A2DEFFFBBE142BAB8A1FDA0 /* Poppins-BlackItalic.ttf */; };
 		8D662BC20238441894BD3C97 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 066F03BBC4634354AF6D800E /* Oswald-Regular.ttf */; };
 		9E13D17AE1A94F2EA0C020ED /* Roboto Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C87313C6DD05497FA8BD0DFD /* Roboto Regular.ttf */; };
@@ -49,7 +50,6 @@
 		C3C861A820A2489085E1BD31 /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30E648A899C041A2A9D1EDAB /* Oswald-SemiBold.ttf */; };
 		C96609BDEB49401C926A779E /* Roboto Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E73A1913EA84260934ED4CE /* Roboto Light.ttf */; };
 		D7CA9C1B5B0F453795E6A493 /* Roboto Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4F513BA8F004D419D146690 /* Roboto Italic.ttf */; };
-		E27E70C92B558BDE00933ED1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27E70C82B558BDE00933ED1 /* GoogleService-Info.plist */; };
 		E7AD9ECBC9582079D82773B3 /* Pods_Khata_Book.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6D38B4B81F9493274C4187 /* Pods_Khata_Book.framework */; };
 		E8A28B86AB2549D6BCAD9CE4 /* Roboto Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3982CC6955DB4EE6B0B6BC2F /* Roboto Black.ttf */; };
 		EB82C7735417458CA6FEDBA6 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34A9121E65B34EF59604CE5B /* Poppins-Italic.ttf */; };
@@ -105,6 +105,7 @@
 		7C17247DDA9B30A870BD3699 /* Pods-Khata_Book-Khata_BookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Khata_Book-Khata_BookTests.debug.xcconfig"; path = "Target Support Files/Pods-Khata_Book-Khata_BookTests/Pods-Khata_Book-Khata_BookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7E73A1913EA84260934ED4CE /* Roboto Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto Light.ttf"; path = "../src/assets/fonts/Roboto Light.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Khata_Book/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84541A692CB5B46600D3A37A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		914AF443F5E840B99E94387E /* Roboto MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto MediumItalic.ttf"; path = "../src/assets/fonts/Roboto MediumItalic.ttf"; sourceTree = "<group>"; };
 		97B7FF3292F2416BAF318854 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../src/assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		980750422C764528A0369B48 /* Roboto Black Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto Black Italic.ttf"; path = "../src/assets/fonts/Roboto Black Italic.ttf"; sourceTree = "<group>"; };
@@ -123,7 +124,6 @@
 		CF5B3BE3CEDA477FAE013B39 /* Roboto Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto Thin.ttf"; path = "../src/assets/fonts/Roboto Thin.ttf"; sourceTree = "<group>"; };
 		D0C757FE4A09431B866833E8 /* Roboto LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto LightItalic.ttf"; path = "../src/assets/fonts/Roboto LightItalic.ttf"; sourceTree = "<group>"; };
 		D926674B2F5740247D95AD5E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Khata_Book/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		E27E70C82B558BDE00933ED1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E4F513BA8F004D419D146690 /* Roboto Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto Italic.ttf"; path = "../src/assets/fonts/Roboto Italic.ttf"; sourceTree = "<group>"; };
 		E6F9F29674B74099AA617BB4 /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../src/assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
 		E87DC3F9391440BCAA940FAA /* Poppins Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins Light.ttf"; path = "../src/assets/fonts/Poppins Light.ttf"; sourceTree = "<group>"; };
@@ -224,13 +224,13 @@
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				E27E70C82B558BDE00933ED1 /* GoogleService-Info.plist */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				D926674B2F5740247D95AD5E /* PrivacyInfo.xcprivacy */,
+				84541A692CB5B46600D3A37A /* GoogleService-Info.plist */,
 			);
 			name = Khata_Book;
 			sourceTree = "<group>";
@@ -384,7 +384,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				E27E70C92B558BDE00933ED1 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				BC08C03D70A64BD9ABE40240 /* Oswald-Bold.ttf in Resources */,
 				3C2A399AF29149859876585A /* Oswald-ExtraLight.ttf in Resources */,
@@ -403,6 +402,7 @@
 				2692687BA31B489ABAB3DDF3 /* Poppins-BoldItalic.ttf in Resources */,
 				480EB84864684AFAA8A9A666 /* Poppins-ExtraBold.ttf in Resources */,
 				14305F0164BB4966A4FC04C9 /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				84541A6A2CB5B46600D3A37A /* GoogleService-Info.plist in Resources */,
 				64FEE3055CC84A388F86E437 /* Poppins-ExtraLight.ttf in Resources */,
 				69423DF5712E4ECC9669467A /* Poppins-ExtraLightItalic.ttf in Resources */,
 				EB82C7735417458CA6FEDBA6 /* Poppins-Italic.ttf in Resources */,
@@ -815,10 +815,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -900,10 +897,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
