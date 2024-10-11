@@ -1,13 +1,5 @@
-export const daysOfWeek: string[] = [
-  'Mon',
-  'Tue',
-  'Wed',
-  'Thu',
-  'Fri',
-  'Sat',
-  'Sun',
-];
-export const monthsOfYear: string[] = [
+const daysOfWeek: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const monthsOfYear: string[] = [
   'Jan',
   'Feb',
   'Mar',
@@ -21,3 +13,8 @@ export const monthsOfYear: string[] = [
   'Nov',
   'Dec',
 ];
+
+export default {
+  daysOfWeek,
+  monthsOfYear,
+};

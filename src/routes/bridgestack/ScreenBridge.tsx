@@ -6,21 +6,21 @@ import {
 import {TabNavigation} from '../tabs/TabNavigation';
 import {ScreenBridgeStackParamList} from '../export';
 import {routePath} from '../routepath/export';
-import {View} from 'react-native';
 
 const Stack = createStackNavigator<ScreenBridgeStackParamList>();
 
 const screenOptions: StackNavigationOptions = {
-  // headerShown: false,
-  headerShown:false,
+  headerShown: false,
   detachPreviousScreen: true,
   freezeOnBlur: true,
-  header: () => {
-    return <View style={{}}></View>;
-  },
 };
 
 export const ScreenBridge = () => {
+  
+  // useEffect(() => {
+
+  // }, [])
+
   return (
     <Stack.Navigator
       screenOptions={screenOptions}
