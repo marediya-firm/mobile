@@ -12,7 +12,7 @@ export const useMakeStyles = ({height, width}: IResponsive) =>
     headerContainer: {
       flexDirection: 'row',
     },
-    background: {backgroundColor: Colors.colorF9},
+    background: {backgroundColor: Colors.colorF9, paddingHorizontal: 0},
     circle: {
       height: 50,
       width: 50,
