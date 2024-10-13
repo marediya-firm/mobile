@@ -1,13 +1,11 @@
-
-
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
     "react-native/scripts/react_native_pods.rb",
     {paths: [process.argv[1]]},
   )', __dir__]).strip
- 
 
 platform :ios, min_ios_version_supported
+
 prepare_react_native_project!
 
 linkage = ENV['USE_FRAMEWORKS']
@@ -17,8 +15,6 @@ if linkage != nil
 end
 
 use_frameworks! :linkage => :static
-# pod 'RealmSwift', '~> 3.17', :modular_headers => true
-# pod 'Realm', '~> 3.17', :modular_headers => true
 
 target 'Khata_Book' do
   config = use_native_modules!
@@ -45,11 +41,31 @@ target 'Khata_Book' do
   end
 
   post_install do |installer|
-    react_native_post_install(
-      installer,
-      config[:reactNativePath],
-      :mac_catalyst_enabled => false,
-      # :ccache_enabled => true
-    )
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        if target.name == 'BoringSSL-GRPC'
+          # Remove the '-G' flag from the BoringSSL-GRPC target
+          target.build_phases.each do |build_phase|
+            build_phase.files.each do |file|
+              if file.settings && file.settings['COMPILER_FLAGS']
+                flags = file.settings['COMPILER_FLAGS'].split
+                flags.reject! { |flag| flag == '-GCC_WARN_INHIBIT_ALL_WARNINGS' }
+                file.settings['COMPILER_FLAGS'] = flags.join(' ')
+              end
+            end
+          end
+          
+          # Exclude arm64 for simulator builds
+          config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+        end
+      end
+    end
+
+    # Ensure 'config' is defined before using it in react_native_post_install
+    if defined?(config)
+      react_native_post_install(installer, config[:reactNativePath], :mac_catalyst_enabled => false)
+    else
+      puts "Warning: 'config' is not defined."
+    end
   end
 end

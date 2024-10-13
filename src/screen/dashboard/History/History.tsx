@@ -205,8 +205,6 @@ const Calendar = () => {
   return (
     <>
       {/* Month Navigation */}
-     
-      
       <View style={styles.calenderDate}>
         <CalenderView />
       </View>
