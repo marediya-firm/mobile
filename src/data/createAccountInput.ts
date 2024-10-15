@@ -20,7 +20,7 @@ export const createAccountInput: Array<CreateAccountInput> = [
   new UserInput({
     header: 'Full name',
     value: 'Mahendi',
-    onChangeText: () => {},
+    onChangeText: (iValue: string) => iValue,
     placeHolder: 'Mahendi hasan',
     secureTextEntry: false,
     apiKey: 'userName',
@@ -28,7 +28,7 @@ export const createAccountInput: Array<CreateAccountInput> = [
   new UserInput({
     header: 'Email',
     value: 'mahendi@gmail.com',
-    onChangeText: () => {},
+    onChangeText: (iValue: string) => iValue,
     placeHolder: 'mahendi@gmail.com',
     secureTextEntry: false,
     apiKey: 'email',
@@ -36,7 +36,7 @@ export const createAccountInput: Array<CreateAccountInput> = [
   new UserInput({
     header: 'Password',
     value: 'Test@123',
-    onChangeText: () => {},
+    onChangeText: (iValue: string) => iValue,
     placeHolder: '*********',
     secureTextEntry: true,
     apiKey: 'password',
@@ -44,7 +44,7 @@ export const createAccountInput: Array<CreateAccountInput> = [
   new UserInput({
     header: 'Confirm password',
     value: 'Test@123',
-    onChangeText: () => {},
+    onChangeText: (iValue: string) => iValue,
     placeHolder: '*********',
     secureTextEntry: true,
   }),

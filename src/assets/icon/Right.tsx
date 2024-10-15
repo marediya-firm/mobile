@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
-import { Colors } from '../../constant';
 
 export const Right = React.memo(props => {
   return (
@@ -16,3 +15,5 @@ export const Right = React.memo(props => {
     </Svg>
   );
 });
+
+Right.displayName = 'Right';

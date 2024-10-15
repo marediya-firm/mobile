@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { fonts } from '../assets/fonts';
 import { Colors } from './Colors';
 
 type ParamsStyle<P, T = boolean> = {

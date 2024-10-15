@@ -11,3 +11,5 @@ export const Refresh = React.memo(() => {
     </Svg>
   );
 });
+
+Refresh.displayName = 'Refresh';

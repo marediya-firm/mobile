@@ -26,3 +26,5 @@ export const MenuIcon = React.memo(() => (
     />
   </Svg>
 ));
+
+MenuIcon.displayName = 'MenuIcon';

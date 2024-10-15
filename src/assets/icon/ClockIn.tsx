@@ -25,3 +25,5 @@ export const ClockIn = React.memo(() => {
     </Svg>
   );
 });
+
+ClockIn.displayName = 'ClockIn';

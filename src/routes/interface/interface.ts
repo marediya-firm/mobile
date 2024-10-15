@@ -130,10 +130,8 @@ export type RootStackParamList = {
   ScreenBridge: undefined;
 };
 
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList
-      extends RootStackParamList,
-        ScreenBridgeStackParamList {}
-  }
+declare module '@react-navigation/native' {
+  export interface RootParamList
+    extends RootStackParamList,
+      ScreenBridgeStackParamList {}
 }

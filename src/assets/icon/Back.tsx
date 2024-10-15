@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Path, Svg } from 'react-native-svg';
 
-const Back = memo(() => {
+export const Back = memo(() => {
   return (
     <Svg width={15} height={24} viewBox="0 0 15 24" fill="none">
       <Path
@@ -12,4 +12,4 @@ const Back = memo(() => {
   );
 });
 
-export { Back };
+Back.displayName = 'Back';

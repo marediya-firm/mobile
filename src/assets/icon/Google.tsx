@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import Svg, { Path, Defs, Pattern, Use, Image } from 'react-native-svg';
 
-const Google = memo(() => {
+export const Google = memo(() => {
   return (
     <Svg
       width={26}
@@ -31,4 +31,5 @@ const Google = memo(() => {
     </Svg>
   );
 });
-export { Google };
+
+Google.displayName = 'Google';

@@ -2,15 +2,15 @@ import { useReducer } from 'react';
 import { type } from '../constant/types';
 
 interface inputFiled {
-  firsName: string | number | any;
-  email: string | number | any;
-  password: string | number | any;
-  phoneNumber: string | number | any;
+  firsName: string | number;
+  email: string | number;
+  password: string | number;
+  phoneNumber: string | number;
   secureTextEntry: boolean;
 }
 
 export const InputReducer = () => {
-  let initialState: inputFiled = {
+  const initialState: inputFiled = {
     firsName: 'mmalmsa',
     email: '1234@gmail.com',
     password: 'Test@123',
@@ -18,7 +18,10 @@ export const InputReducer = () => {
     secureTextEntry: false,
   };
 
-  const reducer = (state: any, action: { type: string; payload: any }) => {
+  const reducer = (
+    state: inputFiled,
+    action: { type: string; payload: any },
+  ) => {
     switch (action.type) {
       case type.FIRST_NAME:
         return {

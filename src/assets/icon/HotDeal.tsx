@@ -18,3 +18,5 @@ export const HotDealSvg = memo((props: { color?: string }) => {
     </Svg>
   );
 });
+
+HotDealSvg.displayName = 'HotDealSvg';

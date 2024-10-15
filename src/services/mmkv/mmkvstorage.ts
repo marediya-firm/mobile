@@ -13,7 +13,7 @@ export class MMKVStorage {
         return JSON.parse(response) as T;
       }
       return null;
-    } catch (error: any) {
+    } catch (error: unknown) {
       return null;
     }
   }

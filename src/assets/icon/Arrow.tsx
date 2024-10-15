@@ -19,3 +19,5 @@ export const Arrow = React.memo((props: { left?: boolean }) => {
     </Svg>
   );
 });
+
+Arrow.displayName = 'Arrow';

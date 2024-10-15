@@ -1,6 +1,6 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { MutableRefObject } from 'react';
-import { ScrollView, StyleSheet, Dimensions, View } from 'react-native';
+import { ScrollView, StyleSheet, Dimensions } from 'react-native';
 import { Colors, StringConstant } from '../../../constant';
 import Animated, {
   ReduceMotion,
@@ -9,12 +9,12 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { CustomText, ScrollWatchRef } from '../../../components/export';
+import { ScrollWatchRef } from '../../../components/export';
 import { fontStyleVariant, variant } from '../../../utils';
 
 type AnimatedScrollViewHomePros = {
   appString: StringConstant;
-  children?: React.ReactNode | any;
+  children?: React.ReactNode;
   scrollWatchRef: MutableRefObject<ScrollWatchRef>;
 };
 
@@ -41,35 +41,6 @@ export const AnimatedScrollViewHome = (props: AnimatedScrollViewHomePros) => {
       color: Colors.darkBlack,
     };
   });
-  console.log('foodStyle', foodStyle.color);
-
-  const popularStyle = useAnimatedStyle(() => {
-    return {
-      opacity: withSpring(popularOpacity.value), // Apply spring animation to opacity
-    };
-  });
-
-  const AnimatedCustomText = (
-    <CustomText
-      key={appString.Popular}
-      isAnimated
-      extraStyle={popularStyle}
-      text={header === appString.FoodType ? appString.Popular : ''}
-      variant={variant.F50019}
-    />
-  );
-
-  // !Add new children in popular header for optimization
-  // if (
-  //   children[1]?.props?.children &&
-  //   !children[1]?.props?.children?.[0]?.props?.text
-  // ) {
-  //   children[1].props.children = [children[1].props.children];
-  //   children[1].props.children = [
-  //     AnimatedCustomText,
-  //     ...children[1]?.props?.children,
-  //   ];
-  // }
 
   return (
     <React.Fragment>

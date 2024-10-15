@@ -74,3 +74,5 @@ export const style = StyleSheet.create({
     paddingHorizontal: 13,
   },
 });
+
+TabUtils.displayName = 'TabUtils';

@@ -14,3 +14,5 @@ export const CrossIcon = React.memo(props => {
     </Svg>
   );
 });
+
+CrossIcon.displayName = 'CrossIcon';

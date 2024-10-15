@@ -1,7 +1,6 @@
 import {
   FlatList,
   ImageBackground,
-  Pressable,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -147,7 +146,6 @@ const useMakeStyle = () =>
   });
 
 import moment, { Moment } from 'moment';
-import { Arrow } from '../../../assets/icon';
 import responsive from '../../../utils/responsive';
 import { deviceWidth } from '../../../../App';
 import { MenuIcon } from '../../../assets/icon/Menu';

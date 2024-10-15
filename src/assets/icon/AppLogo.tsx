@@ -14,3 +14,5 @@ export const AppLogo = React.memo(() => {
     </Svg>
   );
 });
+
+AppLogo.displayName = 'AppLogo';

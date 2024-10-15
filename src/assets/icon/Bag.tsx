@@ -13,3 +13,5 @@ export const BagIcon = React.memo((props?: { color?: string }) => {
     </Svg>
   );
 });
+
+BagIcon.displayName = 'BagIcon';
