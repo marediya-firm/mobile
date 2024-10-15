@@ -22,7 +22,9 @@ export const apiController = async (): Promise<void> => {
     for (let i = 0; i < inputArr?.length; i++) {
       const value = inputArr[i].value,
         key = inputArr[i]?.apiKey;
-      if (value?.length && key) apiBody[key] = value;
+      if (value?.length && key) {
+        apiBody[key] = value;
+      }
     }
 
     // result from API
@@ -31,6 +33,13 @@ export const apiController = async (): Promise<void> => {
         endPoint: HttpRequest.apiEndPoint.createAccount,
         payload: apiBody,
       });
+
+    if (result?.data?.status === 404) {
+      flashAlert({
+        message: result.data.message,
+        description: 'Please try again',
+      });
+    }
 
     // set local storage value
     await UserLocalStorage.setValue<CreateAccountAPIResponse['data']>(

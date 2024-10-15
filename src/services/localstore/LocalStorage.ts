@@ -17,8 +17,9 @@ export class UserLocalStorage {
       let userValue: string = '';
 
       // for cache management we are checking when cache exists return synchronies value
-      if (this.getCacheValue[key]) userValue = this.getCacheValue[key] || '';
-      else {
+      if (this.getCacheValue[key]) {
+        userValue = this.getCacheValue[key] || '';
+      } else {
         userValue = (await AsyncStorage.getItem(key)) || '';
         this.getCacheValue[key] = userValue;
       }

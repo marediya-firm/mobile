@@ -60,16 +60,16 @@ export const AnimatedScrollViewHome = (props: AnimatedScrollViewHomePros) => {
   );
 
   // !Add new children in popular header for optimization
-  if (
-    children[1]?.props?.children &&
-    !children[1]?.props?.children?.[0]?.props?.text
-  ) {
-    children[1].props.children = [children[1].props.children];
-    children[1].props.children = [
-      AnimatedCustomText,
-      ...children[1]?.props?.children,
-    ];
-  }
+  // if (
+  //   children[1]?.props?.children &&
+  //   !children[1]?.props?.children?.[0]?.props?.text
+  // ) {
+  //   children[1].props.children = [children[1].props.children];
+  //   children[1].props.children = [
+  //     AnimatedCustomText,
+  //     ...children[1]?.props?.children,
+  //   ];
+  // }
 
   return (
     <React.Fragment>

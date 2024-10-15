@@ -3,6 +3,7 @@ import React, {useMemo, useState} from 'react';
 import {CustomInputProps} from './export';
 import {Colors} from '../constant';
 import {fonts} from '../assets/fonts';
+import {isIOS} from '../../App';
 
 export const CustomInput = (props: CustomInputProps) => {
   const [onChangeText, setOnChangeText] = useState<string>(props.value);
@@ -29,11 +30,10 @@ export const CustomInput = (props: CustomInputProps) => {
 };
 
 const appStyles = StyleSheet.create({
-  inputText: {color: Colors.offWhite, fontWeight: '400'},
+  inputText: {color: Colors.offWhite, fontWeight: '400', top: isIOS ? 12 : 0},
   fullName: {
     borderRadius: 7,
-    backgroundColor: '#fff',
-    // shadowRadius: 2.06,
+    backgroundColor: Colors.white,
     elevation: 3,
     height: 70,
     shadowColor: Colors.semiBlue,
@@ -48,7 +48,7 @@ const appStyles = StyleSheet.create({
     marginVertical: 15,
   },
   inputTypo: {
-    // fontFamily: fonts.robotoRegular,
+    fontFamily: fonts.robotoRegular,
     fontSize: 15,
     fontWeight: '400',
     color: Colors.placeHolderBlack,
