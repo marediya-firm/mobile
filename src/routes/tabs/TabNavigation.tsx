@@ -17,7 +17,7 @@ export const TabNavigation = () => {
   return (
     <>
       <Tab.Navigator
-        initialRouteName={routePath.History}
+        initialRouteName={routePath.HomeStack}
         screenOptions={({route}) => ({
           headerShown: false,
           tabBarStyle: style.tabBarStyle,

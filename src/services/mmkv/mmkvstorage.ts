@@ -1,14 +1,14 @@
 import {UserPrivateKey} from '../export';
-import MMKV from 'react-native-mmkv';
+import {MMKVLoader} from 'react-native-mmkv-storage';
 
 type Maybe<T> = T | null;
 
 export class MMKVStorage {
-  static mmkv = MMKV.useMMKV();
+  static mmkv = new MMKVLoader().initialize();
 
   static getValue<T>(key: UserPrivateKey): Maybe<T> {
     try {
-      const response = MMKV.useMMKV().getString(key);
+      const response = this.mmkv.getString(key);
       if (typeof response === 'string') {
         return JSON.parse(response) as T;
       }
@@ -19,10 +19,10 @@ export class MMKVStorage {
   }
 
   static setValue(key: UserPrivateKey, value: string) {
-    MMKV.useMMKV().set(key, value);
+    this.mmkv.setString(key, value);
   }
 
   static clearValue() {
-    MMKV.useMMKV().clearAll();
+    this.mmkv.clearStore();
   }
 }

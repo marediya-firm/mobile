@@ -67,3 +67,4 @@ project.xcworkspace/
 ios/Podfile.lock
 
 package-lock.json
+yarn-lock

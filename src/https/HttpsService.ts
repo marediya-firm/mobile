@@ -1,24 +1,25 @@
-import axios, {AxiosResponse} from 'axios';
-import {ApiEndpoint, HttpBodyPropsForPost, HttpBodyPropsForGet} from './export';
-import {UserLocalStorage} from '../services/export';
+import axios from '../https/HttpInterceptor';
+import {
+  ApiEndpoint,
+  HttpBodyPropsForPost,
+  HttpBodyPropsForGet,
+  type HttpRequestType,
+} from './export';
+import {AxiosResponse} from 'axios';
 
 export class HttpRequest {
+
   /**
    * * Get Request
    * @param props endpoint and body for the API request
    * @returns AxiosResponse<T>
    */
-  static async clientGetRequest<T>(
-    props: HttpBodyPropsForGet,
-  ): Promise<AxiosResponse<T>> {
+  static async clientGetRequest<R extends keyof HttpRequestType>(
+    props: HttpBodyPropsForGet<R>,
+  ): Promise<AxiosResponse<HttpRequestType[R]['response']>> {
     const {endPoint = '', payload = undefined} = props;
     try {
-      const clientResult = await axios.get(endPoint, {
-        params: payload,
-        headers: {
-          Authorization: 'Bearer ' + UserLocalStorage.token,
-        },
-      });
+      const clientResult = await axios.get(endPoint, {params: payload});
       return clientResult.data;
     } catch (error: string | any) {
       return error?.message || error;

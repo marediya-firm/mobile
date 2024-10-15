@@ -1,5 +1,5 @@
 import {Image, ImageBackground, Text} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {CustomView} from '../../../../components/CoreComponent';
 import {View} from 'react-native';
 import {Colors, fontStyleVariant, variant} from '../../../../utils';
@@ -18,11 +18,14 @@ import {SheetManager} from 'react-native-actions-sheet';
 import {MMKVStorage, UserPrivateKey} from '../../../../services/export';
 import {LoginAPIResponse} from '../../../auth/Login/export';
 import {useMakeStyles, ViewServerTime} from '../export';
+import {HttpRequest} from '../../../../https/HttpsService';
 
 export const HomeScreen = () => {
-  const user = MMKVStorage.getValue<LoginAPIResponse['data']>(
-    UserPrivateKey.UserDetail,
-  );
+  const user =
+    MMKVStorage.getValue<LoginAPIResponse['data']>(UserPrivateKey.UserDetail) ??
+    '66f8f71b6fea92913c8b34ff';
+
+  console.log('user', user);
 
   const styles = useMakeStyles(responsive);
 
@@ -43,6 +46,16 @@ export const HomeScreen = () => {
       Icon: TotalHours,
     },
   ];
+
+  useEffect(() => {
+    (async () => {
+      const data = await HttpRequest.clientGetRequest<'punchDetail'>({
+        endPoint: HttpRequest.apiEndPoint.getPunchByUser,
+        payload: {userId: user as string},
+      });
+      console.log('============data===========', data);
+    })();
+  }, []);
 
   return (
     <ImageBackground

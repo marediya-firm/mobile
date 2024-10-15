@@ -1,9 +1,15 @@
-import Axios from 'axios-observable';
 import DataService from './DataService';
 import {UserLocalStorage} from '../services/export';
+import axios_request from 'axios';
 
-Axios.interceptors.request.use(
+const axios = axios_request.create({
+  baseURL: 'http://localhost:3000',
+  headers: {'Content-Type': 'application/json'},
+});
+
+axios.interceptors.request.use(
   (config: any) => {
+    console.log('======config========', config);
     config.headers.Authorization = UserLocalStorage.token || '';
     config.headers.Accept = 'application/json';
     config.headers['Content-Type'] = 'application/json';
@@ -19,3 +25,5 @@ Axios.interceptors.request.use(
     return Promise.reject(error);
   },
 );
+
+export default axios;
