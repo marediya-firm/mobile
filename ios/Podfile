@@ -1,36 +1,36 @@
-require_relative '../node_modules/react-native/scripts/react_native_pods'
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+require Pod::Executable.execute_command('node', ['-p',
+  'require.resolve(
+    "react-native/scripts/react_native_pods.rb",
+    {paths: [process.argv[1]]},
+  )', __dir__]).strip
 
-platform :ios, '12.4'
-install! 'cocoapods', :deterministic_uuids => false
-# pod 'RealmSwift', '~> 3.17', :modular_headers => true
-# pod 'Realm', '~> 3.17', :modular_headers => trueDEFINES_MODULE
+platform :ios, min_ios_version_supported
+
+prepare_react_native_project!
+
+linkage = ENV['USE_FRAMEWORKS']
+if linkage != nil
+  Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
+  use_frameworks! :linkage => linkage.to_sym
+end
+
+use_frameworks! :linkage => :static
 
 target 'Khata_Book' do
   config = use_native_modules!
 
-  # Flags change depending on the env values.
   flags = get_default_flags()
-  pod 'Firebase', :modular_headers => true
-  pod 'FirebaseCore', :modular_headers => true
-  pod 'GoogleUtilities', :modular_headers => true
-  pod 'Firebase/Auth', :modular_headers => true
-  pod 'Firebase/Firestore', :modular_headers => true
-
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  pod 'Firebase'
+  pod 'FirebaseCore'
+  pod 'GoogleUtilities'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
   $RNFirebaseAsStaticFramework = true
 
   use_react_native!(
     :path => config[:reactNativePath],
-    # Hermes is now enabled by default. Disable by setting this flag to false.
-    # Upcoming versions of React Native may rely on get_default_flags(), but
-    # we make it explicit here to aid in the React Native upgrade process.
-    :hermes_enabled => true,
-    :fabric_enabled => flags[:fabric_enabled],
-    # Enables Flipper.
-    #
-    # Note that if you have use_frameworks! enabled, Flipper will not work and
-    # you should disable the next line.
-    :flipper_configuration => FlipperConfiguration.enabled,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
@@ -41,12 +41,31 @@ target 'Khata_Book' do
   end
 
   post_install do |installer|
-    react_native_post_install(
-      installer,
-      # Set `mac_catalyst_enabled` to `true` in order to apply patches
-      # necessary for Mac Catalyst builds
-      :mac_catalyst_enabled => false
-    )
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        if target.name == 'BoringSSL-GRPC'
+          # Remove the '-G' flag from the BoringSSL-GRPC target
+          target.build_phases.each do |build_phase|
+            build_phase.files.each do |file|
+              if file.settings && file.settings['COMPILER_FLAGS']
+                flags = file.settings['COMPILER_FLAGS'].split
+                flags.reject! { |flag| flag == '-GCC_WARN_INHIBIT_ALL_WARNINGS' }
+                file.settings['COMPILER_FLAGS'] = flags.join(' ')
+              end
+            end
+          end
+          
+          # Exclude arm64 for simulator builds
+          config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+        end
+      end
+    end
+
+    # Ensure 'config' is defined before using it in react_native_post_install
+    if defined?(config)
+      react_native_post_install(installer, config[:reactNativePath], :mac_catalyst_enabled => false)
+    else
+      puts "Warning: 'config' is not defined."
+    end
   end
 end

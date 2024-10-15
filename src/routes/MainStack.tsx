@@ -7,7 +7,6 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 const MainStack = () => {
   const token = UserLocalStorage.token;
-  console.log(':token', token);
 
   return (
     <Stack.Navigator

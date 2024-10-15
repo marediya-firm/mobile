@@ -1,17 +1,31 @@
-import {StyleProp, Text, TextProps, TextStyle, View} from 'react-native';
+import {
+  SafeAreaView,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextProps,
+  TextStyle,
+  View,
+  ViewStyle,
+} from 'react-native';
 import React, {memo} from 'react';
 import {Theme, useTheme} from '@react-navigation/native';
 import {GetFontStyle, variant} from '../utils';
 import {ViewProps} from 'react-native-svg/lib/typescript/fabric/utils';
-import Animated, {
-  AnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, {AnimatedStyle} from 'react-native-reanimated';
 
-export const CustomView = ({children}: any) => {
-  return <View style={{flex: 1}}>{children}</View>;
+interface CustomViewProps {
+  children: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
+}
+export const CustomView = ({children, style}: CustomViewProps) => {
+  const flex = {flex: 1, ...(style as ViewStyle)};
+  return (
+    <View style={flex}>
+      <SafeAreaView />
+      {children}
+    </View>
+  );
 };
 
 interface CustomViewCenterProps {
@@ -25,19 +39,23 @@ export const CustomViewCenter = ({
   viewProps,
 }: CustomViewCenterProps) => {
   const themeColor: Theme = useTheme();
+  const styles = useStyle(themeColor, color);
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: color || themeColor.colors.background,
-      }}
-      {...viewProps}>
+    <View style={styles.container} {...viewProps}>
       {children}
     </View>
   );
 };
+
+const useStyle = (themeColor: Theme, color?: string) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: color || themeColor.colors.background,
+    },
+  });
 
 type CustomTextProps = {
   text: string;

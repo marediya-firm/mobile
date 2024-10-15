@@ -1,4 +1,4 @@
-import React = require('react');
+import React from 'react';
 import {Pressable, View} from 'react-native';
 import {CustomText, CustomView} from '../../../components/CoreComponent';
 import {AppLogo, Google} from '../../../assets/icon';

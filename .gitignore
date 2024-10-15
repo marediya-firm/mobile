@@ -62,3 +62,9 @@ buck-out/
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
+**yarn
+project.xcworkspace/
+ios/Podfile.lock
+
+package-lock.json
+yarn-lock

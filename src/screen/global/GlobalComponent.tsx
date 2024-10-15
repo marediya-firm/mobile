@@ -14,6 +14,7 @@ export const queryClient = new QueryClient({
     queries: {retry: 2, retryDelay: 1000},
   },
 });
+
 export const GlobalComponent = () => {
   const tokenValue: string = GetToken();
   return (
@@ -22,7 +23,11 @@ export const GlobalComponent = () => {
         <HydrationBoundary queryClient={queryClient} state={'me'}>
           <MainStack />
           <AppLoader />
-          <FlashMessage position="top" animated={true} />
+          <FlashMessage
+            position="top"
+            animated={true}
+            animationDuration={1000}
+          />
         </HydrationBoundary>
       )}
     </QueryClientProvider>

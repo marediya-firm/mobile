@@ -1,26 +1,26 @@
-import {Platform} from 'react-native';
+export type FontsKey =
+  | 'robotoBlackItalic'
+  | 'robotoBlack'
+  | 'robotoBoldItalic'
+  | 'robotoItalic'
+  | 'robotoLight'
+  | 'robotoMedium'
+  | 'robotoMediumItalic'
+  | 'robotoRegular'
+  | 'robotoThin'
+  | 'robotoThinItalic'
+  | 'poppinsMedium'
+  | 'poppinsRegular'
+  | 'poppinsSemiBoldItalic'
+  | 'poppinsThin'
+  | 'poppinsLight'
+  | 'robotoBold'
+  | 'robotoLightItalic'
+  | 'oswaldLight'
+  | 'PoppinsBold';
 
 type Fonts = {
-  [key in
-    | 'robotoBlackItalic'
-    | 'robotoBlack'
-    | 'robotoBoldItalic'
-    | 'robotoItalic'
-    | 'robotoLight'
-    | 'robotoMedium'
-    | 'robotoMediumItalic'
-    | 'robotoRegular'
-    | 'robotoThin'
-    | 'robotoThinItalic'
-    | 'poppinsMedium'
-    | 'poppinsRegular'
-    | 'poppinsSemiBoldItalic'
-    | 'poppinsThin'
-    | 'poppinsLight'
-    | 'robotoBold'
-    | 'robotoLightItalic'
-    | 'oswaldLight'
-    | 'PoppinsBold']: string;
+  [key in FontsKey]: string;
 };
 
 export const fonts: Fonts = {

@@ -7,7 +7,6 @@ import {
   StyleSheet,
   FlatList,
   Dimensions,
-  Text,
 } from 'react-native';
 import {useQueries} from '@tanstack/react-query';
 import {HttpRequest} from '../https/HttpsService';
@@ -25,6 +24,8 @@ export type ScrollWatchRef = {
 
 export const CategoryComponent = memo(
   (props: CategoryComponentProps) => {
+    console.log('props', props);
+  
     const appString = ConstantString('strings') as StringConstant;
 
     const selectCategory = useRef<number>(0);

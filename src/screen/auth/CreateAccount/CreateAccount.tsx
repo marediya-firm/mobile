@@ -3,7 +3,7 @@ import {Pressable, SafeAreaView, View} from 'react-native';
 import {MemoStyle} from './styles';
 import {Freeze} from 'react-freeze';
 import {useIsFocused} from '@react-navigation/native';
-import {ConstantString} from '../../../constant';
+import {ConstantString, StringConstant} from '../../../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {apiController, CreateAccountProps, UserInput} from '../export';
 import {
@@ -16,7 +16,7 @@ import {variant} from '../../../utils';
 
 const CreateAccount = (props: CreateAccountProps) => {
   // Get common string memories
-  const getAppString = ConstantString('strings');
+  const getAppString = ConstantString('strings') as StringConstant;
   // Get CreateAccount style with memories
   const styles = MemoStyle();
 

@@ -1,29 +1,25 @@
-import axios, {AxiosResponse} from 'axios';
+import axios from '../https/HttpInterceptor';
 import {
   ApiEndpoint,
   HttpBodyPropsForPost,
   HttpBodyPropsForGet,
-  HttpParamsPropsForGet,
+  type HttpRequestType,
 } from './export';
-import {UserLocalStorage} from '../services/export';
+import {AxiosResponse} from 'axios';
 
 export class HttpRequest {
+
   /**
    * * Get Request
    * @param props endpoint and body for the API request
    * @returns AxiosResponse<T>
    */
-  static async clientGetRequest<T, P = {}>(
-    props: HttpParamsPropsForGet<P>,
-  ): Promise<AxiosResponse<T>> {
+  static async clientGetRequest<R extends keyof HttpRequestType>(
+    props: HttpBodyPropsForGet<R>,
+  ): Promise<AxiosResponse<HttpRequestType[R]['response']>> {
     const {endPoint = '', payload = undefined} = props;
     try {
-      const clientResult = await axios.get(endPoint, {
-        params: payload,
-        headers: {
-          Authorization: 'Bearer ' + UserLocalStorage.token,
-        },
-      });
+      const clientResult = await axios.get(endPoint, {params: payload});
       return clientResult.data;
     } catch (error: string | any) {
       return error?.message || error;
@@ -36,7 +32,7 @@ export class HttpRequest {
    * @returns AxiosResponse<T>
    */
   static async clientPostRequest<T>(
-    props: HttpBodyPropsForGet,
+    props: HttpBodyPropsForPost,
   ): Promise<AxiosResponse<T>> {
     const {endPoint = '', payload = {}} = props;
     try {
@@ -58,7 +54,7 @@ export class HttpRequest {
   ): Promise<AxiosResponse> => {
     const {endPoint = '', payload = {}} = props;
     try {
-      const clientResult = await axios.post(endPoint, {payload});
+      const clientResult = await axios.patch(endPoint, {payload});
       return clientResult.data;
     } catch (error: string | any) {
       return error?.message || error;
@@ -91,5 +87,6 @@ export class HttpRequest {
     login: '/auth/login',
     getCategory: '/all-category',
     getMenuById: '/get-product-category',
+    getPunchByUser: 'punch/punch-details',
   };
 }

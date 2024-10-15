@@ -5,7 +5,7 @@ import { UserPrivateKey } from '../../../../services/export';
  * Type LoginScreenProps
  */
 export interface LoginScreenProps {
-  data<T>(UserDetail: UserPrivateKey, data: any): unknown;
+  data(UserDetail: UserPrivateKey, data: any): unknown;
   navigation: LoginNavigation;
   route: LoginNavigationRoute;
 }

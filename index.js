@@ -2,10 +2,12 @@
  * @format
  */
 
-import {AppRegistry, Platform} from 'react-native';
+import { AppRegistry } from 'react-native';
 import App from './App';
-import {name as appName} from './app.json';
+import { name as appName } from './app.json';
 import axios from 'axios';
-axios.defaults.baseURL =
-  Platform.OS === 'android' ? 'http://10.0.2.2:8080' : 'http://localhost:8080';
+axios.defaults.baseURL = 'http://localhost:3000';
+
 AppRegistry.registerComponent(appName, () => App);
+//For Android:
+//$ adb -s emulator-5554 reverse tcp:3000 tcp:3000
