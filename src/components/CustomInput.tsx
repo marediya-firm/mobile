@@ -1,9 +1,9 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
-import React, {useMemo, useState} from 'react';
-import {CustomInputProps} from './export';
-import {Colors} from '../constant';
-import {fonts} from '../assets/fonts';
-import {isIOS} from '../../App';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { CustomInputProps } from './export';
+import { Colors } from '../constant';
+import { fonts } from '../assets/fonts';
+import { isIOS } from '../../App';
 
 export const CustomInput = (props: CustomInputProps) => {
   const [onChangeText, setOnChangeText] = useState<string>(props.value);
@@ -30,7 +30,7 @@ export const CustomInput = (props: CustomInputProps) => {
 };
 
 const appStyles = StyleSheet.create({
-  inputText: {color: Colors.offWhite, fontWeight: '400', top: isIOS ? 12 : 0},
+  inputText: { color: Colors.offWhite, fontWeight: '400', top: isIOS ? 12 : 0 },
   fullName: {
     borderRadius: 7,
     backgroundColor: Colors.white,

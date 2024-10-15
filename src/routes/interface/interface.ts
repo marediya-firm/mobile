@@ -1,7 +1,7 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
-import {routePath} from '../export';
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
+import { routePath } from '../export';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 export interface RoutePath {
   LoginScreen: 'LoginScreen';
@@ -130,10 +130,8 @@ export type RootStackParamList = {
   ScreenBridge: undefined;
 };
 
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList
-      extends RootStackParamList,
-        ScreenBridgeStackParamList {}
-  }
+declare module '@react-navigation/native' {
+  export interface RootParamList
+    extends RootStackParamList,
+      ScreenBridgeStackParamList {}
 }

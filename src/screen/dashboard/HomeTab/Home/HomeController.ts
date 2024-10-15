@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {daysOfWeek, monthsOfYear} from '../../../../constant';
-import {CalculateTime, ServerTime} from '../export';
-import {HttpRequest} from '../../../../https/HttpsService';
+import { daysOfWeek, monthsOfYear } from '../../../../constant';
+import { CalculateTime, ServerTime } from '../export';
+import { HttpRequest } from '../../../../https/HttpsService';
 
 export class HomeController {
   /**
@@ -13,7 +13,7 @@ export class HomeController {
       return HomeController.formatTime(new Date(data?.data?.datetime));
     } catch (error) {
       console.error('Error fetching server time:', error);
-      return {currentTime: 'N/A', currentDate: 'N/A'};
+      return { currentTime: 'N/A', currentDate: 'N/A' };
     }
   }
 
@@ -39,7 +39,7 @@ export class HomeController {
     try {
       const response = await HttpRequest.clientGetRequest({
         endPoint: HttpRequest.apiEndPoint.getPunchByUser,
-        payload: {userId},
+        payload: { userId },
       });
       console.log(':::::getPunchDetails:::::::::', response);
     } catch (error) {

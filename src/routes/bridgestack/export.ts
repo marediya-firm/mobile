@@ -1,1 +1,1 @@
-export * from './ScreenBridge'
+export * from './ScreenBridge';

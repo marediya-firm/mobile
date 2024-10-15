@@ -18,7 +18,7 @@ export type CategoryAPIResponse = {
 export interface MenuAPIResponse {
   _id: string;
   product_name: string;
-  product_image: any[];
+  product_image: string[];
   product_description: string;
   rating: number;
   total_rating: number;

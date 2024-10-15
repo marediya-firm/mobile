@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
-import {UserLocalStorage} from '../services/export';
-import {enableFreeze} from 'react-native-screens';
+import { useEffect, useState } from 'react';
+import { UserLocalStorage } from '../services/export';
+import { enableFreeze } from 'react-native-screens';
 import SplashScreen from 'react-native-splash-screen';
 
 export const GetToken = (): string => {

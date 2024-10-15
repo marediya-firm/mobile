@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
-import {Colors} from '../../utils';
+import Svg, { Path } from 'react-native-svg';
+import { Colors } from '../../utils';
 
-export const BagIcon = React.memo((props?: {color?: string}) => {
+export const BagIcon = React.memo((props?: { color?: string }) => {
   const color = props ? props?.color : Colors?.placeHolderTextBlack;
   return (
     <Svg width={18} height={18} viewBox="0 0 18 18" fill="none" {...props}>
@@ -13,3 +13,5 @@ export const BagIcon = React.memo((props?: {color?: string}) => {
     </Svg>
   );
 });
+
+BagIcon.displayName = 'BagIcon';

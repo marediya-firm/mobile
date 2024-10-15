@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-export const Arrow = React.memo((props: {left?: boolean}) => {
+export const Arrow = React.memo((props: { left?: boolean }) => {
   const left = props?.left;
   return (
     <Svg width={9} height={13} viewBox="0 0 9 13" fill="none">
@@ -19,3 +19,5 @@ export const Arrow = React.memo((props: {left?: boolean}) => {
     </Svg>
   );
 });
+
+Arrow.displayName = 'Arrow';

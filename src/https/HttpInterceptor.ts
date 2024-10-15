@@ -1,10 +1,10 @@
 import DataService from './DataService';
-import {UserLocalStorage} from '../services/export';
+import { UserLocalStorage } from '../services/export';
 import axios_request from 'axios';
 
 const axios = axios_request.create({
   baseURL: 'http://localhost:3000',
-  headers: {'Content-Type': 'application/json'},
+  headers: { 'Content-Type': 'application/json' },
 });
 
 axios.interceptors.request.use(

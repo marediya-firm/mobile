@@ -1,6 +1,6 @@
 import React from 'react';
-import {StackNavigationOptions} from '@react-navigation/stack';
-import {AuthHeader} from '../../components/export';
+import { StackNavigationOptions } from '@react-navigation/stack';
+import { AuthHeader } from '../../components/export';
 
 /**
  * Auth Stack Configuration header
@@ -11,7 +11,7 @@ export const authHeaderProp: StackNavigationOptions = {
   animationEnabled: true,
   cardOverlayEnabled: true,
   detachPreviousScreen: true,
-  headerShown:false,
+  headerShown: false,
   header: props => <AuthHeader {...props} />,
 };
 

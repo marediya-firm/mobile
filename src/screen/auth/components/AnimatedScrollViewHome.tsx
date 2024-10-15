@@ -1,7 +1,7 @@
-import React, {ReactElement, useCallback, useState} from 'react';
-import {MutableRefObject} from 'react';
-import {ScrollView, StyleSheet, Dimensions, View} from 'react-native';
-import {Colors, StringConstant} from '../../../constant';
+import React, { useState } from 'react';
+import { MutableRefObject } from 'react';
+import { ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { Colors, StringConstant } from '../../../constant';
 import Animated, {
   ReduceMotion,
   useAnimatedStyle,
@@ -9,17 +9,17 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import {CustomText, ScrollWatchRef} from '../../../components/export';
-import {fontStyleVariant, variant} from '../../../utils';
+import { ScrollWatchRef } from '../../../components/export';
+import { fontStyleVariant, variant } from '../../../utils';
 
 type AnimatedScrollViewHomePros = {
   appString: StringConstant;
-  children?: React.ReactNode | any;
+  children?: React.ReactNode;
   scrollWatchRef: MutableRefObject<ScrollWatchRef>;
 };
 
 export const AnimatedScrollViewHome = (props: AnimatedScrollViewHomePros) => {
-  const {appString, children, scrollWatchRef} = props;
+  const { appString, children, scrollWatchRef } = props;
 
   const [header, setHeader] = useState<StringConstant['FoodType' | 'Popular']>(
     appString.FoodType,
@@ -41,35 +41,6 @@ export const AnimatedScrollViewHome = (props: AnimatedScrollViewHomePros) => {
       color: Colors.darkBlack,
     };
   });
-  console.log('foodStyle', foodStyle.color);
-
-  const popularStyle = useAnimatedStyle(() => {
-    return {
-      opacity: withSpring(popularOpacity.value), // Apply spring animation to opacity
-    };
-  });
-
-  const AnimatedCustomText = (
-    <CustomText
-      key={appString.Popular}
-      isAnimated
-      extraStyle={popularStyle}
-      text={header === appString.FoodType ? appString.Popular : ''}
-      variant={variant.F50019}
-    />
-  );
-
-  // !Add new children in popular header for optimization
-  // if (
-  //   children[1]?.props?.children &&
-  //   !children[1]?.props?.children?.[0]?.props?.text
-  // ) {
-  //   children[1].props.children = [children[1].props.children];
-  //   children[1].props.children = [
-  //     AnimatedCustomText,
-  //     ...children[1]?.props?.children,
-  //   ];
-  // }
 
   return (
     <React.Fragment>
@@ -77,9 +48,9 @@ export const AnimatedScrollViewHome = (props: AnimatedScrollViewHomePros) => {
         {header}
       </Animated.Text>
       <ScrollView
-        onScroll={({nativeEvent}) => {
+        onScroll={({ nativeEvent }) => {
           const yOffset = nativeEvent.contentOffset.y;
-          const {current} = scrollWatchRef;
+          const { current } = scrollWatchRef;
 
           if (current.offset + 25 > yOffset) {
             animationHeader(appString.FoodType);
@@ -110,7 +81,8 @@ export const AnimatedScrollViewHome = (props: AnimatedScrollViewHomePros) => {
         style={componentStyle.scrollBorder}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={300}
-        contentContainerStyle={componentStyle.contentContainerStyle}>
+        contentContainerStyle={componentStyle.contentContainerStyle}
+      >
         {children}
       </ScrollView>
     </React.Fragment>

@@ -1,5 +1,5 @@
-import {useReducer} from 'react';
-import {type} from '../constant';
+import { useReducer } from 'react';
+import { type } from '../constant';
 interface question {
   qLoading: boolean;
   questionData: Array<object | any> | [any];
@@ -21,14 +21,14 @@ export const QuizDataReducer = () => {
     confirmSubmit: false,
   };
 
-  const reducer = (state: any, action: {payload: any; types: string}) => {
-    const {payload, types}: any = action;
+  const reducer = (state: any, action: { payload: any; types: string }) => {
+    const { payload, types }: any = action;
     switch (types) {
       case type.QUESTION_LOADING:
-        return {...state, qLoading: true};
+        return { ...state, qLoading: true };
       case type.QUESTION_DATA:
         let submitedAnswer = payload.qData?.map((res: any) => {
-          return {isSubmitedAnswer: false};
+          return { isSubmitedAnswer: false };
         });
         return {
           ...state,
@@ -37,7 +37,7 @@ export const QuizDataReducer = () => {
           fillQuestion: submitedAnswer,
         };
       case type.ON_SELECTOPTION:
-        return {...state, questionData: payload};
+        return { ...state, questionData: payload };
       case type.INCREASE_INDEX:
         return {
           ...state,
@@ -47,7 +47,7 @@ export const QuizDataReducer = () => {
           confirmSubmit: payload.confirmSubmit,
         };
       case type.JUMP_INDEX:
-        return {...state, questionIndex: payload};
+        return { ...state, questionIndex: payload };
       case type.ON_SUBMIT_ANSWER:
         return {
           ...state,
@@ -55,17 +55,17 @@ export const QuizDataReducer = () => {
           confirmSubmit: payload.submit,
         };
       case type.ON_NEXT:
-        return {...state, confirmSubmit: false};
+        return { ...state, confirmSubmit: false };
       case type.FINAL_SUBMIT_ANSWER:
-        return {...state, finalSubmitAnswer: payload};
+        return { ...state, finalSubmitAnswer: payload };
       case type.QUESTION_ERROR:
-        return {...initialState, questionError: payload};
+        return { ...initialState, questionError: payload };
       case type.RESET_QUIZ: {
-        return {...initialState};
+        return { ...initialState };
       }
     }
   };
 
   const [question, dispatchQuestion] = useReducer(reducer, initialState);
-  return {question, dispatchQuestion};
+  return { question, dispatchQuestion };
 };

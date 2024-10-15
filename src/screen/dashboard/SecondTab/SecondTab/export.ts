@@ -1,1 +1,1 @@
-export * from './SecondTab'
+export * from './SecondTab';
