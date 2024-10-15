@@ -1,7 +1,7 @@
-import {StackHeaderProps} from '@react-navigation/stack';
-import React, {memo} from 'react';
-import {Pressable} from 'react-native';
-import {Back} from '../assets/icon';
+import { StackHeaderProps } from '@react-navigation/stack';
+import React, { memo } from 'react';
+import { Pressable } from 'react-native';
+import { Back } from '../assets/icon';
 
 export const AuthHeader = memo(
   (props: StackHeaderProps) => {
@@ -10,7 +10,8 @@ export const AuthHeader = memo(
         {props.back && (
           <Pressable
             onPress={props.navigation.goBack}
-            style={{top: 25, left: 24, position: 'absolute'}}>
+            style={{ top: 25, left: 24, position: 'absolute' }}
+          >
             <Back />
           </Pressable>
         )}

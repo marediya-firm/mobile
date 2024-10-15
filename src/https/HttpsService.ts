@@ -5,10 +5,9 @@ import {
   HttpBodyPropsForGet,
   type HttpRequestType,
 } from './export';
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 
 export class HttpRequest {
-
   /**
    * * Get Request
    * @param props endpoint and body for the API request
@@ -17,9 +16,9 @@ export class HttpRequest {
   static async clientGetRequest<R extends keyof HttpRequestType>(
     props: HttpBodyPropsForGet<R>,
   ): Promise<AxiosResponse<HttpRequestType[R]['response']>> {
-    const {endPoint = '', payload = undefined} = props;
+    const { endPoint = '', payload = undefined } = props;
     try {
-      const clientResult = await axios.get(endPoint, {params: payload});
+      const clientResult = await axios.get(endPoint, { params: payload });
       return clientResult.data;
     } catch (error: string | any) {
       return error?.message || error;
@@ -34,7 +33,7 @@ export class HttpRequest {
   static async clientPostRequest<T>(
     props: HttpBodyPropsForPost,
   ): Promise<AxiosResponse<T>> {
-    const {endPoint = '', payload = {}} = props;
+    const { endPoint = '', payload = {} } = props;
     try {
       return await axios.post(endPoint, payload);
     } catch (error: string | any) {
@@ -52,9 +51,9 @@ export class HttpRequest {
   static clientPatchRequest = async (
     props: HttpBodyPropsForPost,
   ): Promise<AxiosResponse> => {
-    const {endPoint = '', payload = {}} = props;
+    const { endPoint = '', payload = {} } = props;
     try {
-      const clientResult = await axios.patch(endPoint, {payload});
+      const clientResult = await axios.patch(endPoint, { payload });
       return clientResult.data;
     } catch (error: string | any) {
       return error?.message || error;
@@ -70,9 +69,9 @@ export class HttpRequest {
   static clientDeleteRequest = async (
     props: HttpBodyPropsForPost,
   ): Promise<AxiosResponse> => {
-    const {endPoint = '', payload = {}} = props;
+    const { endPoint = '', payload = {} } = props;
     try {
-      const clientResult = await axios.post(endPoint, {payload});
+      const clientResult = await axios.post(endPoint, { payload });
       return clientResult.data;
     } catch (error: string | any) {
       return error?.message || error;

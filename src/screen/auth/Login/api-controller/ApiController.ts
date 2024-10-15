@@ -1,13 +1,13 @@
-import {createAccountInput} from '../../../../data/createAccountInput';
-import {HttpRequest, LoginBody} from '../../../../https/export';
-import {LoginNavigation, routePath} from '../../../../routes/export';
+import { createAccountInput } from '../../../../data/createAccountInput';
+import { HttpRequest, LoginBody } from '../../../../https/export';
+import { LoginNavigation, routePath } from '../../../../routes/export';
 import {
   UserLocalStorage,
   UserPrivateKey,
   flashAlert,
 } from '../../../../services/export';
-import {useGlobalLoad} from '../../../../zustand/export';
-import {LoginAPIResponse} from '../interface/export';
+import { useGlobalLoad } from '../../../../zustand/export';
+import { LoginAPIResponse } from '../interface/export';
 
 /**
  * Control create account API

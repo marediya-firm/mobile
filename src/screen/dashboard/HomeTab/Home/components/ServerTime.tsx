@@ -1,8 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {Colors, fontStyleVariant, variant} from '../../../../../utils';
-import responsive, {IResponsive} from '../../../../../utils/responsive';
-import {HomeController} from '../HomeController';
+import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Colors, fontStyleVariant, variant } from '../../../../../utils';
+import responsive, { IResponsive } from '../../../../../utils/responsive';
+import { HomeController } from '../HomeController';
 
 export const ServerTime = () => {
   const [serverTime, setServerTime] = useState(HomeController.formatTime());
@@ -22,7 +22,7 @@ export const ServerTime = () => {
   );
 };
 
-const useMakeStyle = ({height}: IResponsive) =>
+const useMakeStyle = ({ height }: IResponsive) =>
   StyleSheet.create({
     timeContainer: {
       alignItems: 'center',

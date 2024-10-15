@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
-import {Colors} from '../../constant';
-import {FC} from 'react';
+import Svg, { Path } from 'react-native-svg';
+import { Colors } from '../../constant';
+import { FC } from 'react';
 
-export const Home: FC = React.memo((props?: {color?: string}) => {
+export const Home: FC = React.memo((props?: { color?: string }) => {
   const color = props ? props?.color : Colors?.placeHolderTextBlack;
   return (
     <Svg width={18} height={18} viewBox="0 0 25 24" fill={color || '#E89C1E'}>

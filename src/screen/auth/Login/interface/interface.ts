@@ -1,4 +1,7 @@
-import {LoginNavigation, LoginNavigationRoute} from '../../../../routes/export';
+import {
+  LoginNavigation,
+  LoginNavigationRoute,
+} from '../../../../routes/export';
 import { UserPrivateKey } from '../../../../services/export';
 
 /**

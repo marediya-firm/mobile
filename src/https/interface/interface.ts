@@ -6,7 +6,6 @@ export interface HttpBodyPropsForPost {
   payload?: LoginBody | CreateAccountBody;
 }
 
-
 /**
  * Http get request body and response we adjusting dynamically
  */
@@ -16,8 +15,11 @@ export interface HttpBodyPropsForGet<R extends keyof HttpRequestType> {
 }
 
 export type HttpRequestType = {
-  punchDetail: {body: PunchDetailBody; response: HttpPunchDetailResponse};
-  punchDetailByData: {body: PunchDetailBody; response: HttpPunchDetailResponse};
+  punchDetail: { body: PunchDetailBody; response: HttpPunchDetailResponse };
+  punchDetailByData: {
+    body: PunchDetailBody;
+    response: HttpPunchDetailResponse;
+  };
 };
 
 /**

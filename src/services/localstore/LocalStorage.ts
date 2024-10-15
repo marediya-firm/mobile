@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {GetCacheValue, UserPrivateKey} from './interface/interface';
-import {LoginAPIResponse} from '../../screen/auth/Login/export';
+import { GetCacheValue, UserPrivateKey } from './interface/interface';
+import { LoginAPIResponse } from '../../screen/auth/Login/export';
 
 export class UserLocalStorage {
   static getCacheValue: GetCacheValue<string> = {};

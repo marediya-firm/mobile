@@ -17,7 +17,7 @@ const config = {
   transformer: {
     watchFolders: ['.'],
     resolver: {
-        blacklistRE: /node_modules\/.*/
+      blacklistRE: /node_modules\/.*/,
     },
     getTransformOptions: async () => ({
       transform: {

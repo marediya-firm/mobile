@@ -1,5 +1,5 @@
 import React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
 export const MenuIcon = React.memo(() => (
   <Svg width="25" height="25" viewBox="0 0 25 25" fill="none">

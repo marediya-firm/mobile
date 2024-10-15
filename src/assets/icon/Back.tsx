@@ -1,5 +1,5 @@
-import React, {memo} from 'react';
-import {Path, Svg} from 'react-native-svg';
+import React, { memo } from 'react';
+import { Path, Svg } from 'react-native-svg';
 
 const Back = memo(() => {
   return (
@@ -12,4 +12,4 @@ const Back = memo(() => {
   );
 });
 
-export {Back};
+export { Back };

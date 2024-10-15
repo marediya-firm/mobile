@@ -23,4 +23,3 @@ export * from './Bag';
 export * from './HotDeal';
 export * from './Arrow';
 export * from './Menu';
-

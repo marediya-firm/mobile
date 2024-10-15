@@ -1,4 +1,4 @@
-import {CreateAccountInput} from './import';
+import { CreateAccountInput } from './import';
 
 class UserInput {
   constructor(props: CreateAccountInput) {

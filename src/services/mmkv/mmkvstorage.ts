@@ -1,5 +1,5 @@
-import {UserPrivateKey} from '../export';
-import {MMKVLoader} from 'react-native-mmkv-storage';
+import { UserPrivateKey } from '../export';
+import { MMKVLoader } from 'react-native-mmkv-storage';
 
 type Maybe<T> = T | null;
 

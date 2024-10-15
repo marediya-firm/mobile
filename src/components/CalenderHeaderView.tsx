@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Arrow } from '../assets/icon';
 import { fontStyleVariant, variant } from '../utils';
@@ -16,7 +16,8 @@ export const CalenderHeaderView = () => {
           </Pressable>
           <Pressable
             onPress={() => handleNextMonth()}
-            style={styles.arrowRight}>
+            style={styles.arrowRight}
+          >
             <Arrow />
           </Pressable>
         </View>

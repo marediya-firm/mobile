@@ -1,18 +1,18 @@
 import React from 'react';
-import {Pressable, View} from 'react-native';
-import {CustomText, CustomView} from '../../../components/CoreComponent';
-import {AppLogo, Google} from '../../../assets/icon';
-import {AppStyle} from './styles';
-import {variant} from '../../../utils';
-import {ConstantString, StringConstant} from '../../../constant';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {UserInput, loginInput} from '../export';
-import {AuthFooter, LoadingIndicator} from '../../../components/export';
-import type {LoginScreenProps} from './interface/export';
-import {routePath} from '../../../routes/export';
-import {Freeze} from 'react-freeze';
-import {useIsFocused} from '@react-navigation/native';
-import {loginApiController} from './export';
+import { Pressable, View } from 'react-native';
+import { CustomText, CustomView } from '../../../components/CoreComponent';
+import { AppLogo, Google } from '../../../assets/icon';
+import { AppStyle } from './styles';
+import { variant } from '../../../utils';
+import { ConstantString, StringConstant } from '../../../constant';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { UserInput, loginInput } from '../export';
+import { AuthFooter, LoadingIndicator } from '../../../components/export';
+import type { LoginScreenProps } from './interface/export';
+import { routePath } from '../../../routes/export';
+import { Freeze } from 'react-freeze';
+import { useIsFocused } from '@react-navigation/native';
+import { loginApiController } from './export';
 
 const LoginScreen = (props: LoginScreenProps) => {
   console.log('LoginScreen');
@@ -53,7 +53,8 @@ const LoginScreen = (props: LoginScreenProps) => {
                 </Pressable>
                 <Pressable
                   onPress={() => loginApiController(props.navigation)}
-                  style={[styles.button]}>
+                  style={[styles.button]}
+                >
                   <CustomText
                     text={getAppString.login}
                     variant={variant.F30014}

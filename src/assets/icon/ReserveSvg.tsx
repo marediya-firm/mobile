@@ -1,8 +1,8 @@
-import React, {memo} from 'react';
-import {G, Path, Svg} from 'react-native-svg';
-import {Colors} from '../../utils';
+import React, { memo } from 'react';
+import { G, Path, Svg } from 'react-native-svg';
+import { Colors } from '../../utils';
 
-export const ReserveSvg = memo((props: {color?: string}) => {
+export const ReserveSvg = memo((props: { color?: string }) => {
   const color = props ? props?.color : Colors?.placeHolderTextBlack;
   return (
     <Svg width="22" height="23" viewBox="0 0 22 23" fill={color}>

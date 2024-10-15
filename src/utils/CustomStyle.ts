@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
-import {fonts} from '../assets/fonts';
-import {Colors} from './Colors';
+import { StyleSheet } from 'react-native';
+import { fonts } from '../assets/fonts';
+import { Colors } from './Colors';
 
 type ParamsStyle<P, T = boolean> = {
   [keyof in P as string]: T;
@@ -33,9 +33,9 @@ export function customStyle<P, T = boolean>(props: ParamsStyle<P, T>) {
       // fontFamily: fonts.poppinsRegular,
       fontSize: 14,
       fontWeight: '400',
-      width:70,
-      textAlignVertical:"center",
-      textAlign:"center",
+      width: 70,
+      textAlignVertical: 'center',
+      textAlign: 'center',
     },
   });
 }

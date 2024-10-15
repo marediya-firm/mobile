@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {memo} from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import React, { memo } from 'react';
 import { G, Path, Svg } from 'react-native-svg';
 
 const Trophy = memo(() => {
@@ -10,13 +10,15 @@ const Trophy = memo(() => {
       width="100px"
       id="Layer_1"
       viewBox="0 0 297 297"
-    //   xml:space="preserve"
-      stroke="#f4d734">
+      //   xml:space="preserve"
+      stroke="#f4d734"
+    >
       <G id="SVGRepo_bgCarrier" stroke-width="0"></G>
       <G
         id="SVGRepo_tracerCarrier"
         stroke-linecap="round"
-        stroke-linejoin="round"></G>
+        stroke-linejoin="round"
+      ></G>
       <G id="SVGRepo_iconCarrier">
         <G>
           <G>
@@ -34,6 +36,6 @@ const Trophy = memo(() => {
   );
 });
 
-export {Trophy};
+export { Trophy };
 
 const styles = StyleSheet.create({});

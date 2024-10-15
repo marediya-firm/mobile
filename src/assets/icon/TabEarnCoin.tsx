@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
-import {Colors} from '../../constant';
+import Svg, { Path } from 'react-native-svg';
+import { Colors } from '../../constant';
 export const TabEarnCoin = React.memo((props: string | number) => {
   return (
     <Svg
@@ -9,7 +9,8 @@ export const TabEarnCoin = React.memo((props: string | number) => {
       viewBox="0 0 26 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}>
+      {...props}
+    >
       <Path
         d="M12.543 5.139c-4.47 0-8.105 3.49-8.105 7.78 0 4.291 3.636 7.782 8.105 7.782 4.47 0 8.105-3.49 8.105-7.781 0-4.29-3.636-7.781-8.105-7.781zm-.364 7.078h.727c1.487 0 2.696 1.16 2.696 2.588 0 1.307-1.014 2.39-2.327 2.563v1.433H11.81v-1.433c-1.312-.173-2.327-1.256-2.327-2.563h1.465c0 .652.553 1.182 1.231 1.182h.727c.68 0 1.232-.53 1.232-1.182 0-.652-.553-1.182-1.232-1.182h-.727c-1.486 0-2.696-1.161-2.696-2.588 0-1.307 1.015-2.39 2.327-2.563V7.039h1.465v1.433c1.313.173 2.327 1.256 2.327 2.563h-1.464c0-.652-.553-1.182-1.232-1.182h-.727c-.678 0-1.23.53-1.23 1.182 0 .652.552 1.182 1.23 1.182z"
         fill={props.color ? props.color : Colors?.placeHolderTextBlack}

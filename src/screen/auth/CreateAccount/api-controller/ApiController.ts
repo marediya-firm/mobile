@@ -1,9 +1,9 @@
-import {createAccountInput} from '../../../../data/createAccountInput';
-import {CreateAccountBody, HttpRequest} from '../../../../https/export';
-import {CreateAccountAPIResponse} from '../export';
-import {flashAlert} from '../../../../services/FlashMessage';
-import {UserLocalStorage} from '../../../../services/export';
-import {UserPrivateKey} from '../../../../services/localstore/interface/interface';
+import { createAccountInput } from '../../../../data/createAccountInput';
+import { CreateAccountBody, HttpRequest } from '../../../../https/export';
+import { CreateAccountAPIResponse } from '../export';
+import { flashAlert } from '../../../../services/FlashMessage';
+import { UserLocalStorage } from '../../../../services/export';
+import { UserPrivateKey } from '../../../../services/localstore/interface/interface';
 
 /**
  * Control create account API

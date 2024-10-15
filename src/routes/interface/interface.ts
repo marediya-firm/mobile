@@ -1,7 +1,7 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
-import {routePath} from '../export';
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
+import { routePath } from '../export';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 export interface RoutePath {
   LoginScreen: 'LoginScreen';

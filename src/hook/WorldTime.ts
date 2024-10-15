@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import utils from '../constant/utc';
-import {type WorldTimeProps} from './export';
+import { type WorldTimeProps } from './export';
 
 export const WorldTime = (): [
   WorldTimeProps,

@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
-import {Colors} from '../../../utils/Colors';
-import {useMemo} from 'react';
+import { StyleSheet } from 'react-native';
+import { Colors } from '../../../utils/Colors';
+import { useMemo } from 'react';
 import {
   responsiveHeight,
   responsiveScreenWidth,
@@ -10,7 +10,7 @@ export const appStyles = StyleSheet.create({
   safeArea: {
     backgroundColor: Colors.white,
   },
-  logo: {alignItems: 'center', marginTop: responsiveHeight(7)},
+  logo: { alignItems: 'center', marginTop: responsiveHeight(7) },
   inputWrapper: {
     backgroundColor: Colors.white,
     flex: 1,
@@ -67,11 +67,11 @@ export const appStyles = StyleSheet.create({
     marginTop: 24,
     marginHorizontal: 40,
   },
-  restaurant: {backgroundColor: 'white', flex: 1, borderTopLeftRadius: 60},
-  restaurantText: {color: Colors.darkBlack, marginTop: 12},
-  forgotPasswordText: {alignSelf: 'flex-end', color: Colors.darkBlack},
-  googleText: {paddingLeft: 15, color: Colors.darkBlack},
-  margin: {marginTop: 24},
+  restaurant: { backgroundColor: 'white', flex: 1, borderTopLeftRadius: 60 },
+  restaurantText: { color: Colors.darkBlack, marginTop: 12 },
+  forgotPasswordText: { alignSelf: 'flex-end', color: Colors.darkBlack },
+  googleText: { paddingLeft: 15, color: Colors.darkBlack },
+  margin: { marginTop: 24 },
 });
 
 export const AppStyle = () => useMemo(() => appStyles, []);

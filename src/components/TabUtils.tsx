@@ -1,26 +1,26 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {FC} from 'react';
-import {routePath} from '../routes/export';
-import {ReserveSvg} from '../assets/icon/ReserveSvg';
-import {ScannerSvg} from '../assets/icon/Scanner';
-import {TabUtilsProps} from './export';
-import {Colors, fontStyleVariant, variant} from '../utils';
+import { StyleSheet, Text, View } from 'react-native';
+import React, { FC } from 'react';
+import { routePath } from '../routes/export';
+import { ReserveSvg } from '../assets/icon/ReserveSvg';
+import { ScannerSvg } from '../assets/icon/Scanner';
+import { TabUtilsProps } from './export';
+import { Colors, fontStyleVariant, variant } from '../utils';
 import responsive from '../utils/responsive';
-import {isIOS} from '../../App';
-import {Dimensions} from 'react-native';
-import {BagIcon, Home, HotDealSvg} from '../assets/icon';
+import { isIOS } from '../../App';
+import { Dimensions } from 'react-native';
+import { BagIcon, Home, HotDealSvg } from '../assets/icon';
 
 const tabBarAssets = {
-  [routePath.HomeStack]: {SvgImage: Home, label: 'HOME'},
-  [routePath.HotDeal]: {SvgImage: HotDealSvg, label: 'DASHBOARD'},
-  [routePath.History]: {SvgImage: BagIcon, label: 'HISTORY'},
-  [routePath.Scanner]: {SvgImage: ScannerSvg, label: ''},
-  [routePath.Reserve]: {SvgImage: ReserveSvg, label: 'Reserve'},
+  [routePath.HomeStack]: { SvgImage: Home, label: 'HOME' },
+  [routePath.HotDeal]: { SvgImage: HotDealSvg, label: 'DASHBOARD' },
+  [routePath.History]: { SvgImage: BagIcon, label: 'HISTORY' },
+  [routePath.Scanner]: { SvgImage: ScannerSvg, label: '' },
+  [routePath.Reserve]: { SvgImage: ReserveSvg, label: 'Reserve' },
 };
 
 export const TabUtils = React.memo((props: TabUtilsProps) => {
-  const {focus, tabDetail} = props;
-  const Icon = tabBarAssets[tabDetail.name].SvgImage as FC<{color?: string}>;
+  const { focus, tabDetail } = props;
+  const Icon = tabBarAssets[tabDetail.name].SvgImage as FC<{ color?: string }>;
 
   return (
     <View style={focus ? style.focusOn : style.focusOff}>

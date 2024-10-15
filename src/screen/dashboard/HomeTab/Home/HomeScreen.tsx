@@ -1,8 +1,8 @@
-import {Image, ImageBackground, Text} from 'react-native';
-import React, {useEffect} from 'react';
-import {CustomView} from '../../../../components/CoreComponent';
-import {View} from 'react-native';
-import {Colors, fontStyleVariant, variant} from '../../../../utils';
+import { Image, ImageBackground, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { CustomView } from '../../../../components/CoreComponent';
+import { View } from 'react-native';
+import { Colors, fontStyleVariant, variant } from '../../../../utils';
 import {
   ClockIn,
   ClockOut,
@@ -11,14 +11,14 @@ import {
   TotalHours,
 } from '../../../../assets/icon';
 import LinearGradient from 'react-native-linear-gradient';
-import {appImages} from '../../../../assets/image';
+import { appImages } from '../../../../assets/image';
 import responsive from '../../../../utils/responsive';
-import {TouchableOpacity} from 'react-native';
-import {SheetManager} from 'react-native-actions-sheet';
-import {MMKVStorage, UserPrivateKey} from '../../../../services/export';
-import {LoginAPIResponse} from '../../../auth/Login/export';
-import {useMakeStyles, ViewServerTime} from '../export';
-import {HttpRequest} from '../../../../https/HttpsService';
+import { TouchableOpacity } from 'react-native';
+import { SheetManager } from 'react-native-actions-sheet';
+import { MMKVStorage, UserPrivateKey } from '../../../../services/export';
+import { LoginAPIResponse } from '../../../auth/Login/export';
+import { useMakeStyles, ViewServerTime } from '../export';
+import { HttpRequest } from '../../../../https/HttpsService';
 
 export const HomeScreen = () => {
   const user =
@@ -51,7 +51,7 @@ export const HomeScreen = () => {
     (async () => {
       const data = await HttpRequest.clientGetRequest<'punchDetail'>({
         endPoint: HttpRequest.apiEndPoint.getPunchByUser,
-        payload: {userId: user as string},
+        payload: { userId: user as string },
       });
       console.log('============data===========', data);
     })();
@@ -60,7 +60,8 @@ export const HomeScreen = () => {
   return (
     <ImageBackground
       source={appImages.background}
-      style={[styles.customView, styles.background]}>
+      style={[styles.customView, styles.background]}
+    >
       <CustomView style={styles.customView}>
         <View style={styles.headerContainer}>
           <View style={styles.circleOuter}>
@@ -91,14 +92,16 @@ export const HomeScreen = () => {
           style={styles.gradientContainer}
           onPress={() => {
             SheetManager.show('punch-swipe-sheet', {
-              payload: {value: 'punch-swipe-sheet'},
+              payload: { value: 'punch-swipe-sheet' },
             });
-          }}>
+          }}
+        >
           <LinearGradient
-            start={{x: 0, y: 0}}
-            end={{x: 10, y: 0}}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 10, y: 0 }}
             colors={[Colors.whiteEA, '#F1F1F1', '#E2E6EA']}
-            style={styles.gradient}>
+            style={styles.gradient}
+          >
             <View style={styles.clockInContainerParent}>
               <View style={styles.clockInContainer}>
                 <Punch />

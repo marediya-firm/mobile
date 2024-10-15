@@ -7,11 +7,11 @@ import {
   QueryClientProvider,
   HydrationBoundary,
 } from '@tanstack/react-query';
-import {GetToken} from '../../hook/export';
+import { GetToken } from '../../hook/export';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
-    queries: {retry: 2, retryDelay: 1000},
+    queries: { retry: 2, retryDelay: 1000 },
   },
 });
 

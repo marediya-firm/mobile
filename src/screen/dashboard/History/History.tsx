@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
-import {CustomView} from '../../../components/CoreComponent';
-import {Colors, fontStyleVariant, variant} from '../../../utils';
+import React, { useState } from 'react';
+import { CustomView } from '../../../components/CoreComponent';
+import { Colors, fontStyleVariant, variant } from '../../../utils';
 type PunchRecord = {
   day: Moment;
   punchIn: string;
@@ -116,7 +116,7 @@ const useMakeStyle = () =>
       paddingTop: 8,
       flex: 1,
     },
-    background: {backgroundColor: Colors.colorF9},
+    background: { backgroundColor: Colors.colorF9 },
     headerText: {
       shadowColor: Colors.borderColor,
       shadowOpacity: 0.3,
@@ -146,13 +146,13 @@ const useMakeStyle = () =>
     },
   });
 
-import moment, {Moment} from 'moment';
-import {Arrow} from '../../../assets/icon';
+import moment, { Moment } from 'moment';
+import { Arrow } from '../../../assets/icon';
 import responsive from '../../../utils/responsive';
-import {deviceWidth} from '../../../../App';
-import {MenuIcon} from '../../../assets/icon/Menu';
-import {appImages} from '../../../assets/image';
-import {CalenderView} from '../../../components/CalenderView';
+import { deviceWidth } from '../../../../App';
+import { MenuIcon } from '../../../assets/icon/Menu';
+import { appImages } from '../../../assets/image';
+import { CalenderView } from '../../../components/CalenderView';
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(moment());
@@ -185,7 +185,7 @@ const Calendar = () => {
   };
 
   const renderDay = (day: Moment) => {
-    const weekEnd = {0: true};
+    const weekEnd = { 0: true };
 
     const isWeekDay = !weekEnd[day.weekday() as 0];
 
@@ -194,8 +194,9 @@ const Calendar = () => {
         <Text
           style={[
             styles.dayText,
-            {color: isWeekDay ? Colors.grey46 : Colors.colorD7},
-          ]}>
+            { color: isWeekDay ? Colors.grey46 : Colors.colorD7 },
+          ]}
+        >
           {day.format('D')}
         </Text>
       </TouchableOpacity>
@@ -221,7 +222,7 @@ const Calendar = () => {
   );
 };
 
-export const PunchRecord = ({item}: {item: PunchRecord; index: number}) => {
+export const PunchRecord = ({ item }: { item: PunchRecord; index: number }) => {
   const date = moment(item.day);
   const dateFormat = date?.date() < 10 ? `0${date?.date()}` : date?.date();
 
@@ -237,7 +238,8 @@ export const PunchRecord = ({item}: {item: PunchRecord; index: number}) => {
               fontStyleVariant[variant.F30011],
               styles.recordColor,
               styles[500],
-            ]}>
+            ]}
+          >
             {week[date?.day()]}
           </Text>
         </View>
@@ -308,7 +310,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     marginRight: 8,
   },
-  arrowWrapper: {flexDirection: 'row', left: 10},
+  arrowWrapper: { flexDirection: 'row', left: 10 },
   arrowLeft: {
     height: 30,
     width: 30,
@@ -326,7 +328,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#F7F8FC',
   },
-  calenderDate: {marginRight: 10},
+  calenderDate: { marginRight: 10 },
   recordWrapper: {
     marginHorizontal: 6,
     marginVertical: 10,
@@ -360,21 +362,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: responsive.width(2.5),
   },
-  day: {marginTop: 2},
-  padH10: {paddingHorizontal: 10},
-  padL: {paddingLeft: 12, paddingHorizontal: 10},
-  textAlign: {textAlign: 'center', paddingVertical: 4},
+  day: { marginTop: 2 },
+  padH10: { paddingHorizontal: 10 },
+  padL: { paddingLeft: 12, paddingHorizontal: 10 },
+  textAlign: { textAlign: 'center', paddingVertical: 4 },
   timeStyle: {
     ...fontStyleVariant[variant.F30012],
     color: Colors.grey46,
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  recordColor: {color: Colors.white},
-  500: {fontWeight: '500'},
+  recordColor: { color: Colors.white },
+  500: { fontWeight: '500' },
   recordFlat: {
     marginTop: 10,
     flex: 1,
   },
-  paddingB: {paddingBottom: 80},
+  paddingB: { paddingBottom: 80 },
 });

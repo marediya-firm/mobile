@@ -1,7 +1,7 @@
-import React, {ReactElement, useCallback, useState} from 'react';
-import {MutableRefObject} from 'react';
-import {ScrollView, StyleSheet, Dimensions, View} from 'react-native';
-import {Colors, StringConstant} from '../../../constant';
+import React, { ReactElement, useCallback, useState } from 'react';
+import { MutableRefObject } from 'react';
+import { ScrollView, StyleSheet, Dimensions, View } from 'react-native';
+import { Colors, StringConstant } from '../../../constant';
 import Animated, {
   ReduceMotion,
   useAnimatedStyle,
@@ -9,8 +9,8 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import {CustomText, ScrollWatchRef} from '../../../components/export';
-import {fontStyleVariant, variant} from '../../../utils';
+import { CustomText, ScrollWatchRef } from '../../../components/export';
+import { fontStyleVariant, variant } from '../../../utils';
 
 type AnimatedScrollViewHomePros = {
   appString: StringConstant;
@@ -19,7 +19,7 @@ type AnimatedScrollViewHomePros = {
 };
 
 export const AnimatedScrollViewHome = (props: AnimatedScrollViewHomePros) => {
-  const {appString, children, scrollWatchRef} = props;
+  const { appString, children, scrollWatchRef } = props;
 
   const [header, setHeader] = useState<StringConstant['FoodType' | 'Popular']>(
     appString.FoodType,
@@ -77,9 +77,9 @@ export const AnimatedScrollViewHome = (props: AnimatedScrollViewHomePros) => {
         {header}
       </Animated.Text>
       <ScrollView
-        onScroll={({nativeEvent}) => {
+        onScroll={({ nativeEvent }) => {
           const yOffset = nativeEvent.contentOffset.y;
-          const {current} = scrollWatchRef;
+          const { current } = scrollWatchRef;
 
           if (current.offset + 25 > yOffset) {
             animationHeader(appString.FoodType);
@@ -110,7 +110,8 @@ export const AnimatedScrollViewHome = (props: AnimatedScrollViewHomePros) => {
         style={componentStyle.scrollBorder}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={300}
-        contentContainerStyle={componentStyle.contentContainerStyle}>
+        contentContainerStyle={componentStyle.contentContainerStyle}
+      >
         {children}
       </ScrollView>
     </React.Fragment>

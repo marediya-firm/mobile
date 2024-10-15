@@ -1,7 +1,7 @@
-import {RouteProp} from '@react-navigation/native';
-import {CreateAccountInput} from '../../data/import';
-import {TabNavParamList} from '../../routes/export';
-import {StyleProp, ViewStyle} from 'react-native';
+import { RouteProp } from '@react-navigation/native';
+import { CreateAccountInput } from '../../data/import';
+import { TabNavParamList } from '../../routes/export';
+import { StyleProp, ViewStyle } from 'react-native';
 
 export interface CustomInputProps extends CreateAccountInput {
   index: number;
