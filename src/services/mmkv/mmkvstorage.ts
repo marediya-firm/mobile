@@ -14,6 +14,7 @@ export class MMKVStorage {
       }
       return null;
     } catch (error: any) {
+      console.log('error==>', error);
       return null;
     }
   }

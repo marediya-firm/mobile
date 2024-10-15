@@ -2,6 +2,7 @@ import {createAccountInput} from '../../../../data/createAccountInput';
 import {HttpRequest, LoginBody} from '../../../../https/export';
 import {LoginNavigation, routePath} from '../../../../routes/export';
 import {
+  MMKVStorage,
   UserLocalStorage,
   UserPrivateKey,
   flashAlert,
@@ -52,6 +53,10 @@ export const loginApiController = async (
 
     if (result?.data?.data) {
       await UserLocalStorage.setValue<LoginAPIResponse['data']>(
+        UserPrivateKey.UserDetail,
+        result.data.data,
+      );
+      MMKVStorage.setValue<LoginAPIResponse['data']>(
         UserPrivateKey.UserDetail,
         result.data.data,
       );
