@@ -22,8 +22,9 @@ import { HttpRequest } from '../../../../https/HttpsService';
 
 export const HomeScreen = () => {
   const user =
-    MMKVStorage.getValue<LoginAPIResponse['data']>(UserPrivateKey.UserDetail) ??
-    '66f8f71b6fea92913c8b34ff';
+    '66f8f71b6fea92913c8b34ff' ??
+    MMKVStorage.getValue<LoginAPIResponse['data']>(UserPrivateKey.UserDetail)
+      ?.user_id;
 
   console.log('user', user);
 
