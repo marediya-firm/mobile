@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {GetCacheValue, UserPrivateKey} from './interface/interface';
-import {LoginAPIResponse} from '../../screen/auth/Login/export';
+import { GetCacheValue, UserPrivateKey } from './interface/interface';
+import { LoginAPIResponse } from '../../screen/auth/Login/export';
 
 export class UserLocalStorage {
   static getCacheValue: GetCacheValue<string> = {};
@@ -12,9 +12,9 @@ export class UserLocalStorage {
    * @returns promise which key have been pass get item will sure and return it
    * if local storage has value return cache value
    */
-  static async getValue<T = {}>(key: UserPrivateKey): Promise<T> {
+  static async getValue<T = object>(key: UserPrivateKey): Promise<T> {
     try {
-      let userValue: string = '';
+      let userValue = '';
 
       // for cache management we are checking when cache exists return synchronies value
       if (this.getCacheValue[key]) {
@@ -24,8 +24,8 @@ export class UserLocalStorage {
         this.getCacheValue[key] = userValue;
       }
       return userValue ? JSON.parse(userValue) : '';
-    } catch (error: any) {
-      return error;
+    } catch (error: unknown) {
+      return error as T;
     }
   }
 
@@ -37,11 +37,11 @@ export class UserLocalStorage {
   static async setValue<T>(
     key: UserPrivateKey,
     payload: T,
-  ): Promise<void | string> {
+  ): Promise<T | undefined> {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(payload));
-    } catch (error: any) {
-      return error;
+    } catch (error: unknown) {
+      return error as T;
     }
   }
 
@@ -50,14 +50,14 @@ export class UserLocalStorage {
    * @param key UserPrivateKey enum
    * @param payload set item in local storage
    */
-  static async mergeValue<T = {}>(
+  static async mergeValue<T>(
     key: UserPrivateKey,
     payload: T,
-  ): Promise<void | string> {
+  ): Promise<T | undefined> {
     try {
       await AsyncStorage.mergeItem(key, JSON.stringify(payload));
-    } catch (error: any) {
-      return error;
+    } catch (error: unknown) {
+      return error as T;
     }
   }
 
@@ -65,22 +65,22 @@ export class UserLocalStorage {
    * Remove one item
    * @param key UserPrivateKey enum
    */
-  static async removeOneValue(key: UserPrivateKey): Promise<void | string> {
+  static async removeOneValue(key: UserPrivateKey): Promise<undefined> {
     try {
       await AsyncStorage.removeItem(key);
-    } catch (error: any) {
-      return error;
+    } catch (error: unknown) {
+      console.log('error');
     }
   }
 
   /**
    * Clear storage
    */
-  static async removeAllValue(): Promise<void | string> {
+  static async removeAllValue(): Promise<void> {
     try {
       await AsyncStorage.clear();
-    } catch (error: any) {
-      return error;
+    } catch (error: unknown) {
+      console.log('error');
     }
   }
 

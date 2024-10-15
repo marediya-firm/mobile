@@ -1,9 +1,9 @@
-import {StyleSheet} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {IResponsive, fontStyleVariant, variant} from '../../../../utils';
+import { StyleSheet } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { IResponsive, fontStyleVariant, variant } from '../../../../utils';
 import responsive from '../../../../utils/responsive';
 
-export const useMakeStyles = ({height, width}: IResponsive) =>
+export const useMakeStyles = ({ height, width }: IResponsive) =>
   StyleSheet.create({
     customView: {
       paddingHorizontal: 18,
@@ -12,7 +12,7 @@ export const useMakeStyles = ({height, width}: IResponsive) =>
     headerContainer: {
       flexDirection: 'row',
     },
-    background: {backgroundColor: Colors.colorF9, paddingHorizontal: 0},
+    background: { backgroundColor: Colors.colorF9, paddingHorizontal: 0 },
     circle: {
       height: 50,
       width: 50,

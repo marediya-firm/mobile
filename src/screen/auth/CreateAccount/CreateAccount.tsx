@@ -1,18 +1,18 @@
 import React from 'react';
-import {Pressable, SafeAreaView, View} from 'react-native';
-import {MemoStyle} from './styles';
-import {Freeze} from 'react-freeze';
-import {useIsFocused} from '@react-navigation/native';
-import {ConstantString, StringConstant} from '../../../constant';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {apiController, CreateAccountProps, UserInput} from '../export';
+import { Pressable, SafeAreaView, View } from 'react-native';
+import { MemoStyle } from './styles';
+import { Freeze } from 'react-freeze';
+import { useIsFocused } from '@react-navigation/native';
+import { ConstantString, StringConstant } from '../../../constant';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { apiController, CreateAccountProps, UserInput } from '../export';
 import {
   AuthFooter,
   CustomText,
   LoadingIndicator,
 } from '../../../components/export';
-import {routePath} from '../../../routes/export';
-import {variant} from '../../../utils';
+import { routePath } from '../../../routes/export';
+import { variant } from '../../../utils';
 
 const CreateAccount = (props: CreateAccountProps) => {
   // Get common string memories

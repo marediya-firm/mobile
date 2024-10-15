@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import {deviceWidth} from '../../App';
-import {Colors} from '../constant';
+import { deviceWidth } from '../../App';
+import { Colors } from '../constant';
 
 export const WeekView = React.memo(() => {
   const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];

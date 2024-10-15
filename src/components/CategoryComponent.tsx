@@ -1,4 +1,4 @@
-import React, {memo, useRef} from 'react';
+import React, { memo, useRef } from 'react';
 import {
   ScrollView,
   Pressable,
@@ -8,14 +8,17 @@ import {
   FlatList,
   Dimensions,
 } from 'react-native';
-import {useQueries} from '@tanstack/react-query';
-import {HttpRequest} from '../https/HttpsService';
-import {CategoryAPIResponse, MenuAPIResponse} from '../screen/dashboard/export';
-import {Colors, ConstantString, StringConstant} from '../constant';
-import {customStyle, variant} from '../utils';
-import {CategoryComponentProps, CustomText, LoadingIndicator} from './export';
-import {MenuComponent} from './MenuComponent';
-import {AnimatedScrollViewHome} from '../screen/auth/export';
+import { useQueries } from '@tanstack/react-query';
+import { HttpRequest } from '../https/HttpsService';
+import {
+  CategoryAPIResponse,
+  MenuAPIResponse,
+} from '../screen/dashboard/export';
+import { Colors, ConstantString, StringConstant } from '../constant';
+import { customStyle, variant } from '../utils';
+import { CategoryComponentProps, CustomText, LoadingIndicator } from './export';
+import { MenuComponent } from './MenuComponent';
+import { AnimatedScrollViewHome } from '../screen/auth/export';
 
 export type ScrollWatchRef = {
   offset: number;
@@ -25,7 +28,7 @@ export type ScrollWatchRef = {
 export const CategoryComponent = memo(
   (props: CategoryComponentProps) => {
     console.log('props', props);
-  
+
     const appString = ConstantString('strings') as StringConstant;
 
     const selectCategory = useRef<number>(0);
@@ -48,10 +51,10 @@ export const CategoryComponent = memo(
         if (localQueryId) {
           const menu = await HttpRequest.clientGetRequest<
             MenuAPIResponse[],
-            {categoryId: string}
+            { categoryId: string }
           >({
             endPoint: HttpRequest.apiEndPoint.getMenuById,
-            payload: {categoryId: localQueryId as string},
+            payload: { categoryId: localQueryId as string },
           });
           return menu.data;
         }
@@ -63,7 +66,7 @@ export const CategoryComponent = memo(
 
     const queryResult = useQueries({
       queries: [
-        {queryKey: ['category-list'], queryFn: getCategory, initialData: []},
+        { queryKey: ['category-list'], queryFn: getCategory, initialData: [] },
         {
           queryKey: [`menu-list`, selectCategory.current],
           retry: 1,
@@ -89,16 +92,18 @@ export const CategoryComponent = memo(
           <View style={localStyle.wrapper}>
             <AnimatedScrollViewHome
               appString={appString}
-              scrollWatchRef={scrollWatchRef}>
+              scrollWatchRef={scrollWatchRef}
+            >
               <ScrollView
                 scrollEnabled
                 scrollEventThrottle={10}
                 showsHorizontalScrollIndicator={false}
                 horizontal
-                onLayout={({nativeEvent}) =>
+                onLayout={({ nativeEvent }) =>
                   (scrollWatchRef.current.height = nativeEvent.layout.height)
                 }
-                contentContainerStyle={[localStyle.scrollStyle]}>
+                contentContainerStyle={[localStyle.scrollStyle]}
+              >
                 {categoryItem.data?.map((item, index) => {
                   const checkSelect = selectCategory.current === index;
                   const getStyle = customStyle<'category', boolean>({
@@ -111,10 +116,11 @@ export const CategoryComponent = memo(
                         menuItem.refetch();
                       }}
                       key={item._id}
-                      style={getStyle.categoryContainer}>
+                      style={getStyle.categoryContainer}
+                    >
                       <View style={getStyle.imageContainer}>
                         <Image
-                          source={{uri: item.category_image}}
+                          source={{ uri: item.category_image }}
                           style={localStyle.categoryImage}
                         />
                       </View>
@@ -122,7 +128,7 @@ export const CategoryComponent = memo(
                         text={item.category_name}
                         variant={variant.F40014}
                         extraStyle={getStyle.categoryText}
-                        textProps={{numberOfLines: 1}}
+                        textProps={{ numberOfLines: 1 }}
                       />
                     </Pressable>
                   );
@@ -131,7 +137,8 @@ export const CategoryComponent = memo(
               <View
                 style={{
                   marginTop: 17,
-                }}>
+                }}
+              >
                 <MenuRender menuLoadItem={menuLoadItem} />
               </View>
             </AnimatedScrollViewHome>
@@ -169,8 +176,8 @@ const localStyle = StyleSheet.create({
     borderRadius: 19.5,
     flexDirection: 'row',
   },
-  categoryImage: {height: 60, width: 60, borderRadius: 35},
-  loadingIndicator: {marginTop: 15},
+  categoryImage: { height: 60, width: 60, borderRadius: 35 },
+  loadingIndicator: { marginTop: 15 },
 });
 
 export const MenuRender = ({
@@ -181,11 +188,13 @@ export const MenuRender = ({
   return (
     <View>
       <FlatList
-        contentContainerStyle={{flexGrow: 1}}
+        contentContainerStyle={{ flexGrow: 1 }}
         scrollEnabled
         showsVerticalScrollIndicator={true}
         data={menuLoadItem}
-        renderItem={({item, index}) => <MenuComponent {...item} key={index} />}
+        renderItem={({ item, index }) => (
+          <MenuComponent {...item} key={index} />
+        )}
       />
     </View>
   );

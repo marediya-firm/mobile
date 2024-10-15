@@ -13,7 +13,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier',
   ],
- 
+
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -31,8 +31,6 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off', // Next.js doesn't require React to be in scope
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    "no-restricted-imports": [
-      "error",
-    ],
+    'no-restricted-imports': ['error'],
   },
 };

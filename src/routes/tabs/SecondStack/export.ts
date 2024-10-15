@@ -1,1 +1,1 @@
-export * from './SecondStack'
+export * from './SecondStack';

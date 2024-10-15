@@ -1,10 +1,10 @@
-import React, {FC} from 'react';
-import {StyleSheet, View} from 'react-native';
-import ActionSheet, {SheetProps} from 'react-native-actions-sheet';
+import React, { FC } from 'react';
+import { StyleSheet, View } from 'react-native';
+import ActionSheet, { SheetProps } from 'react-native-actions-sheet';
 import responsive from '../../utils/responsive';
-import {Colors} from '../../constant';
-import {SwipeRight} from '../../assets/icon/SwipeRight';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import { Colors } from '../../constant';
+import { SwipeRight } from '../../assets/icon/SwipeRight';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   interpolate,
   runOnJS,
@@ -12,9 +12,9 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import {deviceWidth} from '../../../App';
-import {fontStyleVariant, variant} from '../../utils';
-import {HttpRequest} from '../../https/export';
+import { deviceWidth } from '../../../App';
+import { fontStyleVariant, variant } from '../../utils';
+import { HttpRequest } from '../../https/export';
 
 const PunchSwipe: FC<Required<SheetProps<'punch-swipe-sheet'>>> = ({
   sheetId,
@@ -25,7 +25,7 @@ const PunchSwipe: FC<Required<SheetProps<'punch-swipe-sheet'>>> = ({
   const onSwipeComplete = () => {
     HttpRequest.clientGetRequest<{}>({
       endPoint: HttpRequest.apiEndPoint.getPunchByUser,
-      payload: {userId: '123'},
+      payload: { userId: '123' },
     });
     console.log('onSwipeComplete');
   };
@@ -44,18 +44,18 @@ const PunchSwipe: FC<Required<SheetProps<'punch-swipe-sheet'>>> = ({
         swipeX.value = withSpring(0, {
           duration: 4500,
           stiffness: 100,
-          clamp: {min: 10},
+          clamp: { min: 10 },
         });
       }
     });
 
   const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{translateX: swipeX.value}],
+    transform: [{ translateX: swipeX.value }],
   }));
 
   const textOpacityStyle = useAnimatedStyle(() => {
     const opacity = interpolate(swipeX.value + 12, [10, 100], [1, 0]); // Hide text as swipe increases
-    return {opacity, color: Colors.white, left: 15};
+    return { opacity, color: Colors.white, left: 15 };
   });
 
   return (
@@ -69,7 +69,8 @@ const PunchSwipe: FC<Required<SheetProps<'punch-swipe-sheet'>>> = ({
           </GestureDetector>
           <View>
             <Animated.Text
-              style={[fontStyleVariant[variant.F50019], textOpacityStyle]}>
+              style={[fontStyleVariant[variant.F50019], textOpacityStyle]}
+            >
               Swipe right to Punch in
             </Animated.Text>
           </View>

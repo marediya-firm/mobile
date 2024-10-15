@@ -1,4 +1,4 @@
-import {MessageType, showMessage} from 'react-native-flash-message';
+import { MessageType, showMessage } from 'react-native-flash-message';
 
 export type FlashAlert = {
   message: string;

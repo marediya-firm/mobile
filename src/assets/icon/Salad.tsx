@@ -1,6 +1,6 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import {Defs, G, Path, Svg} from 'react-native-svg';
+import { Defs, G, Path, Svg } from 'react-native-svg';
 
 export const Salad = () => {
   return (

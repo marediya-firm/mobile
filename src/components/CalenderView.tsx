@@ -1,9 +1,15 @@
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, { useState } from 'react';
 import moment from 'moment';
-import {deviceWidth} from '../../App';
-import {Colors} from '../constant';
-import {WeekView} from './WeekView';
+import { deviceWidth } from '../../App';
+import { Colors } from '../constant';
+import { WeekView } from './WeekView';
 
 export const CalenderView = () => {
   const [currentMonth, setCurrentMonth] = useState(moment());
@@ -33,7 +39,7 @@ export const CalenderView = () => {
       <FlatList
         scrollEnabled={false}
         data={generateDays()}
-        renderItem={({item}) => <RenderDay day={item} />}
+        renderItem={({ item }) => <RenderDay day={item} />}
         keyExtractor={item => item.format('DD-MM-YYYY')}
         numColumns={7}
       />
@@ -46,8 +52,8 @@ export type RenderDayProps = {
 };
 
 const RenderDay = React.memo((props: RenderDayProps) => {
-  const {day} = props;
-  const weekEnd = {0: true};
+  const { day } = props;
+  const weekEnd = { 0: true };
 
   const isWeekDay = !weekEnd[day.weekday() as 0];
   return (
@@ -55,8 +61,9 @@ const RenderDay = React.memo((props: RenderDayProps) => {
       <Text
         style={[
           styles.dayText,
-          {color: isWeekDay ? Colors.grey46 : Colors.colorD7},
-        ]}>
+          { color: isWeekDay ? Colors.grey46 : Colors.colorD7 },
+        ]}
+      >
         {day.format('D')}
       </Text>
     </TouchableOpacity>

@@ -1,4 +1,4 @@
-import {Subject, Observable} from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 const subject = new Subject();
 
@@ -8,7 +8,7 @@ const subject = new Subject();
  * @param value
  */
 const emit = (eventName: string, value: any): any => {
-  subject.next({eventName, value});
+  subject.next({ eventName, value });
 };
 
 /**
@@ -18,4 +18,4 @@ const on = (): Observable<any> => {
   return subject.asObservable();
 };
 
-export default {on, emit};
+export default { on, emit };

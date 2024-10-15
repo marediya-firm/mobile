@@ -1,5 +1,12 @@
 import React from 'react';
-import {Defs, G, Path, Svg, Rect as ReactSvg, ClipPath} from 'react-native-svg';
+import {
+  Defs,
+  G,
+  Path,
+  Svg,
+  Rect as ReactSvg,
+  ClipPath,
+} from 'react-native-svg';
 
 export const RatingStar = () => {
   return (
