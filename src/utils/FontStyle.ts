@@ -1,6 +1,6 @@
-import {StyleSheet, TextStyle} from 'react-native';
-import {Colors} from './Colors';
-import {useMemo} from 'react';
+import { StyleSheet, TextStyle } from 'react-native';
+import { Colors } from './Colors';
+import { useMemo } from 'react';
 
 export const fontSize = {
   11: 11,
@@ -168,7 +168,7 @@ export const fontStyleVariant: FontStyleVariant = {
     // fontFamily: Platform.OS === 'android' ? fonts.poppinsMedium : '',
     color: Colors.grey46,
   },
-  textAlign: {textAlign: 'center'},
+  textAlign: { textAlign: 'center' },
 };
 
 const fontStyle = StyleSheet.create(fontStyleVariant);

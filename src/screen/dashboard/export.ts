@@ -1,2 +1,2 @@
-export * from "./HomeTab/export"
-export * from "./SecondTab/SecondTab/export"
+export * from './HomeTab/export';
+export * from './SecondTab/SecondTab/export';

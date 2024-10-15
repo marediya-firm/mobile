@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
 export const AppLogo = React.memo(() => {
   return (
@@ -14,3 +14,5 @@ export const AppLogo = React.memo(() => {
     </Svg>
   );
 });
+
+AppLogo.displayName = 'AppLogo';

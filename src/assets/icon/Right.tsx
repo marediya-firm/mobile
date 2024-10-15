@@ -1,14 +1,9 @@
 import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
-import { Colors } from '../../constant';
+import Svg, { Path } from 'react-native-svg';
 
 export const Right = React.memo(props => {
   return (
-    <Svg
-      viewBox="0 0 512 512"
-      width="18px"
-      height="18px"
-      {...props}>
+    <Svg viewBox="0 0 512 512" width="18px" height="18px" {...props}>
       <Path
         fill={'#16d0ba'}
         d="M504.1 256C504.1 119 393 7.9 256 7.9S7.9 119 7.9 256 119 504.1 256 504.1 504.1 393 504.1 256z"
@@ -20,3 +15,5 @@ export const Right = React.memo(props => {
     </Svg>
   );
 });
+
+Right.displayName = 'Right';

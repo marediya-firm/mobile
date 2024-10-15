@@ -1,15 +1,15 @@
-import React, {createContext, useState} from 'react';
-import {InputReducer} from './InputFnc';
-import {useNavigation} from '@react-navigation/native';
-import {QuizDataReducer} from './QuizDataReducer';
+import React, { createContext, useState } from 'react';
+import { InputReducer } from './InputFnc';
+import { useNavigation } from '@react-navigation/native';
+import { QuizDataReducer } from './QuizDataReducer';
 
 export const GlobalData: any = createContext({});
-export const CommonContext = ({children}: any) => {
-  let {userInput, dispatch} = InputReducer();
+export const CommonContext = ({ children }: any) => {
+  const { userInput, dispatch } = InputReducer();
 
   const navigation: any = useNavigation();
   const [globalLoading, setGlobalLoading] = useState(false);
-  let {question, dispatchQuestion}: any = QuizDataReducer();
+  const { question, dispatchQuestion }: any = QuizDataReducer();
   const [useDetail, setUserDetail] = useState<object | any>(null);
 
   const rootStore = {
@@ -25,6 +25,6 @@ export const CommonContext = ({children}: any) => {
   };
 
   return (
-    <GlobalData.Provider value={{rootStore}}>{children}</GlobalData.Provider>
+    <GlobalData.Provider value={{ rootStore }}>{children}</GlobalData.Provider>
   );
 };

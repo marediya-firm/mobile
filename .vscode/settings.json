@@ -1,20 +1,20 @@
 {
-    "cSpell.words": [
-        "apicontroller",
-        "authstack",
-        "bridgestack",
-        "createaccount",
-        "Donthaveaccount",
-        "hasan",
-        "LAVU’s",
-        "Lazycomponent",
-        "localstore",
-        "Mahendi",
-        "Pressable",
-        "routepath",
-        "routespath",
-        "tanstack",
-        "zustand"
-    ],
-    "editor.fontWeight": "normal",
+  "cSpell.words": [
+    "apicontroller",
+    "authstack",
+    "bridgestack",
+    "createaccount",
+    "Donthaveaccount",
+    "hasan",
+    "LAVU’s",
+    "Lazycomponent",
+    "localstore",
+    "Mahendi",
+    "Pressable",
+    "routepath",
+    "routespath",
+    "tanstack",
+    "zustand"
+  ],
+  "editor.fontWeight": "normal"
 }

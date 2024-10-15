@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import {Dropdown} from 'react-native-element-dropdown';
-import {Colors} from '../constant';
+import { Dropdown } from 'react-native-element-dropdown';
+import { Colors } from '../constant';
 
 interface dropDown {
   data: Array<object | any>;

@@ -1,1 +1,1 @@
-export * from './QuizDataReducer'
+export * from './QuizDataReducer';

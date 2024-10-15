@@ -1,4 +1,4 @@
-import {RoutePath} from '../export';
+import { RoutePath } from '../export';
 
 export const routePath: RoutePath = {
   LoginScreen: 'LoginScreen',

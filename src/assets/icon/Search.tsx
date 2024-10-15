@@ -1,6 +1,6 @@
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 import React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
 export const Search = () => {
   return (

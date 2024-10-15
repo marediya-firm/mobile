@@ -1,1 +1,1 @@
-export * from './LoaderInterface'
+export * from './LoaderInterface';

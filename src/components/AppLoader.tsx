@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Modal, StyleSheet, ActivityIndicator} from 'react-native';
-import {Colors} from '../constant';
-import {useGlobalLoad} from '../zustand/export';
+import { View, Modal, StyleSheet, ActivityIndicator } from 'react-native';
+import { Colors } from '../constant';
+import { useGlobalLoad } from '../zustand/export';
 
 const AppLoader = () => {
   const loading = useGlobalLoad(state => state.loading);
@@ -10,7 +10,8 @@ const AppLoader = () => {
       transparent
       visible={loading}
       animationType="none"
-      supportedOrientations={['portrait', 'landscape']}>
+      supportedOrientations={['portrait', 'landscape']}
+    >
       <View style={style.overlayStyle}>
         <ActivityIndicator size="large" color={Colors.grey} />
       </View>

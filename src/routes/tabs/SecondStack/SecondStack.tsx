@@ -1,11 +1,11 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   LazyComponentSecondTab,
   ReserveStackParamList,
   authHeaderProp,
 } from '../../export';
-import {routePath} from '../../routepath/export';
+import { routePath } from '../../routepath/export';
 
 const Stack = createStackNavigator<ReserveStackParamList>();
 
@@ -18,7 +18,8 @@ export const ReserveStack = (): React.JSX.Element => {
   return (
     <Stack.Navigator
       screenOptions={authHeaderProp}
-      initialRouteName={routePath.Reserve}>
+      initialRouteName={routePath.Reserve}
+    >
       <Stack.Screen
         name={routePath.Reserve}
         getComponent={() => lazyComponent[routePath.Reserve]}

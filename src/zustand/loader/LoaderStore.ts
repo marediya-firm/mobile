@@ -1,9 +1,9 @@
-import {create} from 'zustand';
-import {GlobalLoader} from '../interface/LoaderInterface';
+import { create } from 'zustand';
+import { GlobalLoader } from '../interface/LoaderInterface';
 
 export const useGlobalLoad = create<GlobalLoader>(set => ({
   loading: false,
-  handleLoad: () => set(state => ({...state, loading: !state.loading})),
+  handleLoad: () => set(state => ({ ...state, loading: !state.loading })),
 }));
 
 export type useGlobalLoadType = ReturnType<typeof useGlobalLoad>;

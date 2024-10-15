@@ -8,18 +8,18 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import React, {memo} from 'react';
-import {Theme, useTheme} from '@react-navigation/native';
-import {GetFontStyle, variant} from '../utils';
-import {ViewProps} from 'react-native-svg/lib/typescript/fabric/utils';
-import Animated, {AnimatedStyle} from 'react-native-reanimated';
+import React, { memo } from 'react';
+import { Theme, useTheme } from '@react-navigation/native';
+import { GetFontStyle, variant } from '../utils';
+import { ViewProps } from 'react-native-svg/lib/typescript/fabric/utils';
+import Animated, { AnimatedStyle } from 'react-native-reanimated';
 
 interface CustomViewProps {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 }
-export const CustomView = ({children, style}: CustomViewProps) => {
-  const flex = {flex: 1, ...(style as ViewStyle)};
+export const CustomView = ({ children, style }: CustomViewProps) => {
+  const flex = { flex: 1, ...(style as ViewStyle) };
   return (
     <View style={flex}>
       <SafeAreaView />
@@ -78,7 +78,8 @@ export const CustomText = memo(
           getFontStyle[props.variant || variant.F30012],
           props.extraStyle,
         ]}
-        {...props.textProps}>
+        {...props.textProps}
+      >
         {String(props.text)}
       </PureText>
     );

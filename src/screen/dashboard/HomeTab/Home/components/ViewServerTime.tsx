@@ -1,8 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import responsive, {IResponsive} from '../../../../../utils/responsive';
-import {Colors, fontStyleVariant, variant} from '../../../../../utils';
-import {WorldTime} from '../../../../../hook/WorldTime';
+import responsive, { IResponsive } from '../../../../../utils/responsive';
+import { Colors, fontStyleVariant, variant } from '../../../../../utils';
+import { WorldTime } from '../../../../../hook/WorldTime';
 
 export const ViewServerTime = React.memo(
   () => {
@@ -20,7 +20,7 @@ export const ViewServerTime = React.memo(
   () => false,
 );
 
-const useMakeStyle = ({height}: IResponsive) =>
+const useMakeStyle = ({ height }: IResponsive) =>
   StyleSheet.create({
     timeContainer: {
       alignItems: 'center',

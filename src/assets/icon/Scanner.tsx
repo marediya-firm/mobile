@@ -1,8 +1,14 @@
-import React, {memo} from 'react';
-import Svg, {ClipPath, Defs, G, Path, Rect as ReactSvg} from 'react-native-svg';
-import {Colors} from '../../utils';
+import React, { memo } from 'react';
+import Svg, {
+  ClipPath,
+  Defs,
+  G,
+  Path,
+  Rect as ReactSvg,
+} from 'react-native-svg';
+import { Colors } from '../../utils';
 
-export const ScannerSvg = memo((props: {color?: string}) => {
+export const ScannerSvg = memo((props: { color?: string }) => {
   const color = props ? props?.color : Colors?.placeHolderTextBlack;
   return (
     <Svg width="33" height="33" viewBox="0 0 33 33" fill={color}>

@@ -8,5 +8,5 @@ export const loginInput: LoginInput<string, number> = {
 };
 
 export interface UserInputProps {
-  renderInput?: LoginInput<string,number>;
+  renderInput?: LoginInput<string, number>;
 }

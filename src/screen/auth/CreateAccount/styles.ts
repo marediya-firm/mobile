@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
-import {Colors} from '../../../utils/Colors';
-import {useMemo} from 'react';
+import { StyleSheet } from 'react-native';
+import { Colors } from '../../../utils/Colors';
+import { useMemo } from 'react';
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,
@@ -12,7 +12,7 @@ export const mainStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  flexGrow: {flexGrow: 1},
+  flexGrow: { flexGrow: 1 },
   inputWrapper: {
     marginTop: responsiveScreenHeight(5),
     backgroundColor: Colors.white,
@@ -23,14 +23,14 @@ export const mainStyles = StyleSheet.create({
     marginTop: responsiveScreenHeight(4.5),
     margin: responsiveScreenWidth(8),
   },
-  header: {marginTop: responsiveScreenHeight(7)},
+  header: { marginTop: responsiveScreenHeight(7) },
   createAnAccountWrapper: {
     paddingHorizontal: 16,
     paddingVertical: 8,
   },
   createAnAccount1: {
     color: Colors.color95ae45,
-    textAlign:"center"
+    textAlign: 'center',
   },
   button: {
     borderRadius: 7,
@@ -48,7 +48,7 @@ export const mainStyles = StyleSheet.create({
     marginTop: 24,
     marginHorizontal: 40,
   },
-  textAlignCenter:{textAlign:"center"}
+  textAlignCenter: { textAlign: 'center' },
 });
 
 export const MemoStyle = () => useMemo(() => mainStyles, []);

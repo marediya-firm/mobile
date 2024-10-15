@@ -1,5 +1,5 @@
-import {UserPrivateKey} from '../export';
-import {MMKVLoader} from 'react-native-mmkv-storage';
+import { UserPrivateKey } from '../export';
+import { MMKVLoader } from 'react-native-mmkv-storage';
 
 type Maybe<T> = T | null;
 
@@ -13,8 +13,7 @@ export class MMKVStorage {
         return JSON.parse(response) as T;
       }
       return null;
-    } catch (error: any) {
-      console.log('error==>', error);
+    } catch (error: unknown) {
       return null;
     }
   }
