@@ -87,5 +87,6 @@ export class HttpRequest {
     getCategory: '/all-category',
     getMenuById: '/get-product-category',
     getPunchByUser: 'punch/punch-details',
+    getPunchByDate: 'punch/punch-details-by-date',
   };
 }

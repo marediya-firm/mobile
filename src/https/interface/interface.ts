@@ -14,30 +14,36 @@ export interface HttpBodyPropsForGet<R extends keyof HttpRequestType> {
   payload?: HttpRequestType[R]['body']; // Dynamically selects the correct type based on the key T
 }
 
+export type Response<B, R> = { body: B; response: R };
+
 export type HttpRequestType = {
-  punchDetail: { body: PunchDetailBody; response: HttpPunchDetailResponse };
-  punchDetailByData: {
-    body: PunchDetailBody;
-    response: HttpPunchDetailResponse;
-  };
+  punchDetail: Response<PunchDetailBody, HttpPunchDetailResponse>;
+  punchDetailByData: Response<PunchDetailByIdBody, HttpPunchDetailResponse>;
+  punchDetailByDate: Response<
+    PunchDetailByUserDateBody,
+    HttpPunchDetailResponse
+  >;
 };
 
 /**
  * Punch API Body
  */
-export interface PunchDetailBody {
+export interface UserId {
   userId: string;
 }
-export interface PunchDetailByIdBody {
-  userId: string;
+export type PunchDetailBody = UserId;
+export interface PunchDetailByIdBody extends UserId {
   Date: string;
+}
+export interface PunchDetailByUserDateBody extends UserId {
+  startDate?: string;
+  endDate?: string;
 }
 
 /**
  * Punch API Response
  */
-export interface HttpPunchDetailResponse {
-  userId: string;
+export interface HttpPunchDetailResponse extends UserId {
   userName: string;
   date: string;
   punchSessions: string;
@@ -51,6 +57,7 @@ export interface ApiEndpoint {
   getCategory: '/all-category';
   getMenuById: '/get-product-category';
   getPunchByUser: 'punch/punch-details';
+  getPunchByDate: 'punch/punch-details-by-date';
 }
 
 /**
