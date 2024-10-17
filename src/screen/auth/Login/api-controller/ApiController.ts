@@ -7,7 +7,7 @@ import {
   UserPrivateKey,
   flashAlert,
 } from '../../../../services/export';
-import { useGlobalLoad } from '../../../../zustand/export';
+import { appLoader } from '../../../../zustand/export';
 import { LoginAPIResponse } from '../interface/export';
 
 /**
@@ -22,13 +22,10 @@ export const loginApiController = async (
       description: 'Please try again',
     });
   };
-  /**
-   * Loading state
-   */
-  const handleLoad = useGlobalLoad.getState().handleLoad;
+
   try {
     // Set API body
-    handleLoad();
+    appLoader();
     const apiBody: LoginBody = {
       email: '',
       password: '',
@@ -50,6 +47,7 @@ export const loginApiController = async (
       endPoint: HttpRequest.apiEndPoint.login,
       payload: apiBody,
     });
+    console.log('result', result);
 
     if (result?.data?.data) {
       await UserLocalStorage.setValue<LoginAPIResponse['data']>(
@@ -64,9 +62,9 @@ export const loginApiController = async (
     } else {
       flashAlertMessage(result?.data?.message);
     }
-    handleLoad();
+    appLoader();
   } catch (error: any) {
-    handleLoad();
+    appLoader();
     flashAlertMessage(error?.message);
   }
 };

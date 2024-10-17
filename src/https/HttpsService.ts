@@ -19,9 +19,9 @@ export class HttpRequest {
     const { endPoint = '', payload = undefined } = props;
     try {
       const clientResult = await axios.get(endPoint, { params: payload });
-      return clientResult.data;
-    } catch (error: string | any) {
-      return error?.message || error;
+      return clientResult;
+    } catch (error) {
+      return error as Promise<AxiosResponse<HttpRequestType[R]['response']>>;
     }
   }
 
@@ -87,6 +87,6 @@ export class HttpRequest {
     getCategory: '/all-category',
     getMenuById: '/get-product-category',
     getPunchByUser: 'punch/punch-details',
-    getPunchByDate: 'punch/punch-details-by-date',
+    getPunchDetailByDate: '/punch/today-punch-details',
   };
 }

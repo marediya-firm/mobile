@@ -1,5 +1,5 @@
 import { Image, ImageBackground, Text } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CustomView } from '../../../../components/CoreComponent';
 import { View } from 'react-native';
 import { Colors, fontStyleVariant, variant } from '../../../../utils';
@@ -19,16 +19,58 @@ import { MMKVStorage, UserPrivateKey } from '../../../../services/export';
 import { LoginAPIResponse } from '../../../auth/Login/export';
 import { useMakeStyles, ViewServerTime } from '../export';
 import { HttpRequest } from '../../../../https/HttpsService';
+import {
+  HttpPunchDetailResponse,
+  HttpRequestType,
+} from '../../../../https/export';
+
+const loadDataFromHttpsHook = <R extends keyof HttpRequestType>({
+  loading = true,
+  endPoint,
+  payload,
+}: {
+  endPoint: string;
+  loading?: boolean;
+  payload?: HttpRequestType[R]['body'];
+}) => {
+  // const [dataLoading, setDataLoading] = useState<boolean>(loading || true);
+  // const [apiResponse, setApiResponse] = useState<HttpPunchDetailResponse>();
+  const [fetching, setFetching] = useState<{
+    loading: boolean;
+    response: HttpPunchDetailResponse;
+  }>({
+    loading: loading || true,
+    response,
+  });
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await HttpRequest.clientGetRequest<R>({
+        endPoint,
+        payload,
+      });
+      if (data) {
+        setApiResponse(data);
+        setDataLoading(false);
+      }
+    })();
+  }, []);
+  return { dataLoading, apiResponse, setApiResponse, setDataLoading };
+};
 
 export const HomeScreen = () => {
-  const user =
-    '66f8f71b6fea92913c8b34ff' ??
-    MMKVStorage.getValue<LoginAPIResponse['data']>(UserPrivateKey.UserDetail)
-      ?.user_id;
-
-  console.log('user', user);
-
   const styles = useMakeStyles(responsive);
+
+  const user =
+    MMKVStorage.getValue<LoginAPIResponse['data']>(UserPrivateKey.UserDetail)
+      ?.userId ?? '';
+
+  const { apiResponse, dataLoading } = loadDataFromHttpsHook<'punchDetail'>({
+    endPoint: HttpRequest.apiEndPoint.getPunchDetailByDate,
+    payload: { userId: user },
+  });
+
+  console.log('apiResponse', apiResponse, dataLoading);
 
   const timingArray = [
     {
@@ -47,16 +89,6 @@ export const HomeScreen = () => {
       Icon: TotalHours,
     },
   ];
-
-  useEffect(() => {
-    (async () => {
-      const data = await HttpRequest.clientGetRequest<'punchDetail'>({
-        endPoint: HttpRequest.apiEndPoint.getPunchByUser,
-        payload: { userId: user as string },
-      });
-      console.log('============data===========', data);
-    })();
-  }, []);
 
   return (
     <ImageBackground

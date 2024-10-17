@@ -23,7 +23,7 @@ export type LoginAPIResponse = {
     user_name: string;
     password: string;
     token: string;
-    user_id: string;
+    userId: string;
   };
   message: string;
 };
