@@ -8,6 +8,7 @@ import {
   ClockOut,
   Punch,
   Refresh,
+  TotalHours,
 } from '../../../../assets/icon';
 import LinearGradient from 'react-native-linear-gradient';
 import { appImages } from '../../../../assets/image';
@@ -22,9 +23,35 @@ import {
   HttpPunchDetailResponse,
   HttpRequestType,
 } from '../../../../https/export';
-import moment from 'moment';
 
-const timeHHMM = (date: string): string => moment(date).format('hh:mm A');
+const timeHHMM = (date: string): string =>
+  new Date(date).toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  });
+
+function timeDifferenceISO(startDateStr: string, endDateStr: string): string {
+  // Convert the ISO 8601 date strings to Date objects
+  const startDate = new Date(startDateStr);
+  const endDate = new Date(endDateStr);
+
+  // Calculate the difference in milliseconds
+  const diffMs = endDate.getTime() - startDate.getTime();
+
+  // Convert milliseconds to total minutes
+  const diffMinutes = Math.floor(diffMs / (1000 * 60));
+
+  // Calculate hours and remaining minutes
+  const diffHours = Math.floor(diffMinutes / 60);
+  const remainingMinutes = diffMinutes % 60;
+
+  // Format hours and minutes to always have 2 digits
+  const formattedHours = String(diffHours).padStart(2, '0');
+  const formattedMinutes = String(remainingMinutes).padStart(2, '0');
+
+  return `${formattedHours}:${formattedMinutes}`;
+}
 
 const loadDataFromHttpsHook = <R extends keyof HttpRequestType>({
   loading = true,
@@ -46,7 +73,6 @@ const loadDataFromHttpsHook = <R extends keyof HttpRequestType>({
         endPoint,
         payload,
       });
-      // console.log('data', data);
       setFetching({ loading: false, response: data?.data });
     })();
   }, []);
@@ -64,31 +90,39 @@ export const HomeScreen = () => {
     endPoint: HttpRequest.apiEndPoint.getPunchDetailByDate,
     payload: { userId: user },
   });
+  const [totalTime, setTotalTime] = useState<string>('');
 
-  console.log('apiResponse', fetching.response.punchSessions?.[0]?.punchIn);
-  const punchSessions = fetching.response.punchSessions;
+  const punchSessions = fetching?.response?.punchSessions;
   const punchIn = punchSessions?.[0]?.punchIn;
-  const punchOut = punchSessions?.[punchSessions.length - 1]?.punchOut;
-  console.log(
-    "moment(punchOut ?? moment()).diff(moment(punchIn), 'seconds')",
-    moment(punchOut ?? moment()).diff(moment(punchIn ?? moment()), 'seconds'),
-  );
+  const punchOut = punchSessions?.[punchSessions?.length - 1]?.punchOut;
+
+  const timer = () =>
+    setTotalTime(timeDifferenceISO(punchIn, punchOut ?? new Date()));
+
+  useEffect(() => {
+    let clear: NodeJS.Timeout;
+    if (punchIn) {
+      timer();
+      clear = setInterval(() => timer(), 60 * 1000);
+    }
+    return () => clearInterval(clear);
+  }, [punchIn, punchOut]);
 
   const timingArray = [
     {
-      time: timeHHMM(punchIn),
+      time: punchIn ? timeHHMM(punchIn) : '00:00',
       status: 'Punch In',
       Icon: ClockIn,
     },
     {
-      time: timeHHMM(String(punchOut ?? moment())),
-      status: 'Punch Out',
+      time: timeHHMM(String(punchOut ?? new Date())),
+      status: punchOut ? 'Punch Out' : 'Current Time',
       Icon: ClockOut,
     },
     {
-      time: '09:08 AM',
+      time: punchIn ? totalTime : '00:00',
       status: 'Total Hours',
-      Icon: 'dej',
+      Icon: TotalHours,
     },
   ];
 

@@ -21,12 +21,15 @@ axios.interceptors.request.use(
   },
   error => {
     console.log('error', error);
-    // const status = error.response ? error.response.status : null;
-    // Do something with request error
-    // if (status === 401) {
-    //   DataService.emit('tokenExpire', true);
-    // }
-    // return Promise.reject(error);
+  },
+);
+
+axios.interceptors.response.use(
+  config => {
+    return config;
+  },
+  error => {
+    console.log('error====>>>', error);
   },
 );
 
