@@ -19,7 +19,7 @@ export class HttpRequest {
     const { endPoint = '', payload = undefined } = props;
     try {
       const clientResult = await axios.get(endPoint, { params: payload });
-      return clientResult;
+      return clientResult.data;
     } catch (error) {
       return error as Promise<AxiosResponse<HttpRequestType[R]['response']>>;
     }

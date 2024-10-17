@@ -43,10 +43,14 @@ export interface PunchDetailByUserDateBody extends UserId {
 /**
  * Punch API Response
  */
+export type PunchSessions = {
+  punchIn: string;
+  punchOut: string;
+};
 export interface HttpPunchDetailResponse extends UserId {
   userName: string;
   date: string;
-  punchSessions: string;
+  punchSessions: PunchSessions[];
   punchType: string;
   lastUpdated: string;
 }

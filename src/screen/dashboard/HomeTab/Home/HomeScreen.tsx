@@ -8,7 +8,6 @@ import {
   ClockOut,
   Punch,
   Refresh,
-  TotalHours,
 } from '../../../../assets/icon';
 import LinearGradient from 'react-native-linear-gradient';
 import { appImages } from '../../../../assets/image';
@@ -23,6 +22,9 @@ import {
   HttpPunchDetailResponse,
   HttpRequestType,
 } from '../../../../https/export';
+import moment from 'moment';
+
+const timeHHMM = (date: string): string => moment(date).format('hh:mm A');
 
 const loadDataFromHttpsHook = <R extends keyof HttpRequestType>({
   loading = true,
@@ -33,29 +35,22 @@ const loadDataFromHttpsHook = <R extends keyof HttpRequestType>({
   loading?: boolean;
   payload?: HttpRequestType[R]['body'];
 }) => {
-  // const [dataLoading, setDataLoading] = useState<boolean>(loading || true);
-  // const [apiResponse, setApiResponse] = useState<HttpPunchDetailResponse>();
   const [fetching, setFetching] = useState<{
     loading: boolean;
     response: HttpPunchDetailResponse;
-  }>({
-    loading: loading || true,
-    response,
-  });
+  }>({ loading, response: {} as HttpPunchDetailResponse });
 
   useEffect(() => {
     (async () => {
-      const { data } = await HttpRequest.clientGetRequest<R>({
+      const data = await HttpRequest.clientGetRequest<R>({
         endPoint,
         payload,
       });
-      if (data) {
-        setApiResponse(data);
-        setDataLoading(false);
-      }
+      // console.log('data', data);
+      setFetching({ loading: false, response: data?.data });
     })();
   }, []);
-  return { dataLoading, apiResponse, setApiResponse, setDataLoading };
+  return { fetching, setFetching };
 };
 
 export const HomeScreen = () => {
@@ -65,28 +60,35 @@ export const HomeScreen = () => {
     MMKVStorage.getValue<LoginAPIResponse['data']>(UserPrivateKey.UserDetail)
       ?.userId ?? '';
 
-  const { apiResponse, dataLoading } = loadDataFromHttpsHook<'punchDetail'>({
+  const { fetching, setFetching } = loadDataFromHttpsHook<'punchDetail'>({
     endPoint: HttpRequest.apiEndPoint.getPunchDetailByDate,
     payload: { userId: user },
   });
 
-  console.log('apiResponse', apiResponse, dataLoading);
+  console.log('apiResponse', fetching.response.punchSessions?.[0]?.punchIn);
+  const punchSessions = fetching.response.punchSessions;
+  const punchIn = punchSessions?.[0]?.punchIn;
+  const punchOut = punchSessions?.[punchSessions.length - 1]?.punchOut;
+  console.log(
+    "moment(punchOut ?? moment()).diff(moment(punchIn), 'seconds')",
+    moment(punchOut ?? moment()).diff(moment(punchIn ?? moment()), 'seconds'),
+  );
 
   const timingArray = [
     {
-      time: '09:08 AM',
+      time: timeHHMM(punchIn),
       status: 'Punch In',
       Icon: ClockIn,
     },
     {
-      time: '09:08 AM',
+      time: timeHHMM(String(punchOut ?? moment())),
       status: 'Punch Out',
       Icon: ClockOut,
     },
     {
       time: '09:08 AM',
       status: 'Total Hours',
-      Icon: TotalHours,
+      Icon: 'dej',
     },
   ];
 
