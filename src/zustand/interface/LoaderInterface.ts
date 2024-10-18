@@ -5,7 +5,7 @@ export type GlobalLoader = {
   handleLoad: () => void;
 };
 
-export type HomeSoteZustand = {
+export type HomeStoreZustand = {
   data: HttpPunchDetailResponse;
   setData: (data: HttpPunchDetailResponse) => void;
 };

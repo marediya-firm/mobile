@@ -1,7 +1,7 @@
 import { HttpPunchDetailResponse } from '../export';
 
-export class IntialState {
-  static HomeIntialState: HttpPunchDetailResponse = {
+export class initial {
+  static HomeInitialState: HttpPunchDetailResponse = {
     userName: '',
     date: '',
     punchSessions: [],
