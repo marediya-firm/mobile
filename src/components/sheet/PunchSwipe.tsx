@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
-import ActionSheet, { SheetProps } from 'react-native-actions-sheet';
+import ActionSheet, {
+  SheetManager,
+  SheetProps,
+} from 'react-native-actions-sheet';
 import responsive from '../../utils/responsive';
 import { Colors } from '../../constant';
 import { SwipeRight } from '../../assets/icon/SwipeRight';
@@ -15,19 +18,27 @@ import Animated, {
 import { deviceWidth } from '../../../App';
 import { fontStyleVariant, variant } from '../../utils';
 import { HttpRequest } from '../../https/export';
+import { useHomeZustand } from '../../zustand/home/HomeStore';
 
 const PunchSwipe: FC<Required<SheetProps<'punch-swipe-sheet'>>> = ({
   sheetId,
-  payload,
 }) => {
   const swipeX = useSharedValue(0);
 
-  const onSwipeComplete = () => {
-    HttpRequest.clientGetRequest<{}>({
-      endPoint: HttpRequest.apiEndPoint.getPunchByUser,
-      payload: { userId: '123' },
+  const onSwipeComplete = async () => {
+    const store = useHomeZustand.getState();
+
+    const punchType = await HttpRequest.clientPostRequest<'punchInOut'>({
+      endPoint: HttpRequest.apiEndPoint.punchInOut,
+      payload: {
+        punchType:
+          store?.data?.punchType === 'punch-in' ? 'punch-out' : 'punch-in',
+      },
     });
-    console.log('onSwipeComplete');
+    if (punchType?.data) {
+      store.setData(punchType?.data);
+    }
+    SheetManager.hide('punch-swipe-sheet');
   };
 
   const pan = Gesture.Pan()

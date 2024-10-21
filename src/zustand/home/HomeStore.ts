@@ -1,5 +1,7 @@
-import { create } from 'zustand';
+import { createWithEqualityFn } from 'zustand/traditional';
+
 import {
+  deepEqual,
   HomeStoreSetter,
   HomeStoreState,
   HttpPunchDetailResponse,
@@ -8,7 +10,9 @@ import {
 } from '../export';
 import { immer } from 'zustand/middleware/immer';
 
-export const useHomeZustand = create<HomeStoreState & HomeStoreSetter>()(
+export const useHomeZustand = createWithEqualityFn<
+  HomeStoreState & HomeStoreSetter
+>()(
   immer<HomeStoreState & HomeStoreSetter>((set: SetState<HomeStoreState>) => ({
     data: initial.HomeInitialState,
     setData: (data: HttpPunchDetailResponse) => {
@@ -17,6 +21,7 @@ export const useHomeZustand = create<HomeStoreState & HomeStoreSetter>()(
       });
     },
   })),
+  deepEqual,
 );
 
 export type UseHomeZustandType = ReturnType<typeof useHomeZustand>;

@@ -19,6 +19,7 @@ export const WorldTime = (): [
         const data = await axios.get('https://worldtimeapi.org/api/ip');
         console.log(setServerTime(formatTime(new Date(data?.data?.datetime))));
       } catch (error) {
+        setServerTime(formatTime(new Date()));
         console.error('Error fetching server time:', error);
       }
     };

@@ -16,7 +16,17 @@ const userDetailFromLocal = () =>
 
 axios.interceptors.request.use(
   config => {
-    config.headers.Authorization = `Bearer ${userDetailFromLocal()?.token}`;
+    const user = userDetailFromLocal();
+    /**
+     * Passing default user id in axios request
+     */
+    const userId = user?.userId;
+    if (userId) {
+      config.params = { userId, ...config.params };
+    }
+    config.data = { userId, ...config.data };
+
+    config.headers.Authorization = `Bearer ${user?.token}`;
     return config;
   },
   error => {

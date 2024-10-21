@@ -5,9 +5,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import { Punch } from '../../../../../assets/icon';
 import { Colors } from '../../../../../utils';
 import responsive, { IResponsive } from '../../../../../utils/responsive';
+import { useHomeZustand } from '../../../../../zustand/home/HomeStore';
 
 export const PunchButton = () => {
   const styles = useMakeStyles(responsive);
+
+  const isPunch = useHomeZustand(state => state?.data?.punchType);
+
   return (
     <TouchableOpacity
       style={styles.gradientContainer}
@@ -26,7 +30,9 @@ export const PunchButton = () => {
         <View style={styles.clockInContainerParent}>
           <View style={styles.clockInContainer}>
             <Punch />
-            <Text style={styles.clockInText}>Punch In</Text>
+            <Text style={styles.clockInText}>
+              {isPunch === 'punch-in' ? 'Punch Out' : 'Punch In'}
+            </Text>
           </View>
         </View>
       </LinearGradient>

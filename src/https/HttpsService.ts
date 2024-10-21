@@ -30,15 +30,14 @@ export class HttpRequest {
    * @param props endpoint and body for the API request
    * @returns AxiosResponse<T>
    */
-  static async clientPostRequest<T>(
-    props: HttpBodyPropsForPost,
-  ): Promise<AxiosResponse<T>> {
+  static async clientPostRequest<R extends keyof HttpRequestType>(
+    props: HttpBodyPropsForGet<R>,
+  ): Promise<AxiosResponse<HttpRequestType[R]['response']>> {
     const { endPoint = '', payload = {} } = props;
     try {
-      return await axios.post(endPoint, payload);
-    } catch (error: string | any) {
-      console.log(`${endPoint}`, error);
-      return error?.message || error;
+      return (await axios.post(endPoint, payload)).data;
+    } catch (error) {
+      return error as Promise<AxiosResponse<HttpRequestType[R]['response']>>;
     }
   }
 
@@ -88,5 +87,6 @@ export class HttpRequest {
     getMenuById: '/get-product-category',
     getPunchByUser: 'punch/punch-details',
     getPunchDetailByDate: '/punch/today-punch-details',
+    punchInOut: '/punch/punch-in-out',
   };
 }

@@ -43,20 +43,20 @@ export const loginApiController = async (
     /**
      * Login API
      */
-    const result = await HttpRequest.clientPostRequest<LoginAPIResponse>({
+    const result = await HttpRequest.clientPostRequest({
       endPoint: HttpRequest.apiEndPoint.login,
       payload: apiBody,
     });
     console.log('result', result);
 
-    if (result?.data?.data) {
+    if (result?.data) {
       await UserLocalStorage.setValue<LoginAPIResponse['data']>(
         UserPrivateKey.UserDetail,
-        result.data.data,
+        result.data,
       );
       MMKVStorage.setValue<LoginAPIResponse['data']>(
         UserPrivateKey.UserDetail,
-        result.data.data,
+        result.data,
       );
       navigation.replace(routePath.ScreenBridge);
     } else {

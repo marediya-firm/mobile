@@ -14,15 +14,17 @@ export interface HttpBodyPropsForGet<R extends keyof HttpRequestType> {
   payload?: HttpRequestType[R]['body']; // Dynamically selects the correct type based on the key T
 }
 
+/**
+ *  Path
+ */
 export type Response<B, R> = { body: B; response: R };
-
 export type HttpRequestType = {
   punchDetail: Response<PunchDetailBody, HttpPunchDetailResponse>;
-  punchDetailByData: Response<PunchDetailByIdBody, HttpPunchDetailResponse>;
   punchDetailByDate: Response<
     PunchDetailByUserDateBody,
     HttpPunchDetailResponse
   >;
+  punchInOut: Response<InOutBody, HttpPunchDetailResponse>;
 };
 
 /**
@@ -39,6 +41,7 @@ export interface PunchDetailByUserDateBody extends UserId {
   startDate?: string;
   endDate?: string;
 }
+export type InOutBody = { punchType: 'punch-in' | 'punch-out' };
 
 /**
  * Punch API Response
@@ -51,7 +54,7 @@ export interface HttpPunchDetailResponse extends UserId {
   userName: string;
   date: string;
   punchSessions: PunchSessions[];
-  punchType: string;
+  punchType: 'punch-in' | 'punch-out';
   lastUpdated: string;
 }
 
@@ -62,6 +65,7 @@ export interface ApiEndpoint {
   getMenuById: '/get-product-category';
   getPunchByUser: 'punch/punch-details';
   getPunchDetailByDate: '/punch/today-punch-details';
+  punchInOut: '/punch/punch-in-out';
 }
 
 /**
