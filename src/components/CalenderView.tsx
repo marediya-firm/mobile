@@ -1,10 +1,4 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import moment from 'moment';
 import { deviceWidth } from '../../App';
@@ -21,7 +15,7 @@ export const CalenderView = () => {
 
   const generateDays = () => {
     const days = [];
-    let day = startOfWeek.clone();
+    const day = startOfWeek.clone();
 
     while (day.isBefore(endOfWeek, 'day')) {
       days.push(day.clone());
@@ -36,7 +30,7 @@ export const CalenderView = () => {
       {/* Days of Week */}
       <WeekView />
       {/* Days of Month */}
-      <FlatList
+      <FlatList<moment.Moment>
         scrollEnabled={false}
         data={generateDays()}
         renderItem={({ item }) => <RenderDay day={item} />}
@@ -69,6 +63,7 @@ const RenderDay = React.memo((props: RenderDayProps) => {
     </TouchableOpacity>
   );
 });
+RenderDay.displayName = 'RenderDay';
 
 const styles = StyleSheet.create({
   dayContainer: {

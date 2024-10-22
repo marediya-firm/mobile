@@ -153,54 +153,6 @@ import { appImages } from '../../../assets/image';
 import { CalenderView } from '../../../components/CalenderView';
 
 const Calendar = () => {
-  const [currentMonth, setCurrentMonth] = useState(moment());
-
-  const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-
-  const startOfMonth = currentMonth.clone().startOf('month');
-  const endOfMonth = currentMonth.clone().endOf('month');
-  const startOfWeek = startOfMonth.clone().startOf('week');
-  const endOfWeek = endOfMonth.clone().endOf('week');
-
-  const generateDays = () => {
-    const days = [];
-    let day = startOfWeek.clone();
-
-    while (day.isBefore(endOfWeek, 'day')) {
-      days.push(day.clone());
-      day.add(1, 'day');
-    }
-
-    return days;
-  };
-
-  const handlePrevMonth = () => {
-    setCurrentMonth(currentMonth.clone().subtract(1, 'month'));
-  };
-
-  const handleNextMonth = () => {
-    setCurrentMonth(currentMonth.clone().add(1, 'month'));
-  };
-
-  const renderDay = (day: Moment) => {
-    const weekEnd = { 0: true };
-
-    const isWeekDay = !weekEnd[day.weekday() as 0];
-
-    return (
-      <TouchableOpacity style={[styles.dayContainer]}>
-        <Text
-          style={[
-            styles.dayText,
-            { color: isWeekDay ? Colors.grey46 : Colors.colorD7 },
-          ]}
-        >
-          {day.format('D')}
-        </Text>
-      </TouchableOpacity>
-    );
-  };
-
   return (
     <>
       {/* Month Navigation */}
@@ -241,18 +193,22 @@ export const PunchRecord = ({ item }: { item: PunchRecord; index: number }) => {
             {week[date?.day()]}
           </Text>
         </View>
-        <View style={styles.padL}>
-          <Text style={styles.timeStyle}>{item.punchIn}</Text>
-          <Text style={fontStyleVariant[variant.F30011]}>{'Punch In'}</Text>
-        </View>
-        <View style={styles.padH10}>
-          <Text style={styles.timeStyle}>{item.punchOut}</Text>
-          <Text style={fontStyleVariant[variant.F30011]}>{'Punch Out'}</Text>
-        </View>
+        <View style={styles.detailWrap}>
+          <View style={styles.padL}>
+            <Text style={styles.timeStyle}>{item.punchIn}</Text>
+            <Text style={fontStyleVariant[variant.F30011]}>{'Punch In'}</Text>
+          </View>
+          <View style={styles.padH10}>
+            <Text style={styles.timeStyle}>{item.punchOut}</Text>
+            <Text style={fontStyleVariant[variant.F30011]}>{'Punch Out'}</Text>
+          </View>
 
-        <View style={styles.padH10}>
-          <Text style={styles.timeStyle}>{item.totalHours}</Text>
-          <Text style={fontStyleVariant[variant.F30011]}>{'Total Hours'}</Text>
+          <View style={styles.padH10}>
+            <Text style={styles.timeStyle}>{item.totalHours}</Text>
+            <Text style={fontStyleVariant[variant.F30011]}>
+              {'Total Hours'}
+            </Text>
+          </View>
         </View>
       </View>
     </View>
@@ -377,4 +333,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   paddingB: { paddingBottom: 80 },
+  detailWrap: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    flex: 1,
+    marginHorizontal: 12,
+  },
 });
