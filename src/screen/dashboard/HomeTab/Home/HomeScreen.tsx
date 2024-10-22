@@ -11,13 +11,23 @@ import { loadDataFromHttpsHookApi } from '../../../../hook/export';
 import {
   Avatar,
   ProfileDetail,
+  PunchButton,
   UserTimeCalculation,
 } from './components/export';
-import { PunchButton } from './components/PunchButton';
+
+import { useHomeZustand } from '../../../../zustand/home/HomeStore';
 
 export const HomeScreen = () => {
   const styles = useMakeStyles(responsive);
 
+  /**
+   * For indicating loading state
+   */
+  const isLoading = useHomeZustand(data => !!data?.data?.punchType?.length);
+  /**
+   * Calling Api Hook and based on key set the response value in zustand
+   * @see avoid propr drilling
+   */
   loadDataFromHttpsHookApi<'punchDetail'>({
     endPoint: HttpRequest.apiEndPoint.getPunchDetailByDate,
     zustandKey: 'useHomeZustand',
@@ -28,7 +38,7 @@ export const HomeScreen = () => {
       source={appImages.background}
       style={[styles.customView, styles.background]}
     >
-      <CustomView style={styles.customView}>
+      <CustomView isLoading={!isLoading} style={styles.customView}>
         <View style={styles.headerContainer}>
           <Avatar />
           <ProfileDetail />

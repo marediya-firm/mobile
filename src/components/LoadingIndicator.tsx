@@ -10,7 +10,10 @@ export const LoadingIndicator = (props: Load) => {
       color={color || Colors.darkBlack}
       viewProps={{ style: style }}
     >
-      <ActivityIndicator size={size || 'large'} color={Colors.darkBlack} />
+      <ActivityIndicator
+        size={size || 'large'}
+        color={color || Colors.darkBlack}
+      />
     </CustomViewCenter>
   );
 };

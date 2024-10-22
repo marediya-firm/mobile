@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { ClockIn, ClockOut, TotalHours } from '../../../../../assets/icon';
 import {
+  findTotalMils,
   fontStyleVariant,
   IResponsive,
-  timeDifferenceISO,
   timeHHMM,
   variant,
 } from '../../../../../utils';
@@ -19,18 +19,19 @@ export const UserTimeCalculation = () => {
     state => state?.data?.punchSessions,
   );
 
-  const punchSessions = session;
+  const punchSessions = session ?? [];
   const punchIn = punchSessions?.[0]?.punchIn;
   const punchOut = punchSessions?.[punchSessions?.length - 1]?.punchOut;
 
-  const timer = () =>
-    setTotalTime(timeDifferenceISO(punchIn, punchOut ?? new Date()));
+  const timer = () => setTotalTime(findTotalMils(punchSessions));
 
   React.useEffect(() => {
     let clear: NodeJS.Timeout;
     if (punchIn) {
       timer();
-      clear = setInterval(() => timer(), 60 * 1000);
+      if (!punchOut) {
+        clear = setInterval(() => timer(), 60 * 1000);
+      }
     }
     return () => clearInterval(clear);
   }, [punchIn, punchOut]);
@@ -52,6 +53,7 @@ export const UserTimeCalculation = () => {
       Icon: TotalHours,
     },
   ];
+
   return (
     <>
       {timingArray?.map((item, index) => (

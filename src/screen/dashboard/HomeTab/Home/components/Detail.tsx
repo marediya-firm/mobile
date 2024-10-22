@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Colors, fontStyleVariant, variant } from '../../../../../utils';
 
-export const ProfileDetail = () => {
+export const ProfileDetail = React.memo(() => {
   return (
     <View style={styles.textContainer}>
       <Text style={styles.employeeNameText} numberOfLines={1}>
@@ -15,7 +15,9 @@ export const ProfileDetail = () => {
       </Text>
     </View>
   );
-};
+});
+
+ProfileDetail.displayName = 'ProfileDetail';
 
 const styles = StyleSheet.create({
   textContainer: {

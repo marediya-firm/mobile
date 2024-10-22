@@ -7,9 +7,8 @@ import { Colors } from '../../../../../utils';
 import responsive, { IResponsive } from '../../../../../utils/responsive';
 import { useHomeZustand } from '../../../../../zustand/home/HomeStore';
 
-export const PunchButton = () => {
+export const PunchButton = React.memo(() => {
   const styles = useMakeStyles(responsive);
-
   const isPunch = useHomeZustand(state => state?.data?.punchType);
 
   return (
@@ -38,7 +37,9 @@ export const PunchButton = () => {
       </LinearGradient>
     </TouchableOpacity>
   );
-};
+});
+
+PunchButton.displayName = 'PunchButton';
 
 const useMakeStyles = ({ height, width }: IResponsive) =>
   StyleSheet.create({

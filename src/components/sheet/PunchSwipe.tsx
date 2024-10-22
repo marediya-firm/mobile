@@ -31,10 +31,10 @@ const PunchSwipe: FC<Required<SheetProps<'punch-swipe-sheet'>>> = ({
     const punchType = await HttpRequest.clientPostRequest<'punchInOut'>({
       endPoint: HttpRequest.apiEndPoint.punchInOut,
       payload: {
-        punchType:
-          store?.data?.punchType === 'punch-in' ? 'punch-out' : 'punch-in',
+        punchType: store?.data?.punchType,
       },
     });
+
     if (punchType?.data) {
       store.setData(punchType?.data);
     }
