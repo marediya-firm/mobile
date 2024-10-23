@@ -17,3 +17,5 @@ export const timingArray = [
     Icon: TotalHours,
   },
 ];
+
+export const week = ['SUN', 'MON', 'TUE', 'WED', 'FRI', 'SAT'];
