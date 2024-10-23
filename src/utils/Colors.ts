@@ -43,7 +43,8 @@ export type ColorsType = {
     | 'color1E'
     | 'colorD7'
     | 'colorF6'
-    | 'color55']: string;
+    | 'color55'
+    | 'r01']: string;
 };
 
 export const Colors: ColorsType = {
@@ -56,6 +57,7 @@ export const Colors: ColorsType = {
   color55: '#6FAB55',
 
   grey94: '#6A7D94',
+  r01: 'rgba(0, 0, 0, 0.1)',
   borderColor: 'rgba(0, 0, 0, 0.4)',
   placeHolderBlack: 'rgba(0, 0, 0, 0.7)',
   googleColor: 'rgba(0, 0, 0, 0.6)',

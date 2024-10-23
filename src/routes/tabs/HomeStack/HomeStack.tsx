@@ -16,16 +16,14 @@ const lazyComponent: LazyComponentHome<React.FunctionComponent> = {
 
 export const HomeStack = () => {
   return (
-    <React.StrictMode>
-      <Stack.Navigator
-        screenOptions={authHeaderProp}
-        initialRouteName={routePath.HomeScreen}
-      >
-        <Stack.Screen
-          name={routePath.HomeScreen}
-          getComponent={() => lazyComponent[routePath.HomeScreen]}
-        />
-      </Stack.Navigator>
-    </React.StrictMode>
+    <Stack.Navigator
+      screenOptions={authHeaderProp}
+      initialRouteName={routePath.HomeScreen}
+    >
+      <Stack.Screen
+        name={routePath.HomeScreen}
+        getComponent={() => lazyComponent[routePath.HomeScreen]}
+      />
+    </Stack.Navigator>
   );
 };

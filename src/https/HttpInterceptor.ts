@@ -39,7 +39,7 @@ axios.interceptors.response.use(
     return config;
   },
   error => {
-    console.log('error====>>>', error);
+    console.log('error====>>>', JSON.stringify(error));
   },
 );
 

@@ -23,7 +23,7 @@ export const UserTimeCalculation = () => {
   const punchIn = punchSessions?.[0]?.punchIn;
   const punchOut = punchSessions?.[punchSessions?.length - 1]?.punchOut;
 
-  const timer = () => setTotalTime(findTotalMils(punchSessions));
+  const timer = () => setTotalTime(findTotalMils(punchSessions) as string);
 
   React.useEffect(() => {
     let clear: NodeJS.Timeout;

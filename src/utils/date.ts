@@ -16,7 +16,10 @@ const differenceMls = (startDateStr: string, endDateStr: string) => {
   return endDate.getTime() - startDate.getTime();
 };
 
-export const findTotalMils = (punchSessions: PunchSessions[]) => {
+export const findTotalMils = (
+  punchSessions: PunchSessions[],
+  isMils?: boolean,
+) => {
   let diffMs = 0;
 
   for (let i = 0; i < punchSessions?.length; i++) {
@@ -24,6 +27,9 @@ export const findTotalMils = (punchSessions: PunchSessions[]) => {
       punchSessions[i]?.punchIn,
       punchSessions[i]?.punchOut ?? new Date(),
     );
+  }
+  if (isMils) {
+    return diffMs;
   }
   return findDifference(diffMs);
 };
