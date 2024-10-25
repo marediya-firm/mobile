@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { HttpRequest, HttpRequestType } from '../../https/export';
-import { initial, ZustandFnc } from '../../zustand/export';
+import { ZustandFnc } from '../../zustand/export';
 import { zustandFnc } from '../../zustand/function/Function';
 
 export const loadDataFromHttpsHookApi = <R extends keyof HttpRequestType>({
@@ -30,7 +30,7 @@ export const loadDataFromHttpsHookApi = <R extends keyof HttpRequestType>({
       }
     })();
     return () => {
-      zustandFnc[zustandKey].getState()?.setData(initial.HomeInitialState);
+      // zustandFnc[zustandKey].getState()?.setData(initial.HomeInitialState);
     };
   }, []);
 

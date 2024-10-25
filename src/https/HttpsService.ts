@@ -88,5 +88,6 @@ export class HttpRequest {
     getPunchByUser: 'punch/punch-details',
     getPunchDetailByDate: '/punch/today-punch-details',
     punchInOut: '/punch/punch-in-out',
+    getLeaveRequest: '/leave/user-leave-requests',
   };
 }

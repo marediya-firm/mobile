@@ -1,3 +1,4 @@
+import { HttpLeaveDetailResponse } from '../../https/export';
 import { HttpPunchDetailResponse } from '../export';
 
 export class initial {
@@ -9,4 +10,18 @@ export class initial {
     lastUpdated: '',
     userId: '',
   };
+
+  static HistoryInitialState: HttpLeaveDetailResponse[] = [
+    {
+      _id: '',
+      userId: '',
+      startDate: '',
+      endDate: '',
+      leaveType: '',
+      reason: '',
+      type: '',
+      createdAt: '',
+      updatedAt: '',
+    },
+  ];
 }

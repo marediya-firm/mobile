@@ -25,11 +25,13 @@ export type HttpRequestType = {
     HttpPunchDetailResponse
   >;
   punchInOut: Response<InOutBody, HttpPunchDetailResponse>;
+  leaveDetails: Response<leaveParams, HttpLeaveDetailResponse[]>;
 };
 
 /**
- * Punch API Body
+ * params Body
  */
+export type InOutBody = { punchType: 'punch-in' | 'punch-out' };
 export interface UserId {
   userId: string;
 }
@@ -41,7 +43,11 @@ export interface PunchDetailByUserDateBody extends UserId {
   startDate?: string;
   endDate?: string;
 }
-export type InOutBody = { punchType: 'punch-in' | 'punch-out' };
+
+export type leaveParams = {
+  startDate: string;
+  endDate: string;
+};
 
 /**
  * Punch API Response
@@ -54,8 +60,20 @@ export interface HttpPunchDetailResponse extends UserId {
   userName: string;
   date: string;
   punchSessions: PunchSessions[];
-  punchType: 'punch-in' | 'punch-out';
+  punchType: 'punch-in' | 'punch-out' | '';
   lastUpdated: string;
+}
+
+export interface HttpLeaveDetailResponse extends UserId {
+  _id: string;
+  userId: string;
+  startDate: string;
+  endDate: string;
+  leaveType: string;
+  reason: string;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ApiEndpoint {
@@ -66,6 +84,7 @@ export interface ApiEndpoint {
   getPunchByUser: 'punch/punch-details';
   getPunchDetailByDate: '/punch/today-punch-details';
   punchInOut: '/punch/punch-in-out';
+  getLeaveRequest: '/leave/user-leave-requests';
 }
 
 /**

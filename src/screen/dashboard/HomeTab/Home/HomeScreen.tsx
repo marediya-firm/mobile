@@ -24,6 +24,7 @@ export const HomeScreen = () => {
    * For indicating loading state
    */
   const isLoading = useHomeZustand(data => !!data?.data?.punchType?.length);
+
   /**
    * Calling Api Hook and based on key set the response value in zustand
    * @see avoid propr drilling

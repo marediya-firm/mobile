@@ -1,9 +1,14 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import React, { useMemo, useState } from 'react';
 import moment from 'moment';
-import { deviceWidth } from '../../App';
-import { Colors } from '../constant';
 import { WeekView } from './WeekView';
+import { RenderDay } from './export';
+import { Arrow } from '../assets/icon';
+import { fontStyleVariant, variant } from '../utils';
+import responsive from '../utils/responsive';
+import { loadDataFromHttpsHookApi } from '../hook/export';
+import { HttpRequest } from '../https/export';
+import { useHistoryZustand } from '../zustand/history/HistoryStore';
 
 export const CalenderView = () => {
   const [currentMonth, setCurrentMonth] = useState(moment());
@@ -12,28 +17,57 @@ export const CalenderView = () => {
   const endOfMonth = currentMonth.clone().endOf('month');
   const startOfWeek = startOfMonth.clone().startOf('week');
   const endOfWeek = endOfMonth.clone().endOf('week');
+  const leaveCalenderDate = useHistoryZustand(state => state.calender);
 
-  const generateDays = () => {
+  const generateDays = useMemo(() => {
     const days = [];
     const day = startOfWeek.clone();
-
     while (day.isBefore(endOfWeek, 'day')) {
       days.push(day.clone());
       day.add(1, 'day');
     }
-
     return days;
-  };
+  }, [currentMonth]);
+
+  const startDate = moment().startOf('month').format('YYYY-MM-DD');
+  const endDate = moment().endOf('month').format('YYYY-MM-DD');
+
+  /**
+   * Calling Api Hook and based on key set the response value in zustand
+   * @see avoid propr drilling
+   */
+  loadDataFromHttpsHookApi<'leaveDetails'>({
+    endPoint: HttpRequest.apiEndPoint.getLeaveRequest,
+    payload: { endDate, startDate },
+    zustandKey: 'useHistoryZustand',
+  });
 
   return (
     <>
+      <View style={styles.container}>
+        <Text style={fontStyleVariant[variant.F50015]}>
+          {currentMonth.format('MMMM YYYY')}
+        </Text>
+        <View style={styles.rightContainer}>
+          <View style={styles.row}>
+            <View style={styles.arrowButton}>
+              <Arrow left />
+            </View>
+            <View style={styles.arrowButton}>
+              <Arrow />
+            </View>
+          </View>
+        </View>
+      </View>
       {/* Days of Week */}
       <WeekView />
       {/* Days of Month */}
       <FlatList<moment.Moment>
         scrollEnabled={false}
-        data={generateDays()}
-        renderItem={({ item }) => <RenderDay day={item} />}
+        data={generateDays}
+        renderItem={({ item }) => (
+          <RenderDay leaveCalenderDate={leaveCalenderDate} day={item} />
+        )}
         keyExtractor={item => item.format('DD-MM-YYYY')}
         numColumns={7}
       />
@@ -41,39 +75,26 @@ export const CalenderView = () => {
   );
 };
 
-export type RenderDayProps = {
-  day: moment.Moment;
-};
-
-const RenderDay = React.memo((props: RenderDayProps) => {
-  const { day } = props;
-  const weekEnd = { 0: true };
-
-  const isWeekDay = !weekEnd[day.weekday() as 0];
-  return (
-    <TouchableOpacity style={[styles.dayContainer]}>
-      <Text
-        style={[
-          styles.dayText,
-          { color: isWeekDay ? Colors.grey46 : Colors.colorD7 },
-        ]}
-      >
-        {day.format('D')}
-      </Text>
-    </TouchableOpacity>
-  );
-});
-RenderDay.displayName = 'RenderDay';
-
 const styles = StyleSheet.create({
-  dayContainer: {
-    width: deviceWidth / 7 - 4,
+  container: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 10,
-    borderColor: '#ddd',
   },
-  dayText: {
-    fontSize: 16,
+  rightContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  arrowButton: {
+    height: 30,
+    width: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: '#F7F8FC',
+    marginRight: responsive.width(3),
   },
 });
