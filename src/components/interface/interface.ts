@@ -30,5 +30,5 @@ export interface CategoryComponentProps {
  */
 export type RenderDayProps = {
   day: moment.Moment;
-  leaveCalenderDate: HistoryStoreState['calender'];
+  leaveCalenderDate?: HistoryStoreState['calender'];
 };

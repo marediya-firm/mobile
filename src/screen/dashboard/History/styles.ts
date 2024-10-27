@@ -10,10 +10,10 @@ export const useMakeStyle = () =>
     background: { backgroundColor: Colors.colorF9 },
     headerText: {
       shadowColor: Colors.borderColor,
-      shadowOpacity: 0.3,
+      shadowOpacity: 0.1,
       shadowOffset: {
-        height: 1,
-        width: 1,
+        height: 0.3,
+        width: 0.1,
       },
       flexDirection: 'row',
       justifyContent: 'space-between',

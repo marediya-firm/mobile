@@ -1,5 +1,12 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import React, { useMemo, useState } from 'react';
+import React, { startTransition, useMemo, useState } from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import moment from 'moment';
 import { WeekView } from './WeekView';
 import { RenderDay } from './export';
@@ -8,39 +15,60 @@ import { fontStyleVariant, variant } from '../utils';
 import responsive from '../utils/responsive';
 import { loadDataFromHttpsHookApi } from '../hook/export';
 import { HttpRequest } from '../https/export';
-import { useHistoryZustand } from '../zustand/history/HistoryStore';
+import { deviceWidth } from '../../App';
+export const endOfTheMonth = (data: moment.Moment) =>
+  data.clone().endOf('month').format('YYYY-MM-DD');
+
+export const startOfTheMonth = (data: moment.Moment) =>
+  data.clone().startOf('month').format('YYYY-MM-DD');
 
 export const CalenderView = () => {
   const [currentMonth, setCurrentMonth] = useState(moment());
 
   const startOfMonth = currentMonth.clone().startOf('month');
   const endOfMonth = currentMonth.clone().endOf('month');
-  const startOfWeek = startOfMonth.clone().startOf('week');
-  const endOfWeek = endOfMonth.clone().endOf('week');
-  const leaveCalenderDate = useHistoryZustand(state => state.calender);
 
+  // Generate days including empty spaces for alignment
   const generateDays = useMemo(() => {
     const days = [];
-    const day = startOfWeek.clone();
-    while (day.isBefore(endOfWeek, 'day')) {
+    const firstDayOfMonth = startOfMonth.clone();
+    const startOfWeekday = firstDayOfMonth.weekday(); // Weekday of first day in month (0 for Sunday, 1 for Monday, etc.)
+
+    // Add empty slots for days before the first day of the month
+    for (let i = 0; i < startOfWeekday; i++) {
+      days.push(null); // Adding null for each empty day slot
+    }
+
+    // Add actual days of the month
+    const day = startOfMonth.clone();
+    while (day.isSame(currentMonth, 'month')) {
       days.push(day.clone());
       day.add(1, 'day');
     }
+
     return days;
   }, [currentMonth]);
 
-  const startDate = moment().startOf('month').format('YYYY-MM-DD');
-  const endDate = moment().endOf('month').format('YYYY-MM-DD');
+  const startDate = startOfMonth.format('YYYY-MM-DD');
+  const endDate = endOfMonth.format('YYYY-MM-DD');
 
-  /**
-   * Calling Api Hook and based on key set the response value in zustand
-   * @see avoid propr drilling
-   */
-  loadDataFromHttpsHookApi<'leaveDetails'>({
+  const getCalenderData = loadDataFromHttpsHookApi<'leaveDetails'>({
     endPoint: HttpRequest.apiEndPoint.getLeaveRequest,
     payload: { endDate, startDate },
     zustandKey: 'useHistoryZustand',
   });
+
+  const handlePrvNxt = async (next?: boolean) => {
+    const chage = currentMonth.clone().subtract(!next ? 1 : -1, 'month');
+    await getCalenderData({
+      endDate: endOfTheMonth(chage),
+      startDate: startOfTheMonth(chage),
+    });
+
+    startTransition(() => {
+      setCurrentMonth(chage);
+    });
+  };
 
   return (
     <>
@@ -50,25 +78,43 @@ export const CalenderView = () => {
         </Text>
         <View style={styles.rightContainer}>
           <View style={styles.row}>
-            <View style={styles.arrowButton}>
+            <Pressable
+              style={styles.arrowButton}
+              onPress={() => handlePrvNxt()}
+            >
               <Arrow left />
-            </View>
-            <View style={styles.arrowButton}>
+            </Pressable>
+            <Pressable
+              style={styles.arrowButton}
+              onPress={() => handlePrvNxt(true)}
+            >
               <Arrow />
-            </View>
+            </Pressable>
           </View>
         </View>
       </View>
-      {/* Days of Week */}
       <WeekView />
-      {/* Days of Month */}
-      <FlatList<moment.Moment>
+      <FlatList
         scrollEnabled={false}
         data={generateDays}
-        renderItem={({ item }) => (
-          <RenderDay leaveCalenderDate={leaveCalenderDate} day={item} />
+        renderItem={
+          ({ item }) =>
+            item ? <RenderDay day={item} /> : <View style={styles.emptyDay} /> // Render empty view for null slots
+        }
+        keyExtractor={(item, index) =>
+          item ? item.format('DD-MM-YYYY') : `empty-${index}`
+        }
+        ListEmptyComponent={() => (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <ActivityIndicator size={'large'} />
+          </View>
         )}
-        keyExtractor={item => item.format('DD-MM-YYYY')}
         numColumns={7}
       />
     </>
@@ -96,5 +142,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#F7F8FC',
     marginRight: responsive.width(3),
+  },
+  emptyDay: {
+    width: deviceWidth / 7 - 4,
+    height: 35,
   },
 });

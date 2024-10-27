@@ -4,7 +4,6 @@ import {
   deepEqual,
   HomeStoreSetter,
   HomeStoreState,
-  HttpPunchDetailResponse,
   initial,
   SetState,
 } from '../export';
@@ -15,7 +14,7 @@ export const useHomeZustand = createWithEqualityFn<
 >()(
   immer<HomeStoreState & HomeStoreSetter>((set: SetState<HomeStoreState>) => ({
     data: initial.HomeInitialState,
-    setData: (data: HttpPunchDetailResponse) => {
+    setData: (data = initial.HomeInitialState) => {
       set(state => {
         state.data = data;
       });
