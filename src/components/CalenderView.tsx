@@ -59,14 +59,14 @@ export const CalenderView = () => {
   });
 
   const handlePrvNxt = async (next?: boolean) => {
-    const chage = currentMonth.clone().subtract(!next ? 1 : -1, 'month');
+    const change = currentMonth.clone().subtract(!next ? 1 : -1, 'month');
     await getCalenderData({
-      endDate: endOfTheMonth(chage),
-      startDate: startOfTheMonth(chage),
+      endDate: endOfTheMonth(change),
+      startDate: startOfTheMonth(change),
     });
 
     startTransition(() => {
-      setCurrentMonth(chage);
+      setCurrentMonth(change);
     });
   };
 
