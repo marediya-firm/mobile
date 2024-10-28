@@ -4,9 +4,10 @@ import { CustomText, CustomView } from '../../../components/CoreComponent';
 import { variant } from '../../../utils';
 import { MenuIcon } from '../../../assets/icon';
 import { appImages } from '../../../assets/image';
-import { Calendar } from './components/CalenderRecordView';
+import { PunchRecordView } from './components/PunchRecordView';
 import { useMakeStyle } from './styles';
 import { strings } from '../../../constant';
+import { CalenderView } from '../../../components/CalenderView';
 
 const History = () => {
   const styles = useMakeStyle();
@@ -23,7 +24,10 @@ const History = () => {
           <MenuIcon />
         </View>
         <View style={styles.calenderView}>
-          <Calendar />
+          <View style={styles.calenderDate}>
+            <CalenderView />
+          </View>
+          <PunchRecordView />
         </View>
       </CustomView>
     </ImageBackground>

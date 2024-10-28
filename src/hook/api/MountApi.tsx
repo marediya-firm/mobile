@@ -1,10 +1,7 @@
 import { useCallback, useEffect } from 'react';
-import { HttpRequest, HttpRequestType } from '../../https/export';
+import { HttpRequest, HttpRequestType, Payload } from '../../https/export';
 import { SetterKey, ZustandFnc } from '../../zustand/export';
 import { zustandFnc } from '../../zustand/function/Function';
-
-export type Payload<R extends keyof HttpRequestType> =
-  HttpRequestType[R]['body'];
 
 export const loadDataFromHttpsHookApi = <R extends keyof HttpRequestType>({
   endPoint,
@@ -27,7 +24,7 @@ export const loadDataFromHttpsHookApi = <R extends keyof HttpRequestType>({
         payload,
       });
       if (data.data) {
-        zustandFnc[zustandKey].getState()?.[setter](data?.data);
+        zustandFnc[zustandKey].getState()?.[setter]?.(data?.data, data);
       }
     },
     [payload, endPoint],

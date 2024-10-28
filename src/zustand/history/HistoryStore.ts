@@ -5,10 +5,9 @@ import {
   HistoryStoreState,
   SetState,
   HistoryStoreSetter,
-  HttpPunchDetailResponse,
 } from '../export';
 import { immer } from 'zustand/middleware/immer';
-import { HttpLeaveDetailResponse } from '../../https/export';
+import { CommonInterface, HttpLeaveDetailResponse } from '../../https/export';
 
 const setterCalender = (data: HttpLeaveDetailResponse[]) => {
   const calender: HistoryStoreState['calender'] = {};
@@ -31,15 +30,24 @@ export const useHistoryZustand = createWithEqualityFn<
   immer<HistoryStoreState & HistoryStoreSetter>(
     (set: SetState<HistoryStoreState>) => ({
       attendance: [],
-      setData: (data: HttpLeaveDetailResponse[]) => {
+      caching: { leave: {}, punch: {} },
+      calender: {},
+      setData: (data, payload) => {
         set(state => {
-          state.calender = setterCalender(data);
+          state.calender = Array.isArray(data) ? setterCalender(data) : data;
+          /**
+           * Storing cache value
+           */
+          setCaching('leave', 'calender', state, payload);
         });
       },
-      calender: {},
-      setAttendanceData: (data: HttpPunchDetailResponse[]) => {
+      setAttendanceData: (data, payload) => {
         set(state => {
           state.attendance = data;
+          /**
+           * Storing cache value
+           */
+          setCaching('punch', 'attendance', state, payload);
         });
       },
     }),
@@ -48,3 +56,20 @@ export const useHistoryZustand = createWithEqualityFn<
 );
 
 export type UseHomeZustandType = ReturnType<typeof useHistoryZustand>;
+
+const setCaching = (
+  key: keyof HistoryStoreState['caching'],
+  setterKey: keyof Omit<HistoryStoreState, 'caching'>,
+  state: HistoryStoreState,
+  payload?: CommonInterface,
+) => {
+  /**
+   * Check if the caching key exists the
+   * caching key @param key is look like 2024-10-01
+   */
+  if (!state.caching[key]?.[payload?.startDate ?? '']) {
+    (state.caching[key] as unknown) = {
+      [payload?.startDate ?? '']: state[setterKey],
+    };
+  }
+};

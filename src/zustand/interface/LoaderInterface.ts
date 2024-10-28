@@ -1,4 +1,5 @@
 import {
+  CommonInterface,
   HttpLeaveDetailResponse,
   HttpPunchDetailResponse,
 } from '../../https/export';
@@ -34,11 +35,21 @@ export type SetState<Store> = (fnc: (state: Store) => void) => void;
 export type HistoryStoreState = {
   calender: { [key: string]: HttpLeaveDetailResponse };
   attendance: HttpPunchDetailResponse[];
+  caching: {
+    leave: { [key: string]: HistoryStoreState['calender'] };
+    punch: { [key: string]: HistoryStoreState['attendance'] };
+  };
 };
 
 export type HistoryStoreSetter = {
-  setData: (data: HttpLeaveDetailResponse[]) => void;
-  setAttendanceData: (data: HttpPunchDetailResponse[]) => void;
+  setData: (
+    data: HttpLeaveDetailResponse[] | HistoryStoreState['calender'],
+    payload?: CommonInterface,
+  ) => void;
+  setAttendanceData: (
+    data: HttpPunchDetailResponse[],
+    payload?: CommonInterface,
+  ) => void;
 };
 
 export type SetterKey = HistoryStoreSetter;

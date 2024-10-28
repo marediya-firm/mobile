@@ -1,33 +1,11 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 
-import { CalenderView } from '../../../../components/CalenderView';
 import { PunchRecord } from './RecordView';
 import { useHistoryZustand } from '../../../../zustand/history/HistoryStore';
 import { HttpPunchDetailResponse } from '../../../../https/export';
 
-export const Calendar = () => {
-  return (
-    <>
-      {/* Month Navigation */}
-      <View style={styles.calenderDate}>
-        <CalenderView />
-      </View>
-      <PunchingRecordView />
-    </>
-  );
-};
-
-export const styles = StyleSheet.create({
-  calenderDate: { marginRight: 10 },
-  recordFlat: {
-    marginTop: 10,
-    flex: 1,
-  },
-  paddingB: { paddingBottom: 100 },
-});
-
-const PunchingRecordView = React.memo(() => {
+export const PunchRecordView = () => {
   const attendanceRecord = useHistoryZustand(state => state?.attendance);
 
   return (
@@ -45,6 +23,14 @@ const PunchingRecordView = React.memo(() => {
       )}
     </View>
   );
+};
+
+export const styles = StyleSheet.create({
+  recordFlat: {
+    marginTop: 10,
+    flex: 1,
+  },
+  paddingB: { paddingBottom: 100 },
 });
 
-PunchingRecordView.displayName = 'PunchingRecordView';
+PunchRecordView.displayName = 'PunchRecordView';

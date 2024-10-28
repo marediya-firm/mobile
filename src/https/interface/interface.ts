@@ -20,11 +20,13 @@ export interface HttpBodyPropsForGet<R extends keyof HttpRequestType> {
 export type Response<B, R> = { body: B; response: R };
 export type HttpRequestType = {
   punchDetail: Response<PunchDetailBody, HttpPunchDetailResponse>;
-  punchDetailByDate: Response<commonInterface, HttpPunchDetailResponse[]>;
+  punchDetailByDate: Response<CommonInterface, HttpPunchDetailResponse[]>;
   punchInOut: Response<InOutBody, HttpPunchDetailResponse>;
-  leaveDetails: Response<commonInterface, HttpLeaveDetailResponse[]>;
+  leaveDetails: Response<CommonInterface, HttpLeaveDetailResponse[]>;
 };
 
+export type Payload<R extends keyof HttpRequestType> =
+  HttpRequestType[R]['body'];
 /**
  * params Body
  */
@@ -36,7 +38,7 @@ export type PunchDetailBody = UserId;
 export interface PunchDetailByIdBody extends UserId {
   Date: string;
 }
-export type commonInterface = {
+export type CommonInterface = {
   startDate: string;
   endDate: string;
 };

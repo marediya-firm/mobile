@@ -13,6 +13,7 @@ import { loadDataFromHttpsHookApi } from '../hook/export';
 import { HttpRequest } from '../https/export';
 import { deviceWidth } from '../../App';
 import { BackButtons } from '../screen/dashboard/History/export';
+import { useHistoryZustand } from '../zustand/history/HistoryStore';
 
 export const CalenderView = () => {
   const [currentMonth, setCurrentMonth] = useState(moment());
@@ -25,7 +26,7 @@ export const CalenderView = () => {
   const zustandKey = 'useHistoryZustand';
 
   // Generate days including empty spaces for alignment
-  const generateDays = useMemo(() => {
+  const calenderDays = useMemo(() => {
     const days = [];
     const firstDayOfMonth = startOfMonth.clone();
     const startOfWeekday = firstDayOfMonth.weekday(); // Weekday of first day in month (0 for Sunday, 1 for Monday, etc.)
@@ -45,7 +46,12 @@ export const CalenderView = () => {
     return days;
   }, [currentMonth]);
 
-  const getCalenderData = loadDataFromHttpsHookApi<'leaveDetails'>({
+  /**
+   * Calling Api Hook and based on key set the response value in zustand
+   * @see avoid propr drilling
+   * Getting leave-record response based on months
+   */
+  const getLeaveRecordByMonth = loadDataFromHttpsHookApi<'leaveDetails'>({
     endPoint: HttpRequest.apiEndPoint.getLeaveRequest,
     payload,
     zustandKey,
@@ -54,8 +60,9 @@ export const CalenderView = () => {
   /**
    * Calling Api Hook and based on key set the response value in zustand
    * @see avoid propr drilling
+   * Getting punch-record response based on months
    */
-  const punchDetail = loadDataFromHttpsHookApi<'punchDetailByDate'>({
+  const getPunchRecordsByMonth = loadDataFromHttpsHookApi<'punchDetailByDate'>({
     endPoint: HttpRequest.apiEndPoint.getPunchDetailByDate,
     zustandKey,
     payload,
@@ -65,13 +72,24 @@ export const CalenderView = () => {
   const handlePrvNxt = useCallback(
     async (next?: boolean) => {
       const change = currentMonth.clone().subtract(!next ? 1 : -1, 'month');
+      const store = useHistoryZustand.getState();
+
       const payload = {
         endDate: endOfTheMonth(change),
         startDate: startOfTheMonth(change),
       };
 
-      await punchDetail(payload);
-      await getCalenderData(payload);
+      if (store?.caching?.leave[startDate]) {
+        store.setData(store.caching.leave[startDate], payload);
+        store.setAttendanceData(store.caching.punch[startDate], payload);
+      } else {
+        await getPunchRecordsByMonth(payload);
+        await getLeaveRecordByMonth(payload);
+      }
+
+      /**
+       * For delay response because we have to ensure first response come and than date
+       */
       startTransition(() => {
         setCurrentMonth(change);
       });
@@ -90,7 +108,7 @@ export const CalenderView = () => {
       <WeekView />
       <FlatList
         scrollEnabled={false}
-        data={generateDays}
+        data={calenderDays}
         renderItem={
           ({ item }) =>
             item ? <RenderDay day={item} /> : <View style={styles.emptyDay} /> // Render empty view for null slots

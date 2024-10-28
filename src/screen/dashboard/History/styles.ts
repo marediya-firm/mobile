@@ -36,4 +36,5 @@ export const useMakeStyle = () =>
       justifyContent: 'space-between',
       marginHorizontal: 12,
     },
+    calenderDate: { marginRight: 10 },
   });
