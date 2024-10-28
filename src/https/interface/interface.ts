@@ -20,12 +20,9 @@ export interface HttpBodyPropsForGet<R extends keyof HttpRequestType> {
 export type Response<B, R> = { body: B; response: R };
 export type HttpRequestType = {
   punchDetail: Response<PunchDetailBody, HttpPunchDetailResponse>;
-  punchDetailByDate: Response<
-    PunchDetailByUserDateBody,
-    HttpPunchDetailResponse
-  >;
+  punchDetailByDate: Response<commonInterface, HttpPunchDetailResponse[]>;
   punchInOut: Response<InOutBody, HttpPunchDetailResponse>;
-  leaveDetails: Response<leaveParams, HttpLeaveDetailResponse[]>;
+  leaveDetails: Response<commonInterface, HttpLeaveDetailResponse[]>;
 };
 
 /**
@@ -39,16 +36,10 @@ export type PunchDetailBody = UserId;
 export interface PunchDetailByIdBody extends UserId {
   Date: string;
 }
-export interface PunchDetailByUserDateBody extends UserId {
-  startDate?: string;
-  endDate?: string;
-}
-
-export type leaveParams = {
+export type commonInterface = {
   startDate: string;
   endDate: string;
 };
-
 /**
  * Punch API Response
  */
@@ -62,6 +53,7 @@ export interface HttpPunchDetailResponse extends UserId {
   punchSessions: PunchSessions[];
   punchType: 'punch-in' | 'punch-out' | '';
   lastUpdated: string;
+  totalMilliseconds: number;
 }
 
 export interface HttpLeaveDetailResponse extends UserId {
@@ -82,7 +74,7 @@ export interface ApiEndpoint {
   getCategory: '/all-category';
   getMenuById: '/get-product-category';
   getPunchByUser: 'punch/punch-details';
-  getPunchDetailByDate: '/punch/today-punch-details';
+  getPunchDetailByDate: 'punch/punch-details-by-user-date';
   punchInOut: '/punch/punch-in-out';
   getLeaveRequest: '/leave/user-leave-requests';
 }

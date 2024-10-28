@@ -34,7 +34,7 @@ export const findTotalMils = (
   return findDifference(diffMs);
 };
 
-const findDifference = (diffMs: number) => {
+export const findDifference = (diffMs: number) => {
   // Convert milliseconds to total seconds
   const diffSeconds = Math.floor(diffMs / 1000);
 
@@ -52,3 +52,9 @@ const findDifference = (diffMs: number) => {
 
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 };
+
+export const endOfTheMonth = (data: moment.Moment) =>
+  data.clone().endOf('month').format('YYYY-MM-DD');
+
+export const startOfTheMonth = (data: moment.Moment) =>
+  data.clone().startOf('month').format('YYYY-MM-DD');

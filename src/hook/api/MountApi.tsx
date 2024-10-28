@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { HttpRequest, HttpRequestType } from '../../https/export';
-import { ZustandFnc } from '../../zustand/export';
+import { SetterKey, ZustandFnc } from '../../zustand/export';
 import { zustandFnc } from '../../zustand/function/Function';
 
 export type Payload<R extends keyof HttpRequestType> =
@@ -10,10 +10,12 @@ export const loadDataFromHttpsHookApi = <R extends keyof HttpRequestType>({
   endPoint,
   payload,
   zustandKey,
+  setter = 'setData',
 }: {
   endPoint: string;
   payload?: Payload<R>;
   zustandKey: keyof ZustandFnc;
+  setter?: keyof SetterKey | 'setData';
 }) => {
   /**
    * Fetching data from the server caching function to uneven callback
@@ -25,7 +27,7 @@ export const loadDataFromHttpsHookApi = <R extends keyof HttpRequestType>({
         payload,
       });
       if (data.data) {
-        zustandFnc[zustandKey].getState()?.setData(data?.data);
+        zustandFnc[zustandKey].getState()?.[setter](data?.data);
       }
     },
     [payload, endPoint],

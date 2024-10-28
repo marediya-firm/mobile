@@ -1,16 +1,11 @@
-import { Moment } from 'moment';
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 
 import { CalenderView } from '../../../../components/CalenderView';
 import { PunchRecord } from './RecordView';
+import { useHistoryZustand } from '../../../../zustand/history/HistoryStore';
+import { HttpPunchDetailResponse } from '../../../../https/export';
 
-type PunchRecordType = {
-  day: Moment;
-  punchIn: string;
-  punchOut: string;
-  totalHours: string;
-};
 export const Calendar = () => {
   return (
     <>
@@ -18,15 +13,7 @@ export const Calendar = () => {
       <View style={styles.calenderDate}>
         <CalenderView />
       </View>
-      <View style={styles.recordFlat}>
-        <FlatList<PunchRecordType>
-          data={[]}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.paddingB}
-          renderItem={PunchRecord}
-          keyExtractor={(_, index) => String(index * 80)}
-        />
-      </View>
+      <PunchingRecordView />
     </>
   );
 };
@@ -37,5 +24,27 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     flex: 1,
   },
-  paddingB: { paddingBottom: 80 },
+  paddingB: { paddingBottom: 100 },
 });
+
+const PunchingRecordView = React.memo(() => {
+  const attendanceRecord = useHistoryZustand(state => state?.attendance);
+
+  return (
+    <View style={styles.recordFlat}>
+      {attendanceRecord?.length > 0 && (
+        <FlatList<HttpPunchDetailResponse>
+          data={attendanceRecord}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.paddingB}
+          renderItem={({ item, index }) => (
+            <PunchRecord item={item} index={index} />
+          )}
+          keyExtractor={(_, index) => String(index * 80)}
+        />
+      )}
+    </View>
+  );
+});
+
+PunchingRecordView.displayName = 'PunchingRecordView';

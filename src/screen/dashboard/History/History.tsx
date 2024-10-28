@@ -8,15 +8,6 @@ import { Calendar } from './components/CalenderRecordView';
 import { useMakeStyle } from './styles';
 import { strings } from '../../../constant';
 
-// export const punchRecord: PunchRecord[] = [
-//   {
-//     day: moment(),
-//     punchIn: '09:08 AM',
-//     punchOut: '06:05 PM',
-//     totalHours: '08:13',
-//   },
-// ];
-
 const History = () => {
   const styles = useMakeStyle();
 

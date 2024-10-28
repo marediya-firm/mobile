@@ -3,22 +3,26 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import moment from 'moment';
 import { WeekView } from './WeekView';
 import { RenderDay } from './export';
-import { fontStyleVariant, variant } from '../utils';
+import {
+  endOfTheMonth,
+  fontStyleVariant,
+  startOfTheMonth,
+  variant,
+} from '../utils';
 import { loadDataFromHttpsHookApi } from '../hook/export';
 import { HttpRequest } from '../https/export';
 import { deviceWidth } from '../../App';
 import { BackButtons } from '../screen/dashboard/History/export';
-export const endOfTheMonth = (data: moment.Moment) =>
-  data.clone().endOf('month').format('YYYY-MM-DD');
-
-export const startOfTheMonth = (data: moment.Moment) =>
-  data.clone().startOf('month').format('YYYY-MM-DD');
 
 export const CalenderView = () => {
   const [currentMonth, setCurrentMonth] = useState(moment());
 
   const startOfMonth = currentMonth.clone().startOf('month');
   const endOfMonth = currentMonth.clone().endOf('month');
+  const startDate = startOfMonth.format('YYYY-MM-DD');
+  const endDate = endOfMonth.format('YYYY-MM-DD');
+  const payload = { endDate, startDate };
+  const zustandKey = 'useHistoryZustand';
 
   // Generate days including empty spaces for alignment
   const generateDays = useMemo(() => {
@@ -41,23 +45,33 @@ export const CalenderView = () => {
     return days;
   }, [currentMonth]);
 
-  const startDate = startOfMonth.format('YYYY-MM-DD');
-  const endDate = endOfMonth.format('YYYY-MM-DD');
-
   const getCalenderData = loadDataFromHttpsHookApi<'leaveDetails'>({
     endPoint: HttpRequest.apiEndPoint.getLeaveRequest,
-    payload: { endDate, startDate },
-    zustandKey: 'useHistoryZustand',
+    payload,
+    zustandKey,
+  });
+
+  /**
+   * Calling Api Hook and based on key set the response value in zustand
+   * @see avoid propr drilling
+   */
+  const punchDetail = loadDataFromHttpsHookApi<'punchDetailByDate'>({
+    endPoint: HttpRequest.apiEndPoint.getPunchDetailByDate,
+    zustandKey,
+    payload,
+    setter: 'setAttendanceData',
   });
 
   const handlePrvNxt = useCallback(
     async (next?: boolean) => {
       const change = currentMonth.clone().subtract(!next ? 1 : -1, 'month');
-      await getCalenderData({
+      const payload = {
         endDate: endOfTheMonth(change),
         startDate: startOfTheMonth(change),
-      });
+      };
 
+      await punchDetail(payload);
+      await getCalenderData(payload);
       startTransition(() => {
         setCurrentMonth(change);
       });

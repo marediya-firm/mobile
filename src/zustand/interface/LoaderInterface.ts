@@ -32,10 +32,13 @@ export type SetState<Store> = (fnc: (state: Store) => void) => void;
  * History Stack state
  */
 export type HistoryStoreState = {
-  data: HttpLeaveDetailResponse[];
   calender: { [key: string]: HttpLeaveDetailResponse };
+  attendance: HttpPunchDetailResponse[];
 };
 
 export type HistoryStoreSetter = {
   setData: (data: HttpLeaveDetailResponse[]) => void;
+  setAttendanceData: (data: HttpPunchDetailResponse[]) => void;
 };
+
+export type SetterKey = HistoryStoreSetter;

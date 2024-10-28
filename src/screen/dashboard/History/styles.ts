@@ -21,7 +21,8 @@ export const useMakeStyle = () =>
       paddingTop: 4,
     },
     calenderView: {
-      flex: 1,
+      //before it's flex it any device stretch add flex:1
+      flexGrow: 1,
       backgroundColor: Colors.white,
       marginHorizontal: 8,
       paddingHorizontal: 3,

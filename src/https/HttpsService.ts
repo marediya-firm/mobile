@@ -86,7 +86,7 @@ export class HttpRequest {
     getCategory: '/all-category',
     getMenuById: '/get-product-category',
     getPunchByUser: 'punch/punch-details',
-    getPunchDetailByDate: '/punch/today-punch-details',
+    getPunchDetailByDate: 'punch/punch-details-by-user-date',
     punchInOut: '/punch/punch-in-out',
     getLeaveRequest: '/leave/user-leave-requests',
   };

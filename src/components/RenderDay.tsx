@@ -16,10 +16,10 @@ const { Popover } = renderers;
 export const RenderDay = React.memo((props: RenderDayProps) => {
   const { day } = props;
   const number = day.format('D');
-  const digit = useHistoryZustand(state => state.calender[String(number)]);
+  const digit = useHistoryZustand(state => state?.calender[String(number)]);
 
   // Check if the current day is Sunday
-  const isSunday = day.weekday() === 0;
+  const isSunday = day?.weekday() === 0;
   const colorStyle = { color: isSunday ? Colors.colorD7 : Colors.grey46 };
 
   return (

@@ -3,9 +3,9 @@ import { createWithEqualityFn } from 'zustand/traditional';
 import {
   deepEqual,
   HistoryStoreState,
-  initial,
   SetState,
   HistoryStoreSetter,
+  HttpPunchDetailResponse,
 } from '../export';
 import { immer } from 'zustand/middleware/immer';
 import { HttpLeaveDetailResponse } from '../../https/export';
@@ -30,13 +30,18 @@ export const useHistoryZustand = createWithEqualityFn<
 >()(
   immer<HistoryStoreState & HistoryStoreSetter>(
     (set: SetState<HistoryStoreState>) => ({
-      data: initial.HistoryInitialState,
+      attendance: [],
       setData: (data: HttpLeaveDetailResponse[]) => {
         set(state => {
           state.calender = setterCalender(data);
         });
       },
       calender: {},
+      setAttendanceData: (data: HttpPunchDetailResponse[]) => {
+        set(state => {
+          state.attendance = data;
+        });
+      },
     }),
   ),
   deepEqual,
