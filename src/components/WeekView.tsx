@@ -1,11 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { deviceWidth } from '../../App';
-import { Colors } from '../constant';
+import { Colors, daysOfWeek } from '../constant';
 
 export const WeekView = React.memo(() => {
-  const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-
   return (
     <View style={styles.weekdays}>
       {daysOfWeek.map((day, index) => (
@@ -16,6 +14,9 @@ export const WeekView = React.memo(() => {
     </View>
   );
 });
+
+WeekView.displayName = 'WeekView';
+
 const styles = StyleSheet.create({
   weekdays: {
     flexDirection: 'row',

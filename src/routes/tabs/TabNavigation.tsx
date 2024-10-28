@@ -3,22 +3,24 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaView, View } from 'react-native';
 import { TabNavParamList, routePath } from '../export';
 import { HomeStack } from './HomeStack/HomeStack';
-import { style, TabUtils } from '../../components/export';
+import { style, TabUtils, TabUtilsProps } from '../../components/export';
 import { Colors } from '../../utils';
 
 const Tab = createBottomTabNavigator<TabNavParamList>();
 
-const getTabBarIcon =
-  (route: any) =>
-  ({ focused }: { focused: boolean }) => (
-    <TabUtils tabDetail={route} focus={focused} />
+const getTabBarIcon = (route: TabUtilsProps['tabDetail']) =>
+  Object.assign(
+    ({ focused }: { focused: boolean }) => (
+      <TabUtils tabDetail={route} focus={focused} />
+    ),
+    { displayName: `TabIcon_${route.name}` },
   );
 
 export const TabNavigation = () => {
   return (
     <>
       <Tab.Navigator
-        initialRouteName={routePath.HomeStack}
+        initialRouteName={routePath.History}
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarStyle: style.tabBarStyle,
@@ -33,6 +35,7 @@ export const TabNavigation = () => {
         <Tab.Screen
           name={routePath.History}
           getComponent={() =>
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
             require('../../screen/dashboard/History/History').default
           }
         />

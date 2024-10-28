@@ -8,7 +8,7 @@ import { UserPrivateKey } from '../../../../services/export';
  * Type LoginScreenProps
  */
 export interface LoginScreenProps {
-  data(UserDetail: UserPrivateKey, data: any): unknown;
+  data(UserDetail: UserPrivateKey, data: unknown): unknown;
   navigation: LoginNavigation;
   route: LoginNavigationRoute;
 }
@@ -23,6 +23,7 @@ export type LoginAPIResponse = {
     user_name: string;
     password: string;
     token: string;
+    userId: string;
   };
   message: string;
 };

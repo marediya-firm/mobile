@@ -1,10 +1,4 @@
-import {
-  ActivityIndicator,
-  StyleProp,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import React from 'react';
 import { Colors } from '../constant';
 import { CustomViewCenter, Load } from './export';
@@ -16,7 +10,10 @@ export const LoadingIndicator = (props: Load) => {
       color={color || Colors.darkBlack}
       viewProps={{ style: style }}
     >
-      <ActivityIndicator size={size || 'large'} color={Colors.darkBlack} />
+      <ActivityIndicator
+        size={size || 'large'}
+        color={color || Colors.darkBlack}
+      />
     </CustomViewCenter>
   );
 };

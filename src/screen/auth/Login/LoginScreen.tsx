@@ -15,7 +15,6 @@ import { useIsFocused } from '@react-navigation/native';
 import { loginApiController } from './export';
 
 const LoginScreen = (props: LoginScreenProps) => {
-  console.log('LoginScreen');
   const getAppString = ConstantString('strings') as StringConstant;
   const styles = AppStyle();
   const focus = useIsFocused();

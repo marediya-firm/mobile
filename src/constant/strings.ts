@@ -28,7 +28,8 @@ export type StringConstant = {
     | 'GoodMorning'
     | 'lookingFor'
     | 'FoodType'
-    | 'Popular']: string;
+    | 'Popular'
+    | 'attendanceHistory']: string;
 };
 
 export const strings: StringConstant = {
@@ -56,6 +57,7 @@ export const strings: StringConstant = {
   lookingFor: 'What are you looking for?',
   FoodType: 'Food type',
   Popular: 'Popular',
+  attendanceHistory: 'Attendance History',
 };
 
 export const validationString: validationStringConstant = {

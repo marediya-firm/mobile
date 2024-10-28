@@ -7,7 +7,7 @@ import {
   UserPrivateKey,
   flashAlert,
 } from '../../../../services/export';
-import { useGlobalLoad } from '../../../../zustand/export';
+import { appLoader } from '../../../../zustand/export';
 import { LoginAPIResponse } from '../interface/export';
 
 /**
@@ -22,13 +22,10 @@ export const loginApiController = async (
       description: 'Please try again',
     });
   };
-  /**
-   * Loading state
-   */
-  const handleLoad = useGlobalLoad.getState().handleLoad;
+
   try {
     // Set API body
-    handleLoad();
+    appLoader();
     const apiBody: LoginBody = {
       email: '',
       password: '',
@@ -46,27 +43,28 @@ export const loginApiController = async (
     /**
      * Login API
      */
-    const result = await HttpRequest.clientPostRequest<LoginAPIResponse>({
+    const result = await HttpRequest.clientPostRequest({
       endPoint: HttpRequest.apiEndPoint.login,
       payload: apiBody,
     });
+    console.log('result', result);
 
-    if (result?.data?.data) {
+    if (result?.data) {
       await UserLocalStorage.setValue<LoginAPIResponse['data']>(
         UserPrivateKey.UserDetail,
-        result.data.data,
+        result.data,
       );
       MMKVStorage.setValue<LoginAPIResponse['data']>(
         UserPrivateKey.UserDetail,
-        result.data.data,
+        result.data,
       );
       navigation.replace(routePath.ScreenBridge);
     } else {
       flashAlertMessage(result?.data?.message);
     }
-    handleLoad();
+    appLoader();
   } catch (error: any) {
-    handleLoad();
+    appLoader();
     flashAlertMessage(error?.message);
   }
 };

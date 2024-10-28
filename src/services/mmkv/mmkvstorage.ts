@@ -18,8 +18,9 @@ export class MMKVStorage {
     }
   }
 
-  static setValue(key: UserPrivateKey, value: string) {
-    this.mmkv.setString(key, value);
+  static setValue<T>(key: UserPrivateKey, value: T) {
+    const forceString = JSON.stringify(value);
+    this.mmkv.setString(key, forceString);
   }
 
   static clearValue() {

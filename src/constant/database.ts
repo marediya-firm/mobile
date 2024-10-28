@@ -1,5 +1,8 @@
 import { ClockIn, ClockOut, TotalHours } from '../assets/icon';
 
+/**
+ * clock ticks
+ */
 export const timingArray = [
   {
     time: '09:08 AM',
@@ -17,3 +20,13 @@ export const timingArray = [
     Icon: TotalHours,
   },
 ];
+
+/**
+ * Short name of week
+ */
+export const week = ['SUN', 'MON', 'TUE', 'WED', 'FRI', 'SAT'];
+
+/**
+ * Character name of week
+ */
+export const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];

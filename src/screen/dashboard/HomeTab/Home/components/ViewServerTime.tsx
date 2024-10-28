@@ -20,6 +20,8 @@ export const ViewServerTime = React.memo(
   () => false,
 );
 
+ViewServerTime.displayName = 'ViewServerTime';
+
 const useMakeStyle = ({ height }: IResponsive) =>
   StyleSheet.create({
     timeContainer: {

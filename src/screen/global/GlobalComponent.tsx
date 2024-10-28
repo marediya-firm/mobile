@@ -8,6 +8,7 @@ import {
   HydrationBoundary,
 } from '@tanstack/react-query';
 import { GetToken } from '../../hook/export';
+import { MenuProvider } from 'react-native-popup-menu';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,13 +22,15 @@ export const GlobalComponent = () => {
     <QueryClientProvider client={queryClient}>
       {tokenValue !== 'initial' && (
         <HydrationBoundary queryClient={queryClient} state={'me'}>
-          <MainStack />
-          <AppLoader />
-          <FlashMessage
-            position="top"
-            animated={true}
-            animationDuration={1000}
-          />
+          <MenuProvider>
+            <MainStack />
+            <AppLoader />
+            <FlashMessage
+              position="top"
+              animated={true}
+              animationDuration={1000}
+            />
+          </MenuProvider>
         </HydrationBoundary>
       )}
     </QueryClientProvider>

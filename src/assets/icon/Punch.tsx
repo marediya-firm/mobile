@@ -25,3 +25,4 @@ export const Punch = React.memo(() => {
     </Svg>
   );
 });
+Punch.displayName = 'Punch';

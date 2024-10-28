@@ -9,17 +9,22 @@ import {
   ViewStyle,
 } from 'react-native';
 import React, { memo } from 'react';
-import { Theme, useTheme } from '@react-navigation/native';
 import { GetFontStyle, variant } from '../utils';
 import { ViewProps } from 'react-native-svg/lib/typescript/fabric/utils';
 import Animated, { AnimatedStyle } from 'react-native-reanimated';
+import { LoadingIndicator } from './LoadingIndicator';
 
 interface CustomViewProps {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  isLoading?: boolean;
 }
-export const CustomView = ({ children, style }: CustomViewProps) => {
+export const CustomView = ({ children, style, isLoading }: CustomViewProps) => {
   const flex = { flex: 1, ...(style as ViewStyle) };
+  if (isLoading) {
+    return <LoadingIndicator size={50} color="red" />;
+  }
+
   return (
     <View style={flex}>
       <SafeAreaView />
@@ -35,25 +40,22 @@ interface CustomViewCenterProps {
 }
 export const CustomViewCenter = ({
   children,
-  color,
   viewProps,
 }: CustomViewCenterProps) => {
-  const themeColor: Theme = useTheme();
-  const styles = useStyle(themeColor, color);
+  const styles = useStyle();
   return (
-    <View style={styles.container} {...viewProps}>
+    <View {...viewProps} style={styles.container}>
       {children}
     </View>
   );
 };
 
-const useStyle = (themeColor: Theme, color?: string) =>
+const useStyle = () =>
   StyleSheet.create({
     container: {
-      flex: 1,
+      flexGrow: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: color || themeColor.colors.background,
     },
   });
 
@@ -86,3 +88,5 @@ export const CustomText = memo(
   },
   (prv, cur) => prv.text !== cur.text,
 );
+
+CustomText.displayName = 'CustomText';
