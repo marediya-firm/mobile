@@ -104,17 +104,6 @@ export const CalenderView = () => {
         keyExtractor={(item, index) =>
           item ? item.format('DD-MM-YYYY') : `empty-${index}`
         }
-        ListEmptyComponent={() => (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <ActivityIndicator size={'large'} />
-          </View>
-        )}
         numColumns={7}
       />
     </>
