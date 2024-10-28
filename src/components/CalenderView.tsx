@@ -1,21 +1,13 @@
-import React, { startTransition, useMemo, useState } from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import React, { startTransition, useCallback, useMemo, useState } from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import moment from 'moment';
 import { WeekView } from './WeekView';
 import { RenderDay } from './export';
-import { Arrow } from '../assets/icon';
 import { fontStyleVariant, variant } from '../utils';
-import responsive from '../utils/responsive';
 import { loadDataFromHttpsHookApi } from '../hook/export';
 import { HttpRequest } from '../https/export';
 import { deviceWidth } from '../../App';
+import { BackButtons } from '../screen/dashboard/History/export';
 export const endOfTheMonth = (data: moment.Moment) =>
   data.clone().endOf('month').format('YYYY-MM-DD');
 
@@ -58,17 +50,20 @@ export const CalenderView = () => {
     zustandKey: 'useHistoryZustand',
   });
 
-  const handlePrvNxt = async (next?: boolean) => {
-    const change = currentMonth.clone().subtract(!next ? 1 : -1, 'month');
-    await getCalenderData({
-      endDate: endOfTheMonth(change),
-      startDate: startOfTheMonth(change),
-    });
+  const handlePrvNxt = useCallback(
+    async (next?: boolean) => {
+      const change = currentMonth.clone().subtract(!next ? 1 : -1, 'month');
+      await getCalenderData({
+        endDate: endOfTheMonth(change),
+        startDate: startOfTheMonth(change),
+      });
 
-    startTransition(() => {
-      setCurrentMonth(change);
-    });
-  };
+      startTransition(() => {
+        setCurrentMonth(change);
+      });
+    },
+    [currentMonth],
+  );
 
   return (
     <>
@@ -76,23 +71,8 @@ export const CalenderView = () => {
         <Text style={fontStyleVariant[variant.F50015]}>
           {currentMonth.format('MMMM YYYY')}
         </Text>
-        <View style={styles.rightContainer}>
-          <View style={styles.row}>
-            <Pressable
-              style={styles.arrowButton}
-              onPress={() => handlePrvNxt()}
-            >
-              <Arrow left />
-            </Pressable>
-            <Pressable
-              style={styles.arrowButton}
-              onPress={() => handlePrvNxt(true)}
-            >
-              <Arrow />
-            </Pressable>
-          </View>
-        </View>
       </View>
+      <BackButtons handlePrvNxt={handlePrvNxt} />
       <WeekView />
       <FlatList
         scrollEnabled={false}
@@ -114,23 +94,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  rightContainer: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  row: {
-    flexDirection: 'row',
-  },
-  arrowButton: {
-    height: 30,
-    width: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 20,
-    backgroundColor: '#F7F8FC',
-    marginRight: responsive.width(3),
   },
   emptyDay: {
     width: deviceWidth / 7 - 4,
