@@ -1,4 +1,5 @@
-import { ClockIn, ClockOut, TotalHours } from '../assets/icon';
+import { CalenderIcon, ClockIn, ClockOut, TotalHours } from '../assets/icon';
+import { strings } from './strings';
 
 /**
  * clock ticks
@@ -30,3 +31,26 @@ export const week = ['SUN', 'MON', 'TUE', 'WED', 'FRI', 'SAT'];
  * Character name of week
  */
 export const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+
+export const DashBordUtils = [
+  {
+    icon: CalenderIcon,
+    name: strings.LeaveRequest,
+  },
+  {
+    icon: CalenderIcon,
+    name: strings.LeaveRequest + strings.Details,
+  },
+  {
+    icon: CalenderIcon,
+    name: strings.LeaveApproval,
+  },
+  {
+    icon: CalenderIcon,
+    name: strings.LeaveRequest,
+  },
+  {
+    icon: CalenderIcon,
+    name: strings.LeaveRequest,
+  },
+];

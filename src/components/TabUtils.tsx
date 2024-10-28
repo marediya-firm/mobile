@@ -12,7 +12,7 @@ import { BagIcon, Home, HotDealSvg } from '../assets/icon';
 
 const tabBarAssets = {
   [routePath.HomeStack]: { SvgImage: Home, label: 'HOME' },
-  [routePath.HotDeal]: { SvgImage: HotDealSvg, label: 'DASHBOARD' },
+  [routePath.Dashbord]: { SvgImage: HotDealSvg, label: 'DASHBOARD' },
   [routePath.History]: { SvgImage: BagIcon, label: 'HISTORY' },
   [routePath.Scanner]: { SvgImage: ScannerSvg, label: '' },
   [routePath.Reserve]: { SvgImage: ReserveSvg, label: 'Reserve' },

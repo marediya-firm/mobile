@@ -22,3 +22,8 @@ export * from './Bag';
 export * from './HotDeal';
 export * from './Arrow';
 export * from './Menu';
+export * from './LogoutIcon';
+export * from './CalenderIcon';
+export * from './RegularizationIcon';
+export * from './AttendanceIcon';
+export * from './LeaveApprovalIcon';

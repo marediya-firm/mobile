@@ -29,7 +29,12 @@ export type StringConstant = {
     | 'lookingFor'
     | 'FoodType'
     | 'Popular'
-    | 'attendanceHistory']: string;
+    | 'attendanceHistory'
+    | 'Dashboard'
+    | 'Logout'
+    | 'LeaveRequest'
+    | 'Details'
+    | 'LeaveApproval']: string;
 };
 
 export const strings: StringConstant = {
@@ -58,6 +63,11 @@ export const strings: StringConstant = {
   FoodType: 'Food type',
   Popular: 'Popular',
   attendanceHistory: 'Attendance History',
+  Dashboard: 'Dashboard',
+  Logout: 'LOGOUT',
+  LeaveRequest: 'Leave Request',
+  Details: 'Leave Request Details',
+  LeaveApproval: 'Leave Approval',
 };
 
 export const validationString: validationStringConstant = {
