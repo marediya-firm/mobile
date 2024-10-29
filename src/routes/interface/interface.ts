@@ -14,7 +14,7 @@ export interface RoutePath {
   HomeStack: 'HomeStack';
   SecondTab: 'SecondTab';
   SecondStack: 'SecondStack';
-  HotDeal: 'HotDeal';
+  Dashbord: 'Dashbord';
   Scanner: 'Scanner';
   History: 'History';
   Reserve: 'Reserve';
@@ -82,7 +82,7 @@ export type LoginNavigationRoute = RouteProp<AuthStackParamList, 'LoginScreen'>;
 // >;
 export type TabNavParamList = {
   [routePath.HomeStack]: NavigatorScreenParams<HomeStackParamList>;
-  [routePath.HotDeal]: undefined;
+  [routePath.Dashbord]: undefined;
   [routePath.History]: undefined;
   [routePath.Reserve]: undefined;
   [routePath.Scanner]: undefined;

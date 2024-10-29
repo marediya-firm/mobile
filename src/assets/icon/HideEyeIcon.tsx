@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, Defs, Pattern, Use, Image } from 'react-native-svg';
 
-export const HideEyeIcon = React.memo(props => {
+export const HideEyeIcon = React.memo(() => {
   return (
     <Svg width={19} height={19} viewBox="0 0 24 24" fill="none">
       <Path fill="url(#pattern0)" fillOpacity={0.5} d="M0 0H24V24H0z" />
@@ -24,3 +24,5 @@ export const HideEyeIcon = React.memo(props => {
     </Svg>
   );
 });
+
+HideEyeIcon.displayName = 'HideEyeIcon';

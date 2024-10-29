@@ -52,3 +52,4 @@ export const ScannerSvg = memo((props: { color?: string }) => {
     </Svg>
   );
 });
+ScannerSvg.displayName = 'ScannerSvg';

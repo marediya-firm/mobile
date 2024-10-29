@@ -54,8 +54,8 @@ export class HttpRequest {
     try {
       const clientResult = await axios.patch(endPoint, { payload });
       return clientResult.data;
-    } catch (error: string | any) {
-      return error?.message || error;
+    } catch (error: unknown) {
+      return error as Promise<AxiosResponse>;
     }
   };
 

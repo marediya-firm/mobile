@@ -20,7 +20,7 @@ export const InputReducer = () => {
 
   const reducer = (
     state: inputFiled,
-    action: { type: string; payload: any },
+    action: { type: string; payload: never },
   ) => {
     switch (action.type) {
       case type.FIRST_NAME:

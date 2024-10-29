@@ -1,16 +1,23 @@
 import React, { createContext, useState } from 'react';
 import { InputReducer } from './InputFnc';
 import { useNavigation } from '@react-navigation/native';
-import { QuizDataReducer } from './QuizDataReducer';
+// import { QuizDataReducer } from './QuizDataReducer';
 
-export const GlobalData: any = createContext({});
-export const CommonContext = ({ children }: any) => {
+export const GlobalData = createContext({});
+export const CommonContext = ({ children }: { children: React.ReactNode }) => {
   const { userInput, dispatch } = InputReducer();
-
-  const navigation: any = useNavigation();
+  const QuizDataReducer = () => {
+    return {
+      question: {},
+      dispatchQuestion: () => {
+        ('');
+      },
+    };
+  };
+  const navigation = useNavigation();
   const [globalLoading, setGlobalLoading] = useState(false);
-  const { question, dispatchQuestion }: any = QuizDataReducer();
-  const [useDetail, setUserDetail] = useState<object | any>(null);
+  const { question, dispatchQuestion } = QuizDataReducer();
+  const [useDetail, setUserDetail] = useState<object>({});
 
   const rootStore = {
     navigation,

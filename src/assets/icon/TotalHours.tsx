@@ -23,3 +23,5 @@ export const TotalHours = React.memo(() => {
     </Svg>
   );
 });
+
+TotalHours.displayName = 'TotalHours';

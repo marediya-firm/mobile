@@ -1,12 +1,11 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React, { memo } from 'react';
 import { RatingStar } from '../assets/icon';
 import { Colors } from '../constant';
 import { variant } from '../utils';
 import { CustomText } from './CoreComponent';
-import { MenuAPIResponse } from '../screen/dashboard/export';
 
-export const MenuComponent = memo((props: MenuAPIResponse) => {
+export const MenuComponent = memo(() => {
   return (
     <View style={myStyle.foodTab}>
       {/* <Image source={require('../../../../assets/icon/FOOD.png')} /> */}
@@ -81,3 +80,5 @@ const myStyle = StyleSheet.create({
   },
   categoryImage: { height: 60, width: 60, borderRadius: 35 },
 });
+
+MenuComponent.displayName = 'MenuComponent';

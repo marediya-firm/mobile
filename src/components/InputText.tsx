@@ -12,19 +12,19 @@ import {
 import { Colors } from '../utils/Colors';
 import { HideEyeIcon, ShowEyeIcon } from '../assets/icon';
 
-interface InputText {
+interface InputTextProps {
   value: string | undefined;
   placeholder: string;
-  onChangeText: (value: any) => {} | any | void;
+  onChangeText: (value: string) => void;
   styles?: StyleProp<TextStyle>;
   wrapperStyle?: StyleProp<ViewStyle>;
   suggestion?: undefined | string;
   secureTextEntry?: boolean;
   showEyeIcon?: boolean;
-  onPress?: () => null | undefined | void | any;
+  onPress?: () => void;
 }
 
-export const InputText = (props: InputText) => {
+export const InputText = (props: InputTextProps) => {
   const {
     value,
     placeholder,

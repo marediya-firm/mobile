@@ -11,6 +11,7 @@ const Stack = createStackNavigator<ReserveStackParamList>();
 
 const lazyComponent: LazyComponentSecondTab<React.FunctionComponent> = {
   [routePath.Reserve]:
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('../../../screen/dashboard/SecondTab/SecondTab/SecondTab').default,
 };
 

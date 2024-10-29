@@ -14,3 +14,5 @@ export const Home: FC = React.memo((props?: { color?: string }) => {
     </Svg>
   );
 });
+
+Home.displayName = 'Home';

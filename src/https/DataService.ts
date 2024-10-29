@@ -7,14 +7,14 @@ const subject = new Subject();
  * @param eventName
  * @param value
  */
-const emit = (eventName: string, value: any): any => {
+const emit = <T extends string>(eventName: string, value: T): void => {
   subject.next({ eventName, value });
 };
 
 /**
  * Listen the event
  */
-const on = (): Observable<any> => {
+const on = (): Observable<unknown> => {
   return subject.asObservable();
 };
 
