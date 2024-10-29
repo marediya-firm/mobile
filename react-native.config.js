@@ -3,5 +3,5 @@ module.exports = {
     ios: {},
     android: {},
   },
-  assets: ['/Users/bytes-mahendi/personal/khata_book/src/assets/fonts'],
+  assets: ['./src/assets/fonts'],
 };

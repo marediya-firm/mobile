@@ -6,7 +6,7 @@ import Animated, {
   useAnimatedProps,
   withTiming,
 } from 'react-native-reanimated';
-import { Colors, findTotalMils } from '../../../../../utils';
+import { Colors } from '../../../../../utils';
 import { useHomeZustand } from '../../../../../zustand/home/HomeStore';
 
 export type CircularProgressProps = {
@@ -19,16 +19,18 @@ export const CircularProgress = React.memo(
   (props: CircularProgressProps) => {
     const { size, strokeWidth } = props;
 
-    const session = useHomeZustand(state => state?.data?.punchSessions);
+    const totalMilliseconds = useHomeZustand(
+      state => state?.data?.totalMilliseconds,
+    );
 
     const progress = useMemo(() => {
-      const second = Number(findTotalMils(session, true));
+      const second = Number((totalMilliseconds ?? 0) / 1000);
       return Math.round(
         ((second < 28800 ? second : 28800) /
           28800) /* 8 hours in seconds (28,800 seconds) */ *
           100,
       );
-    }, [session]);
+    }, [totalMilliseconds]);
 
     const animatedProgress = useSharedValue(0);
     const radius = (size - strokeWidth) / 2;

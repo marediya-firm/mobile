@@ -1,11 +1,20 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Colors, fontStyleVariant, variant } from '../../../../../utils';
+import { fonts } from '../../../../../assets/fonts';
 
 export const ProfileDetail = React.memo(() => {
   return (
     <View style={styles.textContainer}>
-      <Text style={styles.employeeNameText} numberOfLines={1}>
+      <Text
+        style={[
+          styles.employeeNameText,
+          {
+            fontFamily: fonts.BebasNeue,
+          },
+        ]}
+        numberOfLines={1}
+      >
         {/**  Api name text */}
         HEY Jhone Doe
       </Text>

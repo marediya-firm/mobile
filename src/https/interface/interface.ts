@@ -30,7 +30,7 @@ export type Payload<R extends keyof HttpRequestType> =
 /**
  * params Body
  */
-export type InOutBody = { punchType: 'punch-in' | 'punch-out' };
+export type InOutBody = { punchType: 'punch-in' | 'punch-out' | '' };
 export interface UserId {
   userId: string;
 }

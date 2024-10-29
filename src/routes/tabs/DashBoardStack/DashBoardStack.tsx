@@ -15,7 +15,7 @@ const lazyComponent: LazyComponentSecondTab<React.FunctionComponent> = {
     require('../../../screen/dashboard/dashboard/DashBoardScreen').default,
 };
 
-export const DashBoardDashBoard = (): React.JSX.Element => {
+export const DashBoardStack = (): React.JSX.Element => {
   return (
     <Stack.Navigator
       screenOptions={authHeaderProp}
