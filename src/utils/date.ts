@@ -29,7 +29,7 @@ export const findTotalMils = (
     );
   }
   if (isMils) {
-    return diffMs;
+    return diffMs / 1000;
   }
   return findDifference(diffMs);
 };

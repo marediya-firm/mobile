@@ -6,4 +6,4 @@ export * from './tabs/export';
 export * from './routepath/export';
 export * from './service/Configuration';
 export * from './tabs/HomeStack/export';
-export * from './tabs/SecondStack/export';
+export * from './tabs/DashBoardStack/export';

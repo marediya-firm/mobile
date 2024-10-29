@@ -30,7 +30,7 @@ export const HomeScreen = () => {
    * @see avoid propr drilling
    */
   loadDataFromHttpsHookApi<'punchDetail'>({
-    endPoint: HttpRequest.apiEndPoint.getPunchDetailByDate,
+    endPoint: HttpRequest.apiEndPoint.getTodayPunch,
     zustandKey: 'useHomeZustand',
   });
 

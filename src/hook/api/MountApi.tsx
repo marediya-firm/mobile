@@ -19,12 +19,16 @@ export const loadDataFromHttpsHookApi = <R extends keyof HttpRequestType>({
    */
   const apiCalling = useCallback(
     async (payload?: Payload<R>) => {
-      const data = await HttpRequest.clientGetRequest<R>({
-        endPoint,
-        payload,
-      });
-      if (data.data) {
-        zustandFnc[zustandKey].getState()?.[setter]?.(data?.data, data);
+      try {
+        const data = await HttpRequest.clientGetRequest<R>({
+          endPoint,
+          payload,
+        });
+        if (data?.data) {
+          zustandFnc[zustandKey].getState()?.[setter]?.(data?.data, data);
+        }
+      } catch (error) {
+        console.log('error', error);
       }
     },
     [payload, endPoint],

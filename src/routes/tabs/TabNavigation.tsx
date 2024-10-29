@@ -20,7 +20,7 @@ export const TabNavigation = () => {
   return (
     <>
       <Tab.Navigator
-        initialRouteName={routePath.Dashbord}
+        initialRouteName={routePath.HomeStack}
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarStyle: style.tabBarStyle,
@@ -32,10 +32,10 @@ export const TabNavigation = () => {
       >
         <Tab.Screen name={routePath.HomeStack} component={HomeStack} />
         <Tab.Screen
-          name={routePath.Dashbord}
+          name={routePath.DashboardStack}
           getComponent={() =>
             // eslint-disable-next-line @typescript-eslint/no-var-requires
-            require('../../screen/dashboard/dashbord/DashboardScreen').default
+            require('../../screen/dashboard/dashboard/DashBoardScreen').default
           }
         />
         <Tab.Screen
