@@ -25,3 +25,5 @@ export const ClockOut = React.memo(() => {
     </Svg>
   );
 });
+
+ClockOut.displayName = 'ClockOut';

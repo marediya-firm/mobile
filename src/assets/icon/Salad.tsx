@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React from 'react';
 import { Defs, G, Path, Svg } from 'react-native-svg';
 
@@ -118,5 +118,3 @@ export const Salad = () => {
 };
 
 export default Salad;
-
-const styles = StyleSheet.create({});

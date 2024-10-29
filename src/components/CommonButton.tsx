@@ -2,21 +2,22 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextStyle,
   TouchableOpacity,
   View,
+  ViewStyle,
 } from 'react-native';
-import React, { Component } from 'react';
+import React from 'react';
 import { Colors } from '../utils/Colors';
-import { F60016 } from '../utils/FontStyle';
 import { LoadingIndicator } from './LoadingIndicator';
 
 interface button {
-  wrapperStyle?: StyleProp<TouchableOpacity | View | any>;
+  wrapperStyle?: StyleProp<ViewStyle>;
   title: string;
-  buttonStyle?: StyleProp<TouchableOpacity | any>;
-  Icon?: any | Component;
-  onPress?: () => null | void | any;
-  textStyle?: StyleProp<Text | any>;
+  buttonStyle?: StyleProp<ViewStyle>;
+  Icon?: React.ReactNode;
+  onPress?: () => void;
+  textStyle?: StyleProp<TextStyle>;
   isShowIcon?: boolean;
   disabled?: boolean;
   loading?: boolean;
@@ -46,7 +47,7 @@ export const CommonButton = (props: button) => {
         ) : (
           <>
             <View style={innerStyle.icon}>{Icon}</View>
-            <Text style={[F60016.main, textStyle]}>{title}</Text>
+            <Text style={[textStyle]}>{title}</Text>
           </>
         )}
       </TouchableOpacity>

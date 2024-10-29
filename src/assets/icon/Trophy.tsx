@@ -1,7 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
 import React, { memo } from 'react';
 import { G, Path, Svg } from 'react-native-svg';
-
 const Trophy = memo(() => {
   return (
     <Svg
@@ -10,7 +8,6 @@ const Trophy = memo(() => {
       width="100px"
       id="Layer_1"
       viewBox="0 0 297 297"
-      //   xml:space="preserve"
       stroke="#f4d734"
     >
       <G id="SVGRepo_bgCarrier" stroke-width="0"></G>
@@ -37,5 +34,4 @@ const Trophy = memo(() => {
 });
 
 export { Trophy };
-
-const styles = StyleSheet.create({});
+Trophy.displayName = 'Trophy';

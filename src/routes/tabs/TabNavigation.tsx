@@ -35,7 +35,7 @@ export const TabNavigation = () => {
           name={routePath.Dashbord}
           getComponent={() =>
             // eslint-disable-next-line @typescript-eslint/no-var-requires
-            require('../../screen/dashboard/dashbord/DashBordScreen').default
+            require('../../screen/dashboard/dashbord/DashboardScreen').default
           }
         />
         <Tab.Screen

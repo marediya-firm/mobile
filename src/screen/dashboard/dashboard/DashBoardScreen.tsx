@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { CustomText, CustomView } from '../../../components/export';
 import { appImages } from '../../../assets/image';
@@ -6,7 +6,7 @@ import { Colors, variant } from '../../../utils';
 import { strings } from '../../../constant';
 import { LogoutIcon } from '../../../assets/icon';
 
-const DashBordScreen = () => {
+const DashboardScreen = () => {
   return (
     <ImageBackground style={styles.wrapper} source={appImages.background}>
       <CustomView style={styles.wrapper}>
@@ -53,4 +53,4 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
-export default DashBordScreen;
+export default DashboardScreen;

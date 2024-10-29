@@ -1,17 +1,9 @@
 import React, { memo } from 'react';
 import Svg, { Path, Defs, Pattern, Use, Image } from 'react-native-svg';
 
-const FaceBook = memo((props: any) => {
+const FaceBook = memo(() => {
   return (
-    <Svg
-      width={26}
-      height={26}
-      viewBox="0 0 26 26"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      {...props}
-    >
+    <Svg width={26} height={26} viewBox="0 0 26 26" fill="none">
       <Path fill="url(#a)" d="M0 0h26v26H0z" />
       <Defs>
         <Pattern
@@ -34,3 +26,4 @@ const FaceBook = memo((props: any) => {
 });
 
 export { FaceBook };
+FaceBook.displayName = 'FaceBook';

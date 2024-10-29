@@ -1,16 +1,9 @@
 import * as React from 'react';
 import Svg, { Path, Defs, LinearGradient, Stop } from 'react-native-svg';
 
-export const ShowEyeIcon = React.memo((props?: any) => {
+export const ShowEyeIcon = React.memo(() => {
   return (
-    <Svg
-      width={18}
-      height={18}
-      viewBox="0 0 18 18"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <Svg width={18} height={18} viewBox="0 0 18 18" fill="none">
       <Path
         d="M11.813 9a2.812 2.812 0 11-5.625 0 2.812 2.812 0 015.625 0z"
         fill="url(#paint0_linear_26_11)"
@@ -46,3 +39,4 @@ export const ShowEyeIcon = React.memo((props?: any) => {
     </Svg>
   );
 });
+ShowEyeIcon.displayName = 'ShowEyeIcon';

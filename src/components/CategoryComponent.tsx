@@ -149,7 +149,7 @@ export const CategoryComponent = memo(
   },
   (prv, curr) => prv.selectCategory != curr.selectCategory,
 );
-
+CategoryComponent.displayName = 'CategoryComponent';
 const localStyle = StyleSheet.create({
   wrapper: {
     height: Dimensions.get('screen').height / 1,

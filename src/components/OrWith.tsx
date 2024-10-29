@@ -1,18 +1,18 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, { FC, memo } from 'react';
-import { F40018 } from '../utils/FontStyle';
 import { Colors } from '../utils/Colors';
 
 const OrWith: FC = memo(() => {
   return (
     <View style={styles.main}>
       <View style={styles.line} />
-      <Text style={F40018.main}>{'Or With'}</Text>
+      <Text>{'Or With'}</Text>
       <View style={styles.line} />
     </View>
   );
 });
 export { OrWith };
+OrWith.displayName = 'OrWith';
 
 const styles = StyleSheet.create({
   main: {

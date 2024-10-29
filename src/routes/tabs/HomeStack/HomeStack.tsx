@@ -11,6 +11,7 @@ const Stack = createStackNavigator<HomeStackParamList>();
 
 const lazyComponent: LazyComponentHome<React.FunctionComponent> = {
   [routePath.HomeScreen]:
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('../../../screen/dashboard/HomeTab/Home/HomeScreen').default,
 };
 

@@ -23,3 +23,5 @@ export const AuthHeader = memo(
    */
   (prv, curr) => prv.back !== curr.back,
 );
+
+AuthHeader.displayName = 'AuthHeader';

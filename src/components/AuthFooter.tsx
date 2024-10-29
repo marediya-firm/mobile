@@ -11,7 +11,12 @@ interface ButtonPressProps {
 
 const AuthFooter: FC<ButtonPressProps> = memo((props: ButtonPressProps) => {
   const getFontStyle = GetFontStyle();
-  const { onPress = () => {}, title } = props;
+  const {
+    onPress = () => {
+      ('');
+    },
+    title,
+  } = props;
   return (
     <CustomView>
       <Text
@@ -24,6 +29,7 @@ const AuthFooter: FC<ButtonPressProps> = memo((props: ButtonPressProps) => {
   );
 });
 
+AuthFooter.displayName = 'AuthFooter';
 export { AuthFooter };
 
 const styles = StyleSheet.create({

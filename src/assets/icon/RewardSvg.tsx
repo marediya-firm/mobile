@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native';
 import React, { memo } from 'react';
 import { G, Path, Svg } from 'react-native-svg';
 import { Colors } from '../../utils';
@@ -19,3 +18,4 @@ export const RewardSvg = memo((props: { color?: string }) => {
     </Svg>
   );
 });
+RewardSvg.displayName = 'RewardSvg';
