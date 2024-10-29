@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { ClockIn, ClockOut, TotalHours } from '../../../../../assets/icon';
 import {
-  findTotalMils,
+  findDifference,
   fontStyleVariant,
   IResponsive,
   timeHHMM,
@@ -19,11 +19,15 @@ export const UserTimeCalculation = () => {
     state => state?.data?.punchSessions,
   );
 
+  const totalMilliseconds = zustandFnc?.useHomeZustand(
+    state => state?.data?.totalMilliseconds,
+  );
+
   const punchSessions = session ?? [];
   const punchIn = punchSessions?.[0]?.punchIn;
   const punchOut = punchSessions?.[punchSessions?.length - 1]?.punchOut;
 
-  const timer = () => setTotalTime(findTotalMils(punchSessions) as string);
+  const timer = () => setTotalTime(findDifference(totalMilliseconds) as string);
 
   React.useEffect(() => {
     let clear: NodeJS.Timeout;

@@ -32,7 +32,7 @@ export const week = ['SUN', 'MON', 'TUE', 'WED', 'FRI', 'SAT'];
  */
 export const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-export const DashBordUtils = [
+export const DashBoardUtils = [
   {
     icon: CalenderIcon,
     name: strings.LeaveRequest,

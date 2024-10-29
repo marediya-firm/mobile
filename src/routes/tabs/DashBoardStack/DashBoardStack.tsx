@@ -10,20 +10,20 @@ import { routePath } from '../../routepath/export';
 const Stack = createStackNavigator<ReserveStackParamList>();
 
 const lazyComponent: LazyComponentSecondTab<React.FunctionComponent> = {
-  [routePath.Reserve]:
+  [routePath.Dashboard]:
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    require('../../../screen/dashboard/SecondTab/SecondTab/SecondTab').default,
+    require('../../../screen/dashboard/dashboard/DashBoardScreen').default,
 };
 
-export const ReserveStack = (): React.JSX.Element => {
+export const DashBoardStack = (): React.JSX.Element => {
   return (
     <Stack.Navigator
       screenOptions={authHeaderProp}
-      initialRouteName={routePath.Reserve}
+      initialRouteName={routePath.Dashboard}
     >
       <Stack.Screen
-        name={routePath.Reserve}
-        getComponent={() => lazyComponent[routePath.Reserve]}
+        name={routePath.Dashboard}
+        getComponent={() => lazyComponent[routePath.Dashboard]}
       />
     </Stack.Navigator>
   );

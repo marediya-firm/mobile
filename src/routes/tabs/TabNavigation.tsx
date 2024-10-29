@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaView, View } from 'react-native';
-import { TabNavParamList, routePath } from '../export';
+import { DashBoardStack, TabNavParamList, routePath } from '../export';
 import { HomeStack } from './HomeStack/HomeStack';
 import { style, TabUtils, TabUtilsProps } from '../../components/export';
 import { Colors } from '../../utils';
@@ -20,7 +20,7 @@ export const TabNavigation = () => {
   return (
     <>
       <Tab.Navigator
-        initialRouteName={routePath.Dashbord}
+        initialRouteName={routePath.HomeStack}
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarStyle: style.tabBarStyle,
@@ -32,11 +32,8 @@ export const TabNavigation = () => {
       >
         <Tab.Screen name={routePath.HomeStack} component={HomeStack} />
         <Tab.Screen
-          name={routePath.Dashbord}
-          getComponent={() =>
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            require('../../screen/dashboard/dashbord/DashboardScreen').default
-          }
+          name={routePath.DashboardStack}
+          component={DashBoardStack}
         />
         <Tab.Screen
           name={routePath.History}

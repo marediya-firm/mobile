@@ -30,7 +30,7 @@ export type Payload<R extends keyof HttpRequestType> =
 /**
  * params Body
  */
-export type InOutBody = { punchType: 'punch-in' | 'punch-out' };
+export type InOutBody = { punchType: 'punch-in' | 'punch-out' | '' };
 export interface UserId {
   userId: string;
 }
@@ -78,6 +78,7 @@ export interface ApiEndpoint {
   getPunchByUser: 'punch/punch-details';
   getPunchDetailByDate: 'punch/punch-details-by-user-date';
   punchInOut: '/punch/punch-in-out';
+  getTodayPunch: '/punch/today-punch-details';
   getLeaveRequest: '/leave/user-leave-requests';
 }
 

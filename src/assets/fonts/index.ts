@@ -17,7 +17,8 @@ export type FontsKey =
   | 'robotoBold'
   | 'robotoLightItalic'
   | 'oswaldLight'
-  | 'PoppinsBold';
+  | 'PoppinsBold'
+  | 'BebasNeue';
 
 type Fonts = {
   [key in FontsKey]: string;
@@ -61,4 +62,6 @@ export const fonts: Fonts = {
   robotoLightItalic: 'Roboto LightItalic',
 
   oswaldLight: 'Oswald-Bold',
+
+  BebasNeue: 'BebasNeue-Regular',
 };

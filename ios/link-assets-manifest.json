@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/BebasNeue-Regular.ttf",
+      "sha1": "8b3aaeb978f3cb5f575860774b50c332338563c1"
+    },
+    {
       "path": "src/assets/fonts/Oswald-Bold.ttf",
       "sha1": "6e78c90d65a6133d979daebc1255d2f560a97c79"
     },
@@ -167,7 +171,7 @@
     },
     {
       "path": "src/assets/fonts/index.ts",
-      "sha1": "c7b28f29b79be76a536fd49279381cc24ed818f2"
+      "sha1": "5f90488c8e6fb9ebfad468eff674ba2f6bcf00b5"
     }
   ]
 }
