@@ -4,7 +4,7 @@ import { MMKVStorage, UserPrivateKey } from '../services/export';
 import axios_request from 'axios';
 
 const axios = axios_request.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'http://10.0.2.2:3000',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
