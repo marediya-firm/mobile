@@ -47,8 +47,7 @@ export const loginApiController = async (
       endPoint: HttpRequest.apiEndPoint.login,
       payload: apiBody,
     });
-    console.log('result', result);
-
+    
     if (result?.data) {
       await UserLocalStorage.setValue<LoginAPIResponse['data']>(
         UserPrivateKey.UserDetail,
