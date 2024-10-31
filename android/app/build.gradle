@@ -8,6 +8,8 @@ apply plugin: 'kotlin-android'
 
 project.ext.react = [
     enableHermes: true,  // clean and rebuild if changing
+    enableTurboModules: true  // Ensures TurboModules are enabled
+
 ]
 
 //apply from: "../../node_modules/react-native/react.gradle"

@@ -38,8 +38,8 @@ export const PunchRecord = ({
                 item?.totalMilliseconds / 1000 < 28800
                   ? Colors.color1E
                   : item?.totalMilliseconds / 1000 < 28800
-                  ? Colors.color2C
-                  : Colors.colorF6,
+                    ? Colors.color2C
+                    : Colors.color55,
             },
           ]}
         >
