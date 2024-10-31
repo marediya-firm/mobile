@@ -34,8 +34,6 @@ export const HomeScreen = () => {
     zustandKey: 'useHomeZustand',
   });
 
-  console.log('call');
-
   return (
     <ImageBackground
       source={appImages.background}
