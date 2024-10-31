@@ -8,11 +8,13 @@ export const loadDataFromHttpsHookApi = <R extends keyof HttpRequestType>({
   payload,
   zustandKey,
   setter = 'setData',
+  delay = 0,
 }: {
   endPoint: string;
   payload?: Payload<R>;
   zustandKey: keyof ZustandFnc;
   setter?: keyof SetterKey | 'setData';
+  delay?: number;
 }) => {
   /**
    * Fetching data from the server caching function to uneven callback
@@ -35,7 +37,9 @@ export const loadDataFromHttpsHookApi = <R extends keyof HttpRequestType>({
   );
 
   useEffect(() => {
-    apiCalling(payload);
+    setTimeout(() => {
+      apiCalling(payload);
+    }, delay);
     return () => {
       // zustandFnc[zustandKey].getState()?.setData(initial.HomeInitialState);
     };

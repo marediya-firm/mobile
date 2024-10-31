@@ -46,7 +46,7 @@ export const apiController = async (): Promise<void> => {
       UserPrivateKey.UserDetail,
       result.data.data,
     );
-  } catch (error: any) {
+  } catch (error) {
     flashAlert({
       message: error?.message as string,
       description: 'Please try again',

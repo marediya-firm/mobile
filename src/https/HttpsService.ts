@@ -72,8 +72,8 @@ export class HttpRequest {
     try {
       const clientResult = await axios.post(endPoint, { payload });
       return clientResult.data;
-    } catch (error: string | any) {
-      return error?.message || error;
+    } catch (error: unknown) {
+      return error as Promise<AxiosResponse>;
     }
   };
 

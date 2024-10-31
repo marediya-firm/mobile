@@ -11,7 +11,6 @@ import { CalenderView } from '../../../components/CalenderView';
 
 const History = () => {
   const styles = useMakeStyle();
-
   return (
     <ImageBackground style={styles.wrapper} source={appImages.background}>
       <CustomView style={styles.wrapper}>

@@ -55,6 +55,7 @@ export const CalenderView = () => {
     endPoint: HttpRequest.apiEndPoint.getLeaveRequest,
     payload,
     zustandKey,
+    delay: 500,
   });
 
   /**
@@ -67,6 +68,7 @@ export const CalenderView = () => {
     zustandKey,
     payload,
     setter: 'setAttendanceData',
+    delay: 500,
   });
 
   const handlePrvNxt = useCallback(
