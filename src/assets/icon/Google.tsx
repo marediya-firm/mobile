@@ -3,14 +3,7 @@ import Svg, { Path, Defs, Pattern, Use, Image } from 'react-native-svg';
 
 export const Google = memo(() => {
   return (
-    <Svg
-      width={26}
-      height={26}
-      viewBox="0 0 26 26"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-    >
+    <Svg width={26} height={26} viewBox="0 0 26 26" fill="none">
       <Path fill="url(#pattern0)" d="M0 0H26V26H0z" />
       <Defs>
         <Pattern

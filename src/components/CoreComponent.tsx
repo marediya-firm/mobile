@@ -62,9 +62,7 @@ const useStyle = () =>
 type CustomTextProps = {
   text: string;
   variant: variant;
-  extraStyle?:
-    | StyleProp<AnimatedStyle<StyleProp<TextStyle>>>
-    | StyleProp<TextStyle>;
+  extraStyle?: StyleProp<TextStyle>;
   onPress?: () => void;
   textProps?: TextProps;
   isAnimated?: boolean;
@@ -74,14 +72,13 @@ export const CustomText = memo(
   (props: CustomTextProps) => {
     const getFontStyle = GetFontStyle();
     const PureText = props.isAnimated ? Animated.Text : Text;
+
+    const style = [
+      getFontStyle[props.variant],
+      props.extraStyle,
+    ] as StyleProp<TextStyle>;
     return (
-      <PureText
-        style={[
-          getFontStyle[props.variant || variant.F30012],
-          props.extraStyle,
-        ]}
-        {...props.textProps}
-      >
+      <PureText style={style} {...props.textProps}>
         {String(props.text)}
       </PureText>
     );
