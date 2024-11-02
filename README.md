@@ -1,4 +1,4 @@
-# khata_book
+# HRMS Entry Record
 
 ## Getting started
 
