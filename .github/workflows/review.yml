@@ -20,9 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18.19.0"
-           cache: 'npm'
           cache: npm
-        cache-dependency-path: subdir/package-lock.json
       - name: Install dependencies
         run: npm install --immutable
       - name: Check for unused dependencies
@@ -39,9 +37,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18.19.0"
-           cache: 'npm'
           cache: npm
-    cache-dependency-path: subdir/package-lock.json
       - name: Install dependencies
         run: npm install --frozen-lockfile
       - name: Compile source code
@@ -58,9 +54,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18.19.0"
-           cache: 'npm'
           cache: npm
-    cache-dependency-path: subdir/package-lock.json
       - name: Install dependencies
         run: npm install --immutable
       - name: Check format of source code
@@ -79,9 +73,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18.19.0"
-           cache: 'npm'
           cache: npm
-    cache-dependency-path: subdir/package-lock.json
       - name: Setup reviewdog
         uses: reviewdog/action-setup@v1
       - name: Install dependencies
@@ -102,9 +94,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18.19.0"
-           cache: 'npm'
           cache: npm
-    cache-dependency-path: subdir/package-lock.json
       - name: Install dependencies
         run: npm install --frozen-lockfile
       - name: Run test suite
