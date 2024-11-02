@@ -7,7 +7,7 @@ import { Dimensions, Platform, StyleSheet } from 'react-native';
 import { SheetProvider } from 'react-native-actions-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 export const isIOS = Platform.OS === 'ios';
-export const { height: deviceHeight, width: deviceWidth } =
+export       const { height: deviceHeight, width: deviceWidth } =
   Dimensions.get('window');
 
 const MyTheme = {
