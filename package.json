@@ -10,9 +10,11 @@
     "format": "prettier --write 'src/**/*.{js,ts,tsx}'",
     "format-check": "prettier --check 'src/**/*.{js,ts,tsx}'",
     "typecheck": "tsc --noEmit",
-    "test": "jest --forceExit --detectOpenHandles",
+    "test": "jest --silent --ci --coverage --config=jest.config.js",
     "postinstall": "patch-package",
-    "prettier": "prettier --check ."
+    "prettier": "prettier --check .",
+    "tsc": "tsc --noEmit",
+    "eslint": "eslint . -f rdjson -o eslint-report.rdjson.json"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.10",
