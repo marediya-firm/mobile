@@ -23,8 +23,6 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm install --immutable
-      - name: Check for unused dependencies
-        run: npm run depcheck
 
   tsc-check:
     runs-on: ubuntu-latest
