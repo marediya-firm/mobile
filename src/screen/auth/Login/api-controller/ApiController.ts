@@ -47,7 +47,7 @@ export const loginApiController = async (
       endPoint: HttpRequest.apiEndPoint.login,
       payload: apiBody,
     });
-    
+
     if (result?.data) {
       await UserLocalStorage.setValue<LoginAPIResponse['data']>(
         UserPrivateKey.UserDetail,
@@ -62,8 +62,8 @@ export const loginApiController = async (
       flashAlertMessage(result?.data?.message);
     }
     appLoader();
-  } catch (error: any) {
+  } catch (error: unknown) {
     appLoader();
-    flashAlertMessage(error?.message);
+    flashAlertMessage('Something went wrong');
   }
 };
