@@ -19,6 +19,8 @@ export const PunchRecord = ({
   index: number;
 }) => {
   const date = moment(item.punchSessions?.[0]?.punchIn);
+  const punchOut =
+    item.punchSessions?.[item.punchSessions.length - 1]?.punchOut;
   const dateFormat = date?.date() < 10 ? `0${date?.date()}` : date?.date();
   const totalHours = useMemo(
     () => findDifference(Math.round(item?.totalMilliseconds)),
@@ -53,7 +55,7 @@ export const PunchRecord = ({
               styles[500],
             ]}
           >
-            {week[date?.day()]}
+            {week[date?.day() - 1]}
           </Text>
         </View>
         <View style={styles.detailWrap}>
@@ -65,9 +67,7 @@ export const PunchRecord = ({
           </View>
           <View style={styles.padH10}>
             <Text style={styles.timeStyle}>
-              {timeHHMM(
-                item.punchSessions?.[item.punchSessions.length - 1]?.punchOut,
-              )}
+              {punchOut ? '00:00' : timeHHMM(punchOut)}
             </Text>
             <Text style={fontStyleVariant[variant.F30011]}>{'Punch Out'}</Text>
           </View>
