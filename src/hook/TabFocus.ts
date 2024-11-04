@@ -13,7 +13,6 @@ export const TabFocusLister = (): [boolean, () => void] => {
   });
 
   remove = navigation.addListener('blur', () => {
-    console.log('blur');
     setIsFocus(false);
   });
 
