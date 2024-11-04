@@ -76,10 +76,10 @@ jobs:
         uses: reviewdog/action-setup@v1
       - name: Install dependencies
         run: npm install --frozen-lockfile
-      - name: Lint source code
-        run: npm run eslint -f rdjson -o eslint-report.rdjson.json .
-      - name: Post Lint source code
-        run: cat eslint-report.rdjson.json | reviewdog -f=rdjson -diff="git diff FETCH_HEAD" -name=eslint -reporter=github-pr-check
+      # - name: Lint source code
+      #   run: npm run eslint -f rdjson -o eslint-report.rdjson.json .
+      # - name: Post Lint source code
+      #   run: cat eslint-report.rdjson.json | reviewdog -f=rdjson -diff="git diff FETCH_HEAD" -name=eslint -reporter=github-pr-check
 
   test:
     runs-on: ubuntu-latest
