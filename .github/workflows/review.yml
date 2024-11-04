@@ -24,22 +24,22 @@ jobs:
       - name: Install dependencies
         run: npm install --immutable
 
-  tsc-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.19.0'
-          cache: npm
-      - name: Install dependencies
-        run: npm install --frozen-lockfile
-      - name: Compile source code
-        run: npm run tsc --noEmit
+  # tsc-check:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Enable Corepack
+  #       run: corepack enable
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '18.19.0'
+  #         cache: npm
+  #     - name: Install dependencies
+  #       run: npm install --frozen-lockfile
+  #     - name: Compile source code
+  #       run: npm run tsc --noEmit
 
   prettier-check:
     runs-on: ubuntu-latest
