@@ -62,9 +62,7 @@ const useStyle = () =>
 type CustomTextProps = {
   text: string;
   variant: variant;
-  extraStyle?:
-    | StyleProp<AnimatedStyle<StyleProp<TextStyle>>>
-    | StyleProp<TextStyle>;
+  extraStyle?: StyleProp<TextStyle>;
   onPress?: () => void;
   textProps?: TextProps;
   isAnimated?: boolean;

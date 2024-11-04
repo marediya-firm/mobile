@@ -14,7 +14,8 @@
     "postinstall": "patch-package",
     "prettier": "prettier --check .",
     "tsc": "tsc --noEmit",
-    "eslint": "eslint . -f rdjson -o eslint-report.rdjson.json"
+    "eslint": "eslint . -f rdjson -o eslint-report.rdjson.json",
+    "write-prettier": "npx prettier --write ."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.10",
