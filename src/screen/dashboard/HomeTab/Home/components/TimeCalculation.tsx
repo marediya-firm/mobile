@@ -1,15 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { ClockIn, ClockOut, TotalHours } from '../../../../../assets/icon';
 import {
   findDifference,
   fontStyleVariant,
   IResponsive,
-  timeHHMM,
   variant,
 } from '../../../../../utils';
 import { zustandFnc } from '../../../../../zustand/function/Function';
 import responsive from '../../../../../utils/responsive';
+import { createTimeData } from '../../../../../data/import';
 
 export const UserTimeCalculation = () => {
   const styles = useMakeStyles(responsive);
@@ -27,42 +26,33 @@ export const UserTimeCalculation = () => {
   const punchIn = punchSessions?.[0]?.punchIn;
   const punchOut = punchSessions?.[punchSessions?.length - 1]?.punchOut;
 
-  const timer = () => setTotalTime(findDifference(totalMilliseconds) as string);
+  const getElapsedTime = (updateTimer?: number) => {
+    const elapsedMilliseconds = totalMilliseconds + (updateTimer ?? 0);
+    setTotalTime(findDifference(elapsedMilliseconds));
+  };
 
   React.useEffect(() => {
     let clear: NodeJS.Timeout;
+    let updateTimer = 0;
     if (punchIn) {
-      timer();
+      getElapsedTime();
       if (!punchOut) {
-        clear = setInterval(() => timer(), 60 * 1000);
+        clear = setInterval(() => {
+          updateTimer += 60000;
+          getElapsedTime(updateTimer);
+        }, 60 * 1000);
       }
     }
     return () => clearInterval(clear);
   }, [punchIn, punchOut]);
 
-  const timingArray = [
-    {
-      time: punchIn ? timeHHMM(punchIn) : '00:00',
-      status: 'Punch In',
-      Icon: ClockIn,
-    },
-    {
-      time: timeHHMM(String(punchOut ?? new Date())),
-      status: punchOut ? 'Punch Out' : 'Current Time',
-      Icon: ClockOut,
-    },
-    {
-      time: punchIn ? totalTime : '00:00',
-      status: 'Total Hours',
-      Icon: TotalHours,
-    },
-  ];
+  const timeData = createTimeData(punchIn, punchOut, totalTime);
 
   return (
     <>
-      {timingArray?.map((item, index) => (
+      {timeData?.map((item, index) => (
         <View key={index} style={styles.totalHoursContainerWrapper}>
-          <item.Icon />
+          <item.IconComponent />
           <Text style={styles.timeText1}>{item.time}</Text>
           <Text style={fontStyleVariant[variant.F40012]}>{item.status}</Text>
         </View>
