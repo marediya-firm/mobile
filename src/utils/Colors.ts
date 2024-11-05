@@ -44,7 +44,8 @@ export type ColorsType = {
     | 'colorD7'
     | 'colorF6'
     | 'color55'
-    | 'r01']: string;
+    | 'r01'
+    | 'color23']: string;
 };
 
 export const Colors: ColorsType = {
@@ -55,6 +56,7 @@ export const Colors: ColorsType = {
   grey46: '#293646',
   semiBlue: '#211347',
   color55: '#6FAB55',
+  color23: '#570923',
 
   grey94: '#6A7D94',
   r01: 'rgba(0, 0, 0, 0.1)',

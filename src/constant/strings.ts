@@ -34,7 +34,8 @@ export type StringConstant = {
     | 'Logout'
     | 'LeaveRequest'
     | 'Details'
-    | 'LeaveApproval']: string;
+    | 'LeaveApproval'
+    | 'weekEnd']: string;
 };
 
 export const strings: StringConstant = {
@@ -68,6 +69,7 @@ export const strings: StringConstant = {
   LeaveRequest: 'Leave Request',
   Details: 'Leave Request Details',
   LeaveApproval: 'Leave Approval',
+  weekEnd: 'Week end ',
 };
 
 export const validationString: validationStringConstant = {

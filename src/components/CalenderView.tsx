@@ -1,5 +1,5 @@
-import React, { startTransition, useCallback, useMemo, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useMemo, useState } from 'react';
+import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
 import moment from 'moment';
 import { WeekView } from './WeekView';
 import { RenderDay } from './export';
@@ -73,34 +73,32 @@ export const CalenderView = () => {
 
   const handlePrvNxt = useCallback(
     async (next?: boolean) => {
-      const change = currentMonth.clone().subtract(!next ? 1 : -1, 'month');
-      const store = useHistoryZustand.getState();
+      try {
+        const store = useHistoryZustand.getState();
+        const change = currentMonth.clone().subtract(!next ? 1 : -1, 'month');
+        const startDate = startOfTheMonth(change);
+        const payload = {
+          endDate: endOfTheMonth(change),
+          startDate,
+        };
 
-      const payload = {
-        endDate: endOfTheMonth(change),
-        startDate: startOfTheMonth(change),
-      };
-
-      if (store?.caching?.leave[startDate]) {
-        store.setData(store.caching.leave[startDate], payload);
-        store.setAttendanceData(store.caching.punch[startDate], payload);
-      } else {
-        await getPunchRecordsByMonth(payload);
-        await getLeaveRecordByMonth(payload);
-      }
-
-      /**
-       * For delay response because we have to ensure first response come and than date
-       */
-      startTransition(() => {
+        if (store?.caching?.leave[startDate]) {
+          store.setData(store?.caching?.leave[startDate], payload);
+          store.setAttendanceData(store.caching.punch[startDate], payload);
+        } else {
+          await getPunchRecordsByMonth(payload);
+          await getLeaveRecordByMonth(payload);
+        }
         setCurrentMonth(change);
-      });
+      } catch (error) {
+        Alert.alert('Something went wrong');
+      }
     },
     [currentMonth],
   );
 
   return (
-    <>
+    <React.Fragment>
       <View style={styles.container}>
         <Text style={fontStyleVariant[variant.F50015]}>
           {currentMonth.format('MMMM YYYY')}
@@ -120,7 +118,7 @@ export const CalenderView = () => {
         }
         numColumns={7}
       />
-    </>
+    </React.Fragment>
   );
 };
 

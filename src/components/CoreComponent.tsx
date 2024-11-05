@@ -11,7 +11,7 @@ import {
 import React, { memo } from 'react';
 import { GetFontStyle, variant } from '../utils';
 import { ViewProps } from 'react-native-svg/lib/typescript/fabric/utils';
-import Animated, { AnimatedStyle } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import { LoadingIndicator } from './LoadingIndicator';
 
 interface CustomViewProps {

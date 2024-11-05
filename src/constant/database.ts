@@ -25,7 +25,12 @@ export const timingArray = [
 /**
  * Short name of week
  */
-export const week = ['SUN', 'MON', 'TUE', 'WED', 'FRI', 'SAT'];
+export const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
+/**
+ * Weekend
+ */
+export const weekend = ['SAT', 'SUN'];
 
 /**
  * Character name of week
