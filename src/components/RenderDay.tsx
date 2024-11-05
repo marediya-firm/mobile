@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useDeferredValue } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import {
   Menu,
@@ -10,16 +10,17 @@ import { deviceWidth } from '../../App';
 import { Colors } from '../utils';
 import { RenderDayProps } from './export';
 import { useHistoryZustand } from '../zustand/history/HistoryStore';
+import responsive from '../utils/responsive';
+import { strings } from '../constant';
 
 const { Popover } = renderers;
 
 export const RenderDay = React.memo((props: RenderDayProps) => {
   const { day } = props;
   const number = day.format('D');
-  const digit = useHistoryZustand(state => state?.calender[String(number)]);
-
-  // Check if the current day is Sunday
   const isSunday = day?.weekday() === 0;
+  const calender = useHistoryZustand(state => state?.calender[String(number)]);
+  const digit = useDeferredValue(calender);
   const colorStyle = { color: isSunday ? Colors.colorD7 : Colors.grey46 };
 
   return (
@@ -30,7 +31,7 @@ export const RenderDay = React.memo((props: RenderDayProps) => {
         anchorStyle: styles.menuArrow,
       }}
     >
-      <MenuTrigger disabled={!digit} style={styles.dayContainer}>
+      <MenuTrigger disabled={!digit && !isSunday} style={styles.dayContainer}>
         <Text
           style={[
             styles.dayText,
@@ -48,7 +49,9 @@ export const RenderDay = React.memo((props: RenderDayProps) => {
         }}
       >
         <View style={styles.menuContent}>
-          <Text style={styles.menuText}>{digit?.reason}</Text>
+          <Text style={styles.menuText}>
+            {digit?.reason ?? strings.weekEnd}
+          </Text>
         </View>
       </MenuOptions>
     </Menu>
@@ -60,14 +63,14 @@ RenderDay.displayName = 'RenderDay';
 const styles = StyleSheet.create({
   dayContainer: {
     width: deviceWidth / 7 - 4,
-    height: 65,
+    height: responsive.height(5),
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
     borderColor: '#ddd',
   },
   dayText: {
-    fontSize: 16,
+    fontSize: 14,
     textAlign: 'center',
     textAlignVertical: 'center',
   },
