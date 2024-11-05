@@ -67,7 +67,10 @@ const setCaching = (
    * Check if the caching key exists the
    * caching key @param key is look like 2024-10-01
    */
-  if (!state.caching[key]?.[payload?.startDate ?? '']) {
+
+  if (!state.caching[key]?.[payload?.startDate ?? ''] && payload) {
+    (state.caching[key][payload?.startDate] as unknown) = state[setterKey];
+  } else {
     (state.caching[key] as unknown) = {
       [payload?.startDate ?? '']: state[setterKey],
     };
