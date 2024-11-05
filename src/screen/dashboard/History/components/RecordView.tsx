@@ -1,49 +1,39 @@
+import { useDeferredValue, useMemo } from 'react';
 import moment from 'moment';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import {
-  Colors,
   findDifference,
   fontStyleVariant,
   timeHHMM,
   variant,
 } from '../../../../utils';
-import responsive from '../../../../utils/responsive';
 import { week } from '../../../../constant';
-import { HttpPunchDetailResponse } from '../../../../https/export';
-import { useMemo } from 'react';
+import { useHistoryZustand } from '../../../../zustand/history/HistoryStore';
+import { makeStyle, PunchRecordParams, recordStyle as styles } from './export';
 
-export const PunchRecord = ({
-  item,
-}: {
-  item: HttpPunchDetailResponse;
-  index: number;
-}) => {
-  const date = moment(item.punchSessions?.[0]?.punchIn);
-  const punchOut =
-    item.punchSessions?.[item.punchSessions.length - 1]?.punchOut;
+export const PunchRecord = ({ item: myItem }: PunchRecordParams) => {
+  const item = useDeferredValue(myItem);
+  const punchSessions = item.punchSessions;
+  const date = moment(punchSessions?.[0]?.punchIn);
+  const day = date.format('D');
+  const militSeconds = item?.totalMilliseconds;
+  const punchOut = punchSessions?.[punchSessions?.length - 1]?.punchOut;
   const dateFormat = date?.date() < 10 ? `0${date?.date()}` : date?.date();
+
   const totalHours = useMemo(
-    () => findDifference(Math.round(item?.totalMilliseconds)),
-    [item?.totalMilliseconds],
+    () => findDifference(Math.round(militSeconds)),
+    [militSeconds],
+  );
+
+  const isHalfDay = useHistoryZustand(
+    state => state?.calender[String(day)]?.type,
   );
 
   return (
     <View style={styles.recordWrapper}>
       <View style={styles.recordContainer}>
         <View
-          style={[
-            styles.dateContainer,
-
-            {
-              backgroundColor:
-                item?.totalMilliseconds / 1000 > 14400 &&
-                item?.totalMilliseconds / 1000 < 28800
-                  ? Colors.color1E
-                  : item?.totalMilliseconds / 1000 < 28800
-                    ? Colors.color2C
-                    : Colors.color55,
-            },
-          ]}
+          style={[styles.dateContainer, makeStyle(militSeconds, isHalfDay)]}
         >
           <Text style={[fontStyleVariant[variant.F50019], styles.recordColor]}>
             {dateFormat}
@@ -55,7 +45,7 @@ export const PunchRecord = ({
               styles[500],
             ]}
           >
-            {week[date?.day() - 1]}
+            {week[date?.day()]}
           </Text>
         </View>
         <View style={styles.detailWrap}>
@@ -67,7 +57,7 @@ export const PunchRecord = ({
           </View>
           <View style={styles.padH10}>
             <Text style={styles.timeStyle}>
-              {punchOut ? '00:00' : timeHHMM(punchOut)}
+              {!punchOut ? 'Missing' : timeHHMM(punchOut)}
             </Text>
             <Text style={fontStyleVariant[variant.F30011]}>{'Punch Out'}</Text>
           </View>
@@ -83,56 +73,3 @@ export const PunchRecord = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  recordWrapper: {
-    marginHorizontal: 6,
-    marginVertical: 10,
-    backgroundColor: Colors.colorF6,
-    borderRadius: 12,
-    shadowOpacity: 0.4,
-    shadowColor: Colors.borderColor,
-    shadowOffset: {
-      height: 1,
-      width: 1,
-    },
-    elevation: 3,
-  },
-  recordContainer: {
-    shadowColor: Colors.colorEF,
-    shadowOpacity: 0.5,
-    shadowOffset: {
-      height: 3,
-      width: 1,
-    },
-    flexDirection: 'row',
-    padding: 12,
-    paddingHorizontal: 14,
-    alignItems: 'center',
-  },
-  dateContainer: {
-    backgroundColor: Colors.color55,
-    padding: 15,
-    paddingHorizontal: 17,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: responsive.width(2.5),
-  },
-  day: { marginTop: 2 },
-  padH10: { paddingHorizontal: 10 },
-  padL: { paddingLeft: 12, paddingHorizontal: 10 },
-  timeStyle: {
-    ...fontStyleVariant[variant.F30012],
-    color: Colors.grey46,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  recordColor: { color: Colors.white },
-  500: { fontWeight: '500' },
-  detailWrap: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    flex: 1,
-    marginHorizontal: 12,
-  },
-});
