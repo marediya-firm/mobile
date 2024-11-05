@@ -27,7 +27,7 @@ export const loadDataFromHttpsHookApi = <R extends keyof HttpRequestType>({
           payload,
         });
         if (data?.data) {
-          zustandFnc[zustandKey].getState()?.[setter]?.(data?.data, data);
+          zustandFnc[zustandKey].getState()?.[setter]?.(data?.data, payload);
         }
       } catch (error) {
         console.log('error', error);
