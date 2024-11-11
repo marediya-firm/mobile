@@ -7423,9 +7423,9 @@ react-native-popup-menu@^0.16.1:
   integrity sha512-xRS7mRh0exwu7Iw8PPVHdM11d13A/KzYjy0/fZx3zVtxISxPkNaDGayau6oa7HqO3Nj0oS9ulFCYjcQfG6vahA==
 
 react-native-reanimated@^3.17.0-nightly-20241029-1d010271d:
-  version "3.17.0-nightly-20241105-8842d1cb9"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-3.17.0-nightly-20241105-8842d1cb9.tgz#11d4b03d5d89bf7591d57197633c73a443dd01dd"
-  integrity sha512-Zk8xbtae19TRMxj3sijiUTujaBPawttGcMDE4piqL6PauZ50nqSliL2s+IebnmIWQAvuLkNo5nBU9SQk9SIAvQ==
+  version "3.17.0-nightly-20241110-66137a6b0"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-3.17.0-nightly-20241110-66137a6b0.tgz#5afc169c2e6fb91863ccaf3adf34acc9c41012bb"
+  integrity sha512-EQAWvs0mmuRF4mnoRnGboZRQv/bhYsOI7hTOSiTYFBwKzN1+C/pXAxqh5GBZB4CdcAUgsUP7NMWd8hTkr5PJgA==
   dependencies:
     "@babel/plugin-transform-arrow-functions" "^7.0.0-0"
     "@babel/plugin-transform-class-properties" "^7.0.0-0"
