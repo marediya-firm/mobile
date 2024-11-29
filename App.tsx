@@ -5,6 +5,10 @@ import { Colors } from './src/constant';
 import { GlobalComponent } from './src/screen/global/GlobalComponent';
 import { Dimensions, Platform, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SheetProvider } from 'react-native-actions-sheet';
+import { NetInfoWifiState, useNetInfo } from '@react-native-community/netinfo';
+import axios from './src/https/HttpInterceptor';
+
 export const isIOS = Platform.OS === 'ios';
 export const { height: deviceHeight, width: deviceWidth } =
   Dimensions.get('window');
@@ -18,11 +22,19 @@ const MyTheme = {
 };
 
 const App = () => {
+  const netInfo = useNetInfo() as NetInfoWifiState;
+
+  axios.defaults.baseURL = `http://${netInfo.details?.ipAddress}:3000`;
+  if (!netInfo.details?.ipAddress) {
+    return <></>;
+  }
   return (
     <NavigationContainer theme={MyTheme}>
-      <GestureHandlerRootView style={styles.container}>
-        <GlobalComponent />
-      </GestureHandlerRootView>
+      <SheetProvider>
+        <GestureHandlerRootView style={styles.container}>
+          <GlobalComponent />
+        </GestureHandlerRootView>
+      </SheetProvider>
     </NavigationContainer>
   );
 };

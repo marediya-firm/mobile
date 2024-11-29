@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import ActionSheet, {
   SheetManager,
   SheetProps,
 } from 'react-native-actions-sheet';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import {
-  useSharedValue,
-  runOnJS,
-  withSpring,
-  useAnimatedStyle,
+import Animated, {
   interpolate,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
 } from 'react-native-reanimated';
 import { deviceWidth } from '../../App';
 import { SwipeRight } from '../assets/icon/SwipeRight';

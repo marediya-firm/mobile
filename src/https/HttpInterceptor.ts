@@ -4,7 +4,7 @@ import { MMKVStorage, UserPrivateKey } from '../services/export';
 import axios_request from 'axios';
 
 const axios = axios_request.create({
-  baseURL: 'http://10.0.2.2:3000',
+  // baseURL: 'http://10.10.1.119:3000',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
@@ -17,6 +17,7 @@ const userDetailFromLocal = () =>
 axios.interceptors.request.use(
   config => {
     const user = userDetailFromLocal();
+
     /**
      * Passing default user id in axios request
      */
