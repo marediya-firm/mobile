@@ -4,12 +4,10 @@ import AppLoader from '../../components/AppLoader';
 import MainStack from '../../routes/MainStack';
 import { GetToken } from '../../hook/export';
 import { MenuProvider } from 'react-native-popup-menu';
-import { SheetProvider } from 'react-native-actions-sheet';
-
 export const GlobalComponent = () => {
   const tokenValue: string = GetToken();
   return (
-    <SheetProvider>
+    <>
       {tokenValue !== 'initial' && (
         <MenuProvider>
           <MainStack />
@@ -21,6 +19,6 @@ export const GlobalComponent = () => {
           />
         </MenuProvider>
       )}
-    </SheetProvider>
+    </>
   );
 };

@@ -22,9 +22,15 @@ const MyTheme = {
 };
 
 const App = () => {
+  /**
+   * NOTE: This whole code is for debugging purposes because we are deploying static server we removeing after publishing
+   */
   const netInfo = useNetInfo() as NetInfoWifiState;
 
-  axios.defaults.baseURL = `http://${netInfo.details?.ipAddress}:3000`;
+  axios.defaults.baseURL = __DEV__
+    ? `http://${netInfo.details?.ipAddress}:3000`
+    : 'https://hrms-hw12.onrender.com';
+
   if (!netInfo.details?.ipAddress) {
     return <></>;
   }

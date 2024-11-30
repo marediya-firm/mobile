@@ -3,6 +3,8 @@ import { LoginAPIResponse } from '../screen/auth/Login/export';
 import { MMKVStorage, UserPrivateKey } from '../services/export';
 import axios_request from 'axios';
 
+// Server BASEURL
+// https://hrms-hw12.onrender.com
 const axios = axios_request.create({
   // baseURL: 'http://10.10.1.119:3000',
   headers: {
