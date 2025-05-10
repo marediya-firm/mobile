@@ -1,41 +1,34 @@
 import React from 'react';
 import './src/sheet';
-import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
-import { Colors } from './src/constant';
+import { NavigationContainer } from '@react-navigation/native';
+import { appTheme } from './src/constant';
 import { GlobalComponent } from './src/screen/global/GlobalComponent';
 import { Dimensions, Platform, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SheetProvider } from 'react-native-actions-sheet';
 import { NetInfoWifiState, useNetInfo } from '@react-native-community/netinfo';
-import axios from './src/https/HttpInterceptor';
+import { devIp } from './src/worker/worker';
 
 export const isIOS = Platform.OS === 'ios';
 export const { height: deviceHeight, width: deviceWidth } =
   Dimensions.get('window');
 
-const MyTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: Colors.white,
-  },
-};
-
 const App = () => {
-  /**
-   * NOTE: This whole code is for debugging purposes because we are deploying static server we removeing after publishing
-   */
   const netInfo = useNetInfo() as NetInfoWifiState;
 
-  axios.defaults.baseURL = __DEV__
-    ? `http://${netInfo.details?.ipAddress}:3000`
-    : 'https://hrms-hw12.onrender.com';
+  /**
+   * NOTE: This whole code is for debugging purposes because we are deploying static server we removing after publishing
+   */
+  devIp(netInfo);
 
+  /**
+   * Checking FraudIP Later i want to add screen
+   */
   if (!netInfo.details?.ipAddress) {
     return <></>;
   }
   return (
-    <NavigationContainer theme={MyTheme}>
+    <NavigationContainer theme={appTheme}>
       <SheetProvider>
         <GestureHandlerRootView style={styles.container}>
           <GlobalComponent />

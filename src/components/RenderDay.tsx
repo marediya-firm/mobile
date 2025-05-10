@@ -63,7 +63,7 @@ RenderDay.displayName = 'RenderDay';
 const styles = StyleSheet.create({
   dayContainer: {
     width: deviceWidth / 7 - 4,
-    height: responsive.height(5),
+    height: responsive.height(6),
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,

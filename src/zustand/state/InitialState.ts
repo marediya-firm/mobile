@@ -9,6 +9,7 @@ export class initial {
     punchType: '',
     lastUpdated: '',
     userId: '',
+    totalMilliseconds: 0,
   };
 
   static HistoryInitialState: HttpLeaveDetailResponse[] = [

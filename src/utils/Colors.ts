@@ -1,3 +1,4 @@
+import { DefaultTheme } from '@react-navigation/native';
 import { useMemo } from 'react';
 
 export type ColorsType = {
@@ -104,3 +105,11 @@ export const Colors: ColorsType = {
 };
 
 export const ConstantColor = () => useMemo(() => Colors, []);
+
+export const appTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: Colors.white,
+  },
+};

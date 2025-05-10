@@ -37,14 +37,14 @@ export const weekend = ['SAT', 'SUN'];
  */
 export const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-export const DashBoardUtils = [
+export const dashBoardUtils = [
   {
     icon: CalenderIcon,
     name: strings.LeaveRequest,
   },
   {
     icon: CalenderIcon,
-    name: strings.LeaveRequest + strings.Details,
+    name: strings.Details,
   },
   {
     icon: CalenderIcon,
